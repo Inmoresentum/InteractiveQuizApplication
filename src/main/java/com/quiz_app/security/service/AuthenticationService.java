@@ -1,6 +1,9 @@
-package com.quiz_app.security.controller.authcontroller;
+package com.quiz_app.security.service;
 
 import com.quiz_app.security.config.JwtService;
+import com.quiz_app.security.controller.authcontroller.AuthenticationRequest;
+import com.quiz_app.security.controller.authcontroller.AuthenticationResponse;
+import com.quiz_app.security.controller.authcontroller.RegisterRequest;
 import com.quiz_app.security.entity.jwttoken.Token;
 import com.quiz_app.security.repository.TokenRepository;
 import com.quiz_app.security.entity.jwttoken.TokenType;
@@ -17,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +37,8 @@ public class AuthenticationService {
                 .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
+                .accountCreated(LocalDateTime.now())
+                .agreesWithTermsOfServicesAndPrivacyAndPolicy(request.isAgreesWithTermsAndConditions())
                 .role(request.getRole())
                 .build();
         var savedUser = repository.save(user);

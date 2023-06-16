@@ -1,10 +1,10 @@
 package com.quiz_app.security.controller.authcontroller;
 
 import com.quiz_app.security.entity.user.Role;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -17,4 +17,6 @@ public class RegisterRequest {
     private String email;
     private String password;
     private Role role;
+    private LocalDateTime accountCreatedAt;
+    private boolean agreesWithTermsAndConditions;
 }
