@@ -1,10 +1,17 @@
 package com.quiz_app.security.entity.quiz;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
+@RequiredArgsConstructor
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@Builder
 public class Question {
     @Id
     @GeneratedValue
