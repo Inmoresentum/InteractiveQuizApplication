@@ -1,5 +1,8 @@
 package com.quiz_app.security;
 
+import com.quiz_app.security.entity.quiz.Question;
+import com.quiz_app.security.entity.quiz.Quiz;
+import com.quiz_app.security.repository.QuizRepository;
 import com.quiz_app.security.service.AuthenticationService;
 import com.quiz_app.security.controller.authcontroller.RegisterRequest;
 import org.springframework.boot.CommandLineRunner;
@@ -8,6 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.quiz_app.security.entity.user.Role.ADMIN;
 import static com.quiz_app.security.entity.user.Role.USER;
@@ -20,7 +25,7 @@ public class QuizApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(AuthenticationService service) {
+    public CommandLineRunner commandLineRunner(AuthenticationService service, QuizRepository quizRepository) {
         return args -> {
             var admin = RegisterRequest.builder()
                     .firstname("Admin")
@@ -43,6 +48,21 @@ public class QuizApplication {
                     .role(USER)
                     .build();
             System.out.println("User token: " + service.register(user).getAccessToken());
+
+            List<Question> questionList = new ArrayList<>();
+            Question firstQuestion = new Question();
+            firstQuestion.setQuestion("What is the capital of France?");
+            firstQuestion.setOptionsToChooseForm(List.of("Madrid", "Paris", "Rome", "Berlin"));
+            firstQuestion.setCorrectAnswer("Paris");
+            Question secondQuestion = new Question();
+            secondQuestion.setQuestion("What is the largest planet in our solar system?");
+            secondQuestion.setOptionsToChooseForm(List.of("Mars", "Jupiter", "Venus", "Saturn"));
+            secondQuestion.setCorrectAnswer("Jupiter");
+            questionList.add(firstQuestion);
+            questionList.add(secondQuestion);
+            var quiz = new Quiz();
+            quiz.setQuestionList(questionList);
+            quizRepository.save(quiz);
         };
     }
 }

@@ -11,7 +11,6 @@ import java.util.List;
 @Setter
 @ToString
 @EqualsAndHashCode
-@Builder
 public class Question {
     @Id
     @GeneratedValue

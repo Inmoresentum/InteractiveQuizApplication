@@ -1,9 +1,6 @@
 package com.quiz_app.security.entity.quiz;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
@@ -12,12 +9,11 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
-@Builder
+@EqualsAndHashCode
 public class Quiz {
     @Id
     @GeneratedValue
     private Integer quizId;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Question> questionList;
 }
