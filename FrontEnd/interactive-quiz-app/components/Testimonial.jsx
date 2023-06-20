@@ -19,7 +19,9 @@ function Testimonial() {
 
                     <a
                         href="#"
-                        className="mt-8 inline-flex shrink-0 items-center gap-2 rounded-full border border-pink-600 px-5 py-3 font-medium text-pink-600 hover:bg-pink-600 hover:text-white sm:mt-0 lg:mt-8"
+                        className="mt-8 inline-flex shrink-0 items-center gap-2 rounded-full border border-pink-600 px-5 py-3 font-medium text-pink-600
+                        hover:bg-pink-600 hover:text-white transition-all duration-500 sm:mt-0 lg:mt-8
+                        hover:translate-y-3"
                     >
                         Read all reviews
 
@@ -41,7 +43,9 @@ function Testimonial() {
                 </div>
 
                 <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                    <blockquote className="flex h-full flex-col justify-between bg-white p-12 rounded-3xl">
+                    <blockquote className="flex h-full flex-col justify-between bg-white p-12 rounded-3xl
+                    shadow-xl shadow-purple-600 hover:cursor-pointer hover:shadow-pink-600 hover:scale-110
+                     border-2 hover:border-emerald-400 hover:bg-gray-50 transition-all duration-500">
                         <div>
                             <div className="flex gap-0.5 text-green-500">
                                 <svg
@@ -112,7 +116,9 @@ function Testimonial() {
                         <footer className="mt-8 text-gray-500">Eddie Murphy</footer>
                     </blockquote>
 
-                    <blockquote className="flex h-full flex-col justify-between bg-white p-12 rounded-3xl">
+                    <blockquote className="flex h-full flex-col justify-between bg-white p-12 rounded-3xl
+                    shadow-xl shadow-orange-600 hover:cursor-pointer hover:shadow-pink-600 hover:scale-110
+                     border-2 hover:border-emerald-400 transition-all duration-500">
                         <div>
                             <div className="flex gap-0.5 text-green-500">
                                 <svg
@@ -183,7 +189,9 @@ function Testimonial() {
                         <footer className="mt-8 text-gray-500">Eddie Murphy</footer>
                     </blockquote>
 
-                    <blockquote className="flex h-full flex-col justify-between bg-white p-12 rounded-3xl">
+                    <blockquote className="flex h-full flex-col justify-between bg-white p-12 rounded-3xl
+                    shadow-xl shadow-fuchsia-500 hover:cursor-pointer hover:shadow-pink-600 hover:scale-110
+                     border-2 hover:border-emerald-400 transition-all duration-500">
                         <div>
                             <div className="flex gap-0.5 text-green-500">
                                 <svg
@@ -254,7 +262,9 @@ function Testimonial() {
                         <footer className="mt-8 text-gray-500">Eddie Murphy</footer>
                     </blockquote>
 
-                    <blockquote className="flex h-full flex-col justify-between bg-white p-12 rounded-3xl">
+                    <blockquote className="flex h-full flex-col justify-between bg-white p-12 rounded-3xl
+                    shadow-xl shadow-indigo-600 hover:cursor-pointer hover:shadow-pink-600 hover:scale-110
+                     border-2 hover:border-emerald-400 transition-all duration-500">
                         <div>
                             <div className="flex gap-0.5 text-green-500">
                                 <svg
@@ -325,7 +335,9 @@ function Testimonial() {
                         <footer className="mt-8 text-gray-500">Eddie Murphy</footer>
                     </blockquote>
 
-                    <blockquote className="flex h-full flex-col justify-between bg-white p-12 rounded-3xl">
+                    <blockquote className="flex h-full flex-col justify-between bg-white p-12 rounded-3xl
+                    shadow-xl shadow-red-600 hover:cursor-pointer hover:shadow-pink-600 hover:scale-110
+                     border-2 hover:border-emerald-400 transition-all duration-500">
                         <div>
                             <div className="flex gap-0.5 text-green-500">
                                 <svg
@@ -396,7 +408,9 @@ function Testimonial() {
                         <footer className="mt-8 text-gray-500">Eddie Murphy</footer>
                     </blockquote>
 
-                    <blockquote className="flex h-full flex-col justify-between bg-white p-12 rounded-3xl">
+                    <blockquote className="flex h-full flex-col justify-between bg-white p-12 rounded-3xl
+                    shadow-xl shadow-violet-500 hover:cursor-pointer hover:shadow-pink-600 hover:scale-110
+                     border-2 hover:border-emerald-400 transition-all duration-500">
                         <div>
                             <div className="flex gap-0.5 text-green-500">
                                 <svg
