@@ -10,18 +10,35 @@ body {
     /* mask created with
     https://css-generators.com/wavy-shapes/ */
 
-    background:
-            linear-gradient(
-                    to right,
-                    #00f260,
-                    #0575e6);
+    background: linear-gradient(
+            to right,
+            #00f260,
+            #0575e6);
 
-    --mask:
-            radial-gradient(50.39px at 50% 68.75px,#000 99%,#0000 101%) calc(50% - 50px) 0/100px 51% repeat-x,
-            radial-gradient(50.39px at 50% -43.75px,#0000 99%,#000 101%) 50% 25px/100px calc(51% - 25px) repeat-x,
-            radial-gradient(50.39px at 50% calc(100% - 68.75px),#000 99%,#0000 101%) calc(50% - 50px) 100%/100px 51% repeat-x,
-            radial-gradient(50.39px at 50% calc(100% + 43.75px),#0000 99%,#000 101%) 50% calc(100% - 25px)/100px calc(51% - 25px) repeat-x;
+    --mask: radial-gradient(50.39px at 50% 68.75px, #000 99%, #0000 101%) calc(50% - 50px) 0/100px 51% repeat-x,
+    radial-gradient(50.39px at 50% -43.75px, #0000 99%, #000 101%) 50% 25px/100px calc(51% - 25px) repeat-x,
+    radial-gradient(50.39px at 50% calc(100% - 68.75px), #000 99%, #0000 101%) calc(50% - 50px) 100%/100px 51% repeat-x,
+    radial-gradient(50.39px at 50% calc(100% + 43.75px), #0000 99%, #000 101%) 50% calc(100% - 25px)/100px calc(51% - 25px) repeat-x;
     -webkit-mask: var(--mask);
     mask: var(--mask);
 
+}
+
+.wavy-footer {
+    background: #000000;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+    --mask: radial-gradient(52.20px at 50% 65.00px, #000 99%, #0000 101%) calc(50% - 100px) 0/200px 51% repeat-x,
+    radial-gradient(52.20px at 50% -15px, #0000 99%, #000 101%) 50% 50px/200px calc(51% - 50px) repeat-x,
+    radial-gradient(52.20px at 50% calc(100% - 65.00px), #000 99%, #0000 101%) calc(50% - 100px) 100%/200px 51% repeat-x,
+    radial-gradient(52.20px at 50% calc(100% + 15.00px), #0000 99%, #000 101%) 50% calc(100% - 50px)/200px calc(51% - 50px) repeat-x;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+}
+
+.extra-bg {
+    background-image: url("../public/stacked-waves-haikei.svg");
+    background-repeat: repeat-x;
 }
