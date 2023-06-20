@@ -60,9 +60,11 @@ const Cards = () => {
                         </button>
                     </div>
                 </div>
-                <h1 className="flex align-top justify-center py-[25px] text-4xl font-bold text-white
-             cursor-pointer hover:text-orange-500 shadow-2xl hover:shadow-rose-600 transition-all duration-500">
+                <h1 className="relative flex align-top justify-center py-[25px] text-4xl font-bold text-white
+                 cursor-pointer hover:text-orange-500 shadow-2xl hover:shadow-rose-600 transition-all duration-500 h1-sp-effect">
                     Take Advantage of Our Premium Plans
+                    <span
+                        className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-current transition-all ease-in-out duration-500 h1-sp-effect-span"></span>
                 </h1>
             </div>
         </>
