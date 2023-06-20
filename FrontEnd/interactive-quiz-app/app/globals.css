@@ -25,8 +25,8 @@ body {
 }
 
 .wavy-footer {
-    background: #000000;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: #000000; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #434343, #000000); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 
@@ -38,7 +38,25 @@ body {
     mask: var(--mask);
 }
 
+.wavy-testimonial {
+    background: #00C9FF; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #92FE9D, #00C9FF); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #92FE9D, #00C9FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    --mask: radial-gradient(164.01px at 50% 230.00px, #000 99%, #0000 101%) calc(50% - 200px) 0/400px 51% repeat-x,
+    radial-gradient(164.01px at 50% -130px, #0000 99%, #000 101%) 50% 100px/400px calc(51% - 100px) repeat-x,
+    radial-gradient(164.01px at 50% calc(100% - 230.00px), #000 99%, #0000 101%) calc(50% - 200px) 100%/400px 51% repeat-x,
+    radial-gradient(164.01px at 50% calc(100% + 130.00px), #0000 99%, #000 101%) 50% calc(100% - 100px)/400px calc(51% - 100px) repeat-x;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+}
+
 .extra-bg {
     background-image: url("../public/stacked-waves-haikei.svg");
     background-repeat: repeat-x;
+}
+
+.h1-sp-effect:hover .h1-sp-effect-span {
+    left: 0;
+    width: 100%;
 }
