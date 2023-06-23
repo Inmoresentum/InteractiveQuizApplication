@@ -13,15 +13,15 @@ import io.swagger.v3.oas.annotations.servers.Server;
 @OpenAPIDefinition(
         info = @Info(
                 contact = @Contact(
-                        name = "Alibou",
-                        email = "contact@aliboucoding.com",
-                        url = "https://aliboucoding.com/course"
+                        name = "Inmoresentum",
+                        email = "rafee69029@gmail.com",
+                        url = "https://github.com/Inmoresentum"
                 ),
-                description = "OpenApi documentation for Spring Security",
-                title = "OpenApi specification - Alibou",
-                version = "1.0",
+                description = "OpenApi documentation for Inter-Active Quiz Application",
+                title = "OpenApi specification - Inmoresentum",
+                version = "0.5.1",
                 license = @License(
-                        name = "Licence name",
+                        name = "MIT",
                         url = "https://some-url.com"
                 ),
                 termsOfService = "Terms of service"
@@ -33,7 +33,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
                 ),
                 @Server(
                         description = "PROD ENV",
-                        url = "https://aliboucoding.com/course"
+                        url = "https://to-be-added.tech"
                 )
         },
         security = {
@@ -44,6 +44,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 )
 @SecurityScheme(
         name = "bearerAuth",
+        // I will put the description here later.
         description = "JWT auth description",
         scheme = "bearer",
         type = SecuritySchemeType.HTTP,
