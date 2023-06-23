@@ -7,9 +7,6 @@ body {
 }
 
 .wavy {
-    /* mask created with
-    https://css-generators.com/wavy-shapes/ */
-
     background: linear-gradient(
             to right,
             #00f260,
