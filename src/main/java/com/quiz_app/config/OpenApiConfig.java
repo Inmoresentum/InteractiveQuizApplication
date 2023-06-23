@@ -17,7 +17,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
                         email = "rafee69029@gmail.com",
                         url = "https://github.com/Inmoresentum"
                 ),
-                description = "OpenApi documentation for Spring Security",
+                description = "OpenApi documentation for Inter-Active Quiz Application",
                 title = "OpenApi specification - Inmoresentum",
                 version = "0.5.1",
                 license = @License(
