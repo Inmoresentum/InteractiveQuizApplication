@@ -3,26 +3,10 @@
 </h1> 
 
 <p align ="center"> 
-
-[//]: # (   <img src="https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=blue" alt="whatever">)
    <img src="https://img.shields.io/badge/springboot-3.0.6-green" alt="whatever">
-
-[//]: # (   <img src="https://img.shields.io/badge/vaadin-23.3.6-yellowgreen" alt="whatever">)
    <img src="https://img.shields.io/badge/MariaDB-10.11.2-blue" alt="whatever">
    <img src="https://img.shields.io/badge/MINIO-8.4.3-orange" alt="whatever">
    <img src="https://img.shields.io/badge/vanilla-css-lightgrey" alt="whatever">
-
-[//]: # (   <img src="https://img.shields.io/github/languages/top/Inmoresentum/Lawyer-Consultation-System" alt="whatever">)
-
-[//]: # (   <img src="https://img.shields.io/github/last-commit/Inmoresentum/Lawyer-Consultation-System" alt="whatever">)
-
-[//]: # (   <img src="https://img.shields.io/github/contributors/Inmoresentum/Lawyer-Consultation-System" alt="whatever">)
-
-[//]: # (   <a href="https://github.com/Inmoresentum/Lawyer-Consultation-System/actions/workflows/build_checker.yml">)
-
-[//]: # (   <img src="https://github.com/Inmoresentum/Lawyer-Consultation-System/actions/workflows/build_checker.yml/badge.svg" alt="whatever">)
-
-[//]: # (</a>)
 </p>
 
 
@@ -32,6 +16,7 @@ This repository contains **CSE470** Lab Group No `9` PROJECT, `Summer 2023` Sect
 <h2 align="center"> Group Information </h2>
 
 #### Group Name: _Enigma Enchanters_
+
 * [**_Athar Noor Mohammad Rafee_** \[20101396\]](https://github.com/Inmoresentum)
 * [**_Abu Darda_** \[23141038\]](https://abuudarda.github.io/)
 * [**_Nuraiya Rahman Khan_** \[18301174\]](https://github.com/Nuraiya)
