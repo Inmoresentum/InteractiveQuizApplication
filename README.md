@@ -196,7 +196,7 @@ please try to create bug reports that are:
    <a href="https://github.com/Inmoresentum" target="_blank">Inmoresentum</a>
 </p>
 <p align="center">
-   <a href="https://github.com/Inmoresentum/CSE420SharedResources/blob/main/LICENSE.md">
+   <a href="LICENSE.md">
       <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&colorA=FFA500&colorB=FF69B4"
          alt="whatever"/>
    </a>
