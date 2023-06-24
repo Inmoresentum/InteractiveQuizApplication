@@ -3,6 +3,7 @@ package com.quiz_app.service.email;
 import org.springframework.stereotype.Service;
 
 @Service
+@SuppressWarnings("DuplicatedCode")
 public class EmailUtils {
     public String buildAccountConfirmationEmail(String name, String link) {
         return "<!DOCTYPE html>\n" +
