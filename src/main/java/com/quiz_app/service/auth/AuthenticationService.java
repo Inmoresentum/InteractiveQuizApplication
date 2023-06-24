@@ -1,4 +1,4 @@
-package com.quiz_app.service;
+package com.quiz_app.service.auth;
 
 import com.quiz_app.config.JwtService;
 import com.quiz_app.controller.authcontroller.AuthenticationRequest;

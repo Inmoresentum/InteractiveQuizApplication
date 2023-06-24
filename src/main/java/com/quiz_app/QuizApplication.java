@@ -3,7 +3,7 @@ package com.quiz_app;
 import com.quiz_app.entity.quiz.Question;
 import com.quiz_app.entity.quiz.Quiz;
 import com.quiz_app.repository.QuizRepository;
-import com.quiz_app.service.AuthenticationService;
+import com.quiz_app.service.auth.AuthenticationService;
 import com.quiz_app.controller.authcontroller.RegisterRequest;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
