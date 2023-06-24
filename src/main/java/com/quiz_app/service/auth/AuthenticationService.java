@@ -1,6 +1,7 @@
 package com.quiz_app.service.auth;
 
 import com.quiz_app.config.JwtService;
+import com.quiz_app.controller.authcontroller.AccountRegistrationResponse;
 import com.quiz_app.controller.authcontroller.AuthenticationRequest;
 import com.quiz_app.entity.jwttoken.Token;
 import com.quiz_app.entity.jwttoken.TokenType;
@@ -41,7 +42,7 @@ public class AuthenticationService {
     private final EmailUtils emailUtils;
 
     @Transactional
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AccountRegistrationResponse register(RegisterRequest request) {
 
         var user = User.builder()
                 .firstname(request.getFirstname())
@@ -53,7 +54,7 @@ public class AuthenticationService {
                 .role(request.getRole())
                 .build();
 
-        var savedUser = userRepository.save(user);
+        userRepository.save(user);
 
         final String activationToken = UUID.randomUUID().toString();
         final String EMAIL_VERIFICATION_URL = "http://localhost:3000/activate?token=";
@@ -66,22 +67,14 @@ public class AuthenticationService {
         emailService.send(user.getEmail(), "Account Activation", emailUtils
                 .buildAccountConfirmationEmail(user.getFirstname(), activationLink));
 
-        var jwtToken = jwtService.generateToken(user);
-        var refreshToken = jwtService.generateRefreshToken(user);
-        saveUserToken(savedUser, jwtToken);
-
-        return AuthenticationResponse.builder()
-                .accessToken(jwtToken)
-                .refreshToken(refreshToken)
-                .message("Please check your email for further instructions")
+        return AccountRegistrationResponse.builder()
+                .message("please check your email for further instructions")
                 .build();
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
+                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()
                 )
         );
         var user = userRepository.findByEmail(request.getEmail())

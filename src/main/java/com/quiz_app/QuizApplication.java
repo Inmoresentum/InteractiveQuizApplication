@@ -38,7 +38,7 @@ public class QuizApplication {
                     .accountCreatedAt(LocalDateTime.now())
                     .agreesWithTermsAndConditions(true)
                     .build();
-            System.out.println("Admin token: " + service.register(admin).getAccessToken());
+//            System.out.println("Admin token: " + service.register(admin).getAccessToken());
 
             var user = RegisterRequest.builder()
                     .firstname("User")
@@ -49,7 +49,7 @@ public class QuizApplication {
                     .agreesWithTermsAndConditions(true)
                     .role(USER)
                     .build();
-            System.out.println("User token: " + service.register(user).getAccessToken());
+//            System.out.println("User token: " + service.register(user).getAccessToken());
 
             List<Question> questionList = new ArrayList<>();
             Question firstQuestion = new Question();

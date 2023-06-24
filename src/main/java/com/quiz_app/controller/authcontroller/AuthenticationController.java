@@ -21,7 +21,7 @@ public class AuthenticationController {
     private final QuizRepository quizRepository;
 
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(
+    public ResponseEntity<AccountRegistrationResponse> register(
             @RequestBody RegisterRequest request
     ) {
         return ResponseEntity.ok(service.register(request));
