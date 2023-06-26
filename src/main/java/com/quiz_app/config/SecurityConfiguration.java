@@ -31,6 +31,8 @@ public class SecurityConfiguration {
     private final LogoutHandler logoutHandler;
 
     @Bean
+    @SuppressWarnings("removal")
+    // Starting from Spring Security 7, the below configuration will not work.
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // for auto generated api documentation
         http
