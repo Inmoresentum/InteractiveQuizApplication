@@ -4,7 +4,7 @@
 
 <p align ="center"> 
    <img src="https://badgen.net/npm/node/next" alt="whatever">
-   <img src="https://img.shields.io/badge/springboot-3.0.6-green" alt="whatever">
+   <img src="https://img.shields.io/badge/springboot-3.1.1-green" alt="whatever">
    <img src="https://img.shields.io/badge/MariaDB-10.11.2-blue" alt="whatever">
    <img src="https://img.shields.io/badge/MINIO-8.4.3-orange" alt="whatever">
    <img src="https://img.shields.io/badge/vanilla-css-lightgrey" alt="whatever">
