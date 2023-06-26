@@ -1,5 +1,9 @@
 <h1 align="center">
-    An Interactive Quiz Application
+   <p align="center">
+      <img src="FrontEnd/interactive-quiz-app/public/quiz-app-logo.png"
+      alt="whatever" height="250" width="250" style="border-radius:35px" >
+   </p>
+   An Interactive Quiz Application
 </h1> 
 
 <p align ="center"> 
