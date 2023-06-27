@@ -4,7 +4,7 @@
      alt="whatever"
      height="180px"
      width="180px"
-     style="border-radius: 35px; box-shadow: 0 10px 50px rgba(255, 0, 0, 0.5);">
+     style="border-radius: 35px; box-shadow: 0px 10px 75px rgb(5,255,105);">
    </p>
    An Interactive Quiz Application
 </h1> 
