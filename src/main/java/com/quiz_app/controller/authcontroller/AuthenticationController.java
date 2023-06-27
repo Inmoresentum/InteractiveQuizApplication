@@ -5,6 +5,7 @@ import com.quiz_app.repository.QuizRepository;
 import com.quiz_app.service.auth.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,14 +19,13 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 public class AuthenticationController {
 
-    private final AuthenticationService service;
+    private final AuthenticationService authService;
     private final QuizRepository quizRepository;
 
     @PostMapping("/register")
-    public ResponseEntity<AccountRegistrationResponse> register(
-            @RequestBody RegisterRequest request
-    ) {
-        return ResponseEntity.ok(service.register(request));
+    public ResponseEntity<?> register(
+            @RequestBody @Valid RegisterRequest request) {
+        return authService.register(request);
     }
 
    @GetMapping("/quiz")
@@ -34,9 +34,8 @@ public class AuthenticationController {
    }
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
-            @RequestBody AuthenticationRequest request
-    ) {
-        return ResponseEntity.ok(service.authenticate(request));
+            @RequestBody AuthenticationRequest request) {
+        return ResponseEntity.ok(authService.authenticate(request));
     }
 
     @PostMapping("/refresh-token")
@@ -44,7 +43,7 @@ public class AuthenticationController {
             HttpServletRequest request,
             HttpServletResponse response
     ) throws IOException {
-        service.refreshToken(request, response);
+        authService.refreshToken(request, response);
     }
 
 

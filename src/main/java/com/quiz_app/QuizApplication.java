@@ -30,6 +30,7 @@ public class QuizApplication {
     public CommandLineRunner commandLineRunner(AuthenticationService service, QuizRepository quizRepository) {
         return args -> {
             var admin = RegisterRequest.builder()
+                    .username("admin")
                     .firstname("Admin")
                     .lastname("Admin")
                     .email("admin@mail.com")
@@ -42,6 +43,7 @@ public class QuizApplication {
             service.register(admin);
 
             var user = RegisterRequest.builder()
+                    .username("some-user")
                     .firstname("User")
                     .lastname("User")
                     .email("user@mail.com")

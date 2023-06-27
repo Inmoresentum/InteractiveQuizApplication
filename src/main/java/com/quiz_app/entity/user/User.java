@@ -28,6 +28,8 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue
     private Integer id;
+    @Column(unique = true, nullable = false)
+    private String username;
     private String firstname;
     private String lastname;
     @Size(min = 5, max = 65)

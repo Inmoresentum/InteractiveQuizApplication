@@ -19,6 +19,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -42,9 +44,17 @@ public class AuthenticationService {
     private final EmailUtils emailUtils;
 
     @Transactional
-    public AccountRegistrationResponse register(RegisterRequest request) {
+    public ResponseEntity<?> register(RegisterRequest request) {
+        if (userRepository.existsByEmail(request.getEmail())) {
+            return new ResponseEntity<>("This Email Exists with Another user", HttpStatus.CONFLICT);
+        }
+
+        if (userRepository.existsByUsername(request.getUsername())) {
+            return new ResponseEntity<>("`"+ request.getUsername() + "` username is taken", HttpStatus.CONFLICT);
+        }
 
         var user = User.builder()
+                .username(request.getUsername())
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
                 .email(request.getEmail())
@@ -67,9 +77,10 @@ public class AuthenticationService {
         emailService.send(user.getEmail(), "Account Activation", emailUtils
                 .buildAccountConfirmationEmail(user.getFirstname(), activationLink));
 
-        return AccountRegistrationResponse.builder()
+        var response = AccountRegistrationResponse.builder()
                 .message("please check your email for further instructions")
                 .build();
+        return ResponseEntity.ok(response);
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
