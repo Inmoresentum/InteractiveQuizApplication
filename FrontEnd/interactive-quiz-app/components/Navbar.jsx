@@ -27,7 +27,7 @@ export default function Navbar() {
                     </Link>
                     <Link className="peer-hover:text-purple-500 transition-colors duration-300
                      ease-in-out peer-hover:animate-pulse" href="/">
-                    <h1 className="px-2 hover:text-indigo-600 ease-in-out duration-300">QuiziFy</h1>
+                    <h1 className="px-2 shadow-2xl hover:shadow-green-500 hover:text-indigo-600 ease-in-out duration-300">QuiziFy</h1>
                     </Link>
                 </div>
                 <ul className="hidden md:flex">
@@ -44,7 +44,18 @@ export default function Navbar() {
                 </div>
                 <ul className={`${nav ? 'fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500' :
                     'ease-in-out duration-500 fixed left-[-100%]'}`}>
-                    <h1 className="w-full text-3xl font-bold text-[#00df9a] m-4 uppercase">Quiz AppLogo</h1>
+                    <div className="flex text-3xl font-bold text-[#00df9a] uppercase m-1.5">
+                        <Link className="peer" href={"/"}>
+                            <Image
+                                className="w-7 h-7 rounded-2xl hover:scale-110 duration-300 ease-linear animate-pulse m-1.5"
+                                src={AppLogo}
+                                alt={ReactSVG}/>
+                        </Link>
+                        <Link className="peer-hover:text-purple-500 transition-colors duration-300
+                     ease-in-out peer-hover:animate-pulse" href="/">
+                            <h1 className="px-2 shadow-2xl hover:shadow-green-500 hover:text-indigo-600 ease-in-out duration-300">QuiziFy</h1>
+                        </Link>
+                    </div>
                     {/*<li will be replaced with Link from next*/}
                     <li className="bg-[#000300] p-4 border-b border-gray-600 hover:bg-rose-500 hover:cursor-pointer active:bg-amber-300 transition duration-700 ease-in-out">Home</li>
                     <li className="bg-[#000300] p-4 border-b border-gray-600 hover:bg-rose-500 hover:cursor-pointer active:bg-amber-300 transition duration-700 ease-in-out">Company</li>
