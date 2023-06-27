@@ -2,6 +2,10 @@
 
 import {useState} from "react";
 import {AiOutlineClose, AiOutlineMenu} from "react-icons/ai";
+import Image from "next/image";
+import AppLogo from "../public/quiz-app-logo.png"
+import ReactSVG from "../public/react.svg"
+import Link from "next/link";
 
 export default function Navbar() {
     const [nav, setNav] = useState(false);
@@ -13,8 +17,19 @@ export default function Navbar() {
     return (
         <div
             className="bg-black fixed top-0 left-0 right-0 z-50 backdrop-filter backdrop-blur-md bg-opacity-50">
-            <div className="flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white ">
-                <h1 className="w-full text-3xl font-bold text-[#00df9a] uppercase">Quiz AppLogo</h1>
+            <div className="flex justify-between items-center h-20 max-w-[1240px] mx-auto px-4 text-white ">
+                <div className="flex text-3xl font-bold text-[#00df9a] uppercase">
+                    <Link className="peer" href={"/"}>
+                        <Image
+                            className="w-10 h-10 rounded-2xl hover:scale-110 duration-300 ease-linear animate-pulse"
+                            src={AppLogo}
+                            alt={ReactSVG}/>
+                    </Link>
+                    <Link className="peer-hover:text-purple-500 transition-colors duration-300
+                     ease-in-out peer-hover:animate-pulse" href="/">
+                    <h1 className="px-2 hover:text-indigo-600 ease-in-out duration-300">QuiziFy</h1>
+                    </Link>
+                </div>
                 <ul className="hidden md:flex">
                     <li className="p-4">Home</li>
                     <li className="p-4">Company</li>
