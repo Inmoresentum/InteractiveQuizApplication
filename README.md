@@ -1,7 +1,10 @@
 <h1 align="center">
    <p align="center">
       <img src="FrontEnd/interactive-quiz-app/public/quiz-app-logo.png"
-      alt="whatever" height="250" width="250" style="border-radius:35px" >
+     alt="whatever"
+     height="180px"
+     width="180px"
+     style="border-radius: 35px; box-shadow: 0 10px 50px rgba(255, 0, 0, 0.5);">
    </p>
    An Interactive Quiz Application
 </h1> 
@@ -17,24 +20,30 @@
 </p>
 
 <p align="center">
-   <img src="https://img.shields.io/badge/tailwindcss 3-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="whatever">
+   <img src="https://img.shields.io/badge/tailwindcss 3-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white"
+      alt="whatever"
+      style="border-radius:35px">
    <a href="https://www.jetbrains.com/idea/">
-      <img src="https://img.shields.io/badge/IntelliJIDEA 23.1.3-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=pink" alt="whatever">
+      <img src="https://img.shields.io/badge/IntelliJIDEA 23.1.3-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=pink" 
+         alt="whatever"
+         style="border-radius:8px">
    </a>
-   <img src="https://img.shields.io/badge/spring 6-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white" alt="whatever">
-   <img src="https://img.shields.io/badge/Framer Motion 10.12 -black?style=for-the-badge&logo=framer&logoColor=blue" alt="whatever">
+   <img src="https://img.shields.io/badge/spring 6-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white" alt="whatever" style="border-radius:35px">
+   <img src="https://img.shields.io/badge/Framer Motion 10.12 -black?style=for-the-badge&logo=framer&logoColor=blue" alt="whatever" style="border-radius:35px">
    <a href="https://maildev.github.io/maildev/">
-      <img src="https://img.shields.io/badge/MailDev 2.0-8B89CC?style=for-the-badge&logo=protonmail&logoColor=blue" alt="whatever">
+      <img src="https://img.shields.io/badge/MailDev 2.0-8B89CC?style=for-the-badge&logo=protonmail&logoColor=blue" alt="whatever" style="border-radius:35px">
    </a>
    <a href="https://daisyui.com/">
-      <img src="https://img.shields.io/badge/daisyui 3-5A0EF8?style=for-the-badge&logo=daisyui&logoColor=orange" alt="whatever">
+      <img src="https://img.shields.io/badge/daisyui 3-5A0EF8?style=for-the-badge&logo=daisyui&logoColor=orange" alt="whatever" style="border-radius:35px">
    </a>
 </p>
 
 
 This repository contains **CSE470** Lab Group No `9` PROJECT, `Summer 2023` Section `02`.
 
-<h2 align="center"> Group Information </h2>
+<h2 align="center" style="text-decoration: underline; text-decoration-color: #00f260; ">
+   Group Information
+</h2>
 
 #### Group Name: _Enigma Enchanters_
 
@@ -180,7 +189,7 @@ to set up, please follow these steps:
 
 </details>
 
-## Issues
+<h2 style="text-decoration: underline; text-decoration-color: #0575e6"> Issues </h2>
 
 you've found a bug in the source code, a mistake in the documentation?
 you can help
@@ -202,6 +211,6 @@ please try to create bug reports that are:
 <p align="center">
    <a href="LICENSE.md">
       <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&colorA=FFA500&colorB=FF69B4"
-         alt="whatever"/>
+         alt="whatever" style="border-radius: 5px"/>
    </a>
 </p>
