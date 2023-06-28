@@ -6,13 +6,28 @@ import {
     FaTwitterSquare
 }
     from "react-icons/fa";
+import Link from "next/link";
+import Image from "next/image";
+import AppLogo from "@/public/quiz-app-logo.png";
+import ReactSVG from "@/public/react.svg";
 
 export default function Footer() {
     return (
         <div className="w-full bg-white py-16 px-4 wavy-footer">
             <div className='max-w-[1240px] mx-auto py-16 px-4 grid lg:grid-cols-3 gap-8 text-gray-300'>
                 <div>
-                    <h1 className="w-full text-3xl font-bold text-[#00df9a]">Quiz AppLogo</h1>
+                    <div className="flex text-3xl font-bold text-[#00df9a] uppercase">
+                        <Link className="peer" href={"/"}>
+                            <Image
+                                className="w-10 h-10 rounded-2xl hover:scale-110 duration-300 ease-linear animate-pulse"
+                                src={AppLogo}
+                                alt={ReactSVG}/>
+                        </Link>
+                        <Link className="peer-hover:text-purple-500 transition-colors duration-300
+                     ease-in-out peer-hover:animate-pulse" href="/">
+                            <h1 className="px-2 shadow-2xl hover:shadow-green-500 hover:text-indigo-600 ease-in-out duration-300">QuiziFy</h1>
+                        </Link>
+                    </div>
                     <p className='py-4'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id odit ullam iste
                         repellat consequatur libero reiciendis, blanditiis accusantium.</p>
                     <div className='flex justify-between md:w-[75%] my-6'>
