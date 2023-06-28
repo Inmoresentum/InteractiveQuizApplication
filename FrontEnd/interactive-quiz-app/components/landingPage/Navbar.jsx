@@ -3,8 +3,8 @@
 import {useState} from "react";
 import {AiOutlineClose, AiOutlineMenu} from "react-icons/ai";
 import Image from "next/image";
-import AppLogo from "../public/quiz-app-logo.png"
-import ReactSVG from "../public/react.svg"
+import AppLogo from "../../public/quiz-app-logo.png"
+import ReactSVG from "../../public/react.svg"
 import Link from "next/link";
 
 export default function Navbar() {
