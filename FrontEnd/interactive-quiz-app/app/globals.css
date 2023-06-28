@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    background-color: #000300;
-}
-
 .wavy {
     background: linear-gradient(
             to right,
