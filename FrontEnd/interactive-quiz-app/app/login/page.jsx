@@ -89,10 +89,9 @@ export default function Login() {
                             <Link
                                 href={"/register"}
                                 className="text-gray-200 hover:text-black hover:underline hover:translate-y-[-2px] transition-colors duration-300 ease-linear ml-2 tooltip"
-                                data-tooltip="Click to register an account with us"
-                            >
-    Register account
-</Link>
+                                data-tooltip="Click to register an account with us">
+                                Register account
+                            </Link>
                         </span>
                     </form>
                 </motion.div>
