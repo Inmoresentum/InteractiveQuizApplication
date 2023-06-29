@@ -2,6 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* DOING CUSTOM CURSOR */
+/** {*/
+/*    cursor: none;*/
+/*}*/
+
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    mix-blend-mode: difference;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+}
+
+.cursor-text {
+    font-size: 5px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    display: none;
+}
+
+/* xD Done with the stuff */
 .wavy {
     background: linear-gradient(
             to right,
@@ -195,7 +225,7 @@
     animation: gradient-login-x 5s ease-in-out infinite;
 }
 
-/*Tool Tip stuff going on here*/
+/* Tool Tip stuff going on here */
 .tooltip {
     position: relative;
 }
@@ -224,3 +254,5 @@
     height: 10px;
     background-color: black;
 }
+
+/* Done with the tooltip stuff */
