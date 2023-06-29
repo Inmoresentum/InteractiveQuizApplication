@@ -6,29 +6,30 @@ import Link from "next/link";
 import Image from "next/image";
 import reactLogo from "../../public/react.svg"
 import {motion} from "framer-motion";
+import {useRef} from "react";
 
-// export const metadata = {
-//     title: 'Login',
-//     description: 'Here the Users can login to our platform',
-// }
+
 
 
 export default function Login() {
+    const dragAbleConstraints = useRef(null);
+    // noinspection JSValidateTypes
     return (
         <section className="login-page-section">
-            <div className="box">
-                <div className="square" style={{'--i': 0}}></div>
-                <div className="square" style={{'--i': 1}}></div>
-                <div className="square" style={{'--i': 2}}></div>
-                <div className="square" style={{'--i': 3}}></div>
-                <div className="square" style={{'--i': 4}}></div>
-                <div className="square" style={{'--i': 5}}></div>
+            <div className="box" ref={dragAbleConstraints}>
+                <div className="square" style={{"--i": 0}}></div>
+                <div className="square" style={{"--i": 1}}></div>
+                <div className="square" style={{"--i": 2}}></div>
+                <div className="square" style={{"--i": 3}}></div>
+                <div className="square" style={{"--i": 4}}></div>
+                <div className="square" style={{"--i": 5}}></div>
 
                 <motion.div className="login-page-container"
-                            initial={{ opacity: 0, y: -50 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            initial={{opacity: 0, y: -50}}
+                            animate={{opacity: 1, y: 0}}
                             drag={true}
-                            transition={{ duration: 1, ease: "easeOut" }}>
+                            dragConstraints={dragAbleConstraints}
+                            transition={{duration: 1, ease: "easeOut"}}>
                     <Link href={"/"}>
                         <Image
                             src={quizAppLogo}
@@ -72,13 +73,10 @@ export default function Login() {
                             </div>
                         </div>
                         <div className="flex justify-end items-center mb-6">
-                            <Link href="/forgot/password"
+                            <Link href={"/forgot/password"}
                                   className="text-gray-200 hover:text-black hover:underline hover:translate-y-[-2px] transition-colors duration-300 ease-linear">
                                 Forgot password?
                             </Link>
-                            {/*<Link href="/register" className="text-gray-200 hover:text-blue-700 hover:underline">*/}
-                            {/*    Register account*/}
-                            {/*</Link>*/}
                         </div>
                         <button
                             type="submit"
@@ -89,7 +87,7 @@ export default function Login() {
                         <span className="flex justify-between text-purple-700 font-medium m-2">
                             New here And No Account?
                             <Link
-                                href="/register"
+                                href={"/register"}
                                 className="text-gray-200 hover:text-black hover:underline hover:translate-y-[-2px] transition-colors duration-300 ease-linear ml-2 tooltip"
                                 data-tooltip="Click to register an account with us"
                             >
