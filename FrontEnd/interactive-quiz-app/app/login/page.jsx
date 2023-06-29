@@ -1,13 +1,16 @@
+"use client"
+
 import {RiLockPasswordLine, RiMailLine} from "react-icons/ri";
 import quizAppLogo from "../../public/quiz-app-logo.png"
 import Link from "next/link";
 import Image from "next/image";
 import reactLogo from "../../public/react.svg"
+import {motion} from "framer-motion";
 
-export const metadata = {
-    title: 'Login',
-    description: 'Here the Users can login to our platform',
-}
+// export const metadata = {
+//     title: 'Login',
+//     description: 'Here the Users can login to our platform',
+// }
 
 
 export default function Login() {
@@ -21,7 +24,11 @@ export default function Login() {
                 <div className="square" style={{'--i': 4}}></div>
                 <div className="square" style={{'--i': 5}}></div>
 
-                <div className="login-page-container">
+                <motion.div className="login-page-container"
+                            initial={{ opacity: 0, y: -50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            drag={true}
+                            transition={{ duration: 1, ease: "easeOut" }}>
                     <Link href={"/"}>
                         <Image
                             src={quizAppLogo}
@@ -90,7 +97,7 @@ export default function Login() {
 </Link>
                         </span>
                     </form>
-                </div>
+                </motion.div>
             </div>
         </section>
     );
