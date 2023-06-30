@@ -23,6 +23,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,7 +51,7 @@ public class AuthenticationService {
         }
 
         if (userRepository.existsByUsername(request.getUsername())) {
-            return new ResponseEntity<>("`"+ request.getUsername() + "` username is taken", HttpStatus.CONFLICT);
+            return new ResponseEntity<>("`" + request.getUsername() + "` username is taken", HttpStatus.CONFLICT);
         }
 
         var user = User.builder()
@@ -83,21 +84,28 @@ public class AuthenticationService {
         return ResponseEntity.ok(response);
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()
-                )
-        );
-        var user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow();
+    public ResponseEntity<AuthenticationResponse> authenticate(AuthenticationRequest request) {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()
+                    )
+            );
+        } catch (AuthenticationException authenticationException) {
+            return ResponseEntity.badRequest().body(
+                    AuthenticationResponse.builder()
+                            .message("wrong username or password")
+                            .build()
+            );
+        }
+        var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
-        return AuthenticationResponse.builder()
+        return ResponseEntity.ok(AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
-                .build();
+                .build());
     }
 
     private void saveUserToken(User user, String jwtToken) {
