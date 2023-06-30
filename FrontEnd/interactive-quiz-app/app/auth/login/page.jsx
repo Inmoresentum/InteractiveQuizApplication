@@ -1,18 +1,29 @@
 "use client"
 
 import {RiLockPasswordLine, RiMailLine} from "react-icons/ri";
-import quizAppLogo from "../../public/quiz-app-logo.png"
+import quizAppLogo from "../../../public/quiz-app-logo.png"
 import Link from "next/link";
 import Image from "next/image";
-import reactLogo from "../../public/react.svg"
+import reactLogo from "../../../public/react.svg"
 import {motion} from "framer-motion";
-import {useRef} from "react";
-
-
-
+import {useRef, useState} from "react";
+import {signIn} from "next-auth/react";
 
 export default function Login() {
     const dragAbleConstraints = useRef(null);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const result = await signIn("credentials", {
+            username: email,
+            password,
+            redirect: true,
+            callbackUrl: "/register",
+        });
+    };
+
     // noinspection JSValidateTypes
     return (
         <section className="login-page-section">
@@ -50,6 +61,7 @@ export default function Login() {
                                     type="email"
                                     id="email"
                                     className="w-full pl-10 px-6 py-3 bg-opacity-20 bg-white bg-clip-padding backdrop-filter backdrop-blur-md placeholder-gray-500 focus:placeholder-gray-300 focus:outline-none focus:border-blue-500 rounded-3xl text-gray-800 text-base shadow-md"
+                                    onChange={(e) => setEmail(e.target.value)}
                                     placeholder="Enter Your email"
                                 />
 
@@ -67,6 +79,7 @@ export default function Login() {
                                     type="password"
                                     id="password"
                                     className="w-full pl-10 px-6 py-3 bg-opacity-20 bg-white bg-clip-padding backdrop-filter backdrop-blur-md placeholder-gray-500 focus:placeholder-gray-300 focus:outline-none focus:border-blue-500 rounded-3xl text-gray-800 text-base shadow-md"
+                                    onChange={(e) => setPassword(e.target.value)}
                                     placeholder="Enter Your password"
                                 />
 
@@ -79,11 +92,13 @@ export default function Login() {
                             </Link>
                         </div>
                         <button
-                            type="submit"
+                            type="button"
+                            onClick={handleSubmit}
                             className="w-full text-white py-2 px-4 rounded-full transition-colors duration-300 ease-in-out bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 hover:from-blue-400 hover:via-indigo-500 hover:to-purple-500 focus:from-blue-400 focus:via-indigo-500 focus:to-purple-500 login-animate-gradient-x"
                         >
                             Log In
                         </button>
+
                         <span className="flex justify-between text-purple-700 font-medium m-2">
                             New here And No Account?
                             <Link
