@@ -103,8 +103,13 @@ public class AuthenticationService {
         revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
         return ResponseEntity.ok(AuthenticationResponse.builder()
+                .phoneNumber(user.getPhoneNumber())
+                .role(user.getRole())
+                .username(user.getUsername())
+                .email(user.getEmail())
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
+                .message("Successfully Authenticated")
                 .build());
     }
 
