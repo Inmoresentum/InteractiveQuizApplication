@@ -1,10 +1,8 @@
 import CredentialsProvider from "next-auth/providers/credentials";
-import NextAuth from "next-auth";
-import {signIn} from "next-auth/react";
 import axios from "axios";
 
-export const authOptions = {
-    // Configure one or more authentication providers
+export const options = {
+// Configure one or more authentication providers
     providers: [
         // ...add more providers here
         CredentialsProvider({
@@ -74,6 +72,4 @@ export const authOptions = {
     pages: {
         signIn: "/auth/login",
     },
-};
-
-export default NextAuth(authOptions);
+}
