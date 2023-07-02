@@ -93,7 +93,7 @@ public class AuthenticationService {
         } catch (AuthenticationException authenticationException) {
             return ResponseEntity.badRequest().body(
                     AuthenticationResponse.builder()
-                            .message("wrong username or password")
+                            .message("wrong email or password")
                             .build()
             );
         }
