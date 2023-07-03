@@ -1,4 +1,4 @@
-import CustomLogin from "@/components/auth/CustomLogin";
+import CustomLogin from "@/components/auth/login/CustomLogin";
 import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";
 import {redirect} from "next/navigation";
