@@ -1,6 +1,5 @@
 package com.quiz_app.controller.authcontroller;
 
-import com.quiz_app.entity.quiz.Quiz;
 import com.quiz_app.repository.QuizRepository;
 import com.quiz_app.service.auth.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -28,10 +26,6 @@ public class AuthenticationController {
         return authService.register(request);
     }
 
-//    @GetMapping("/quiz")
-//    public List<Quiz> getQuiz() {
-//        return quizRepository.findAll();
-//    }
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
