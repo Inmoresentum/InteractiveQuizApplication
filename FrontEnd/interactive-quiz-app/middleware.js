@@ -7,11 +7,12 @@ export default withAuth(
     function middleware(req) {
         console.log("token: ", req.nextauth.token);
 
-        if (req.nextUrl.pathname.startsWith("/admin") && req.nextauth.token?.role !== "admin")
+        if (req.nextUrl.pathname.startsWith("/admin") && req.nextauth.token?.role !== "ADMIN")
             return NextResponse.rewrite(
                 new URL("/auth/login?message=You Are Not Authorized!", req.url)
             );
-        if (req.nextUrl.pathname.startsWith("/user") && req.nextauth.token?.role !== "user")
+
+        if (req.nextUrl.pathname.startsWith("/user") && req.nextauth.token?.role !== "USER")
             return NextResponse.rewrite(
                 new URL("/auth/login?message=You Are Not Authorized!", req.url)
             );
@@ -24,5 +25,5 @@ export default withAuth(
 );
 
 export const config = {
-    matcher: ["/admin/:path*", "/user/:path*"],
+    matcher: ["/admin/:path*", "/user/:path*",],
 };

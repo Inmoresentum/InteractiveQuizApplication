@@ -13,10 +13,10 @@ export const options = {
             // e.g. domain, username, password, 2FA token, etc.
             // You can pass any HTML attribute to the <input> tag through the object.
             credentials: {
-                username: {
-                    label: "Username",
+                email: {
+                    label: "Email",
                     type: "text",
-                    placeholder: "jsmith",
+                    placeholder: "mail@mail.com",
                 },
                 password: {
                     label: "Password",
@@ -24,10 +24,10 @@ export const options = {
                 },
             },
             async authorize(credentials, req) {
-                const {username, password} = credentials;
+                const {email, password} = credentials;
                 try {
                     const res = await axios.post("http://localhost:8080/api/v1/auth/authenticate", {
-                        email: username,
+                        email: email,
                         password: password,
                     }, {
                         headers: {
@@ -36,8 +36,8 @@ export const options = {
                     });
 
                     // Process the response here
-                    console.log(res.data);
                     const user = await res.data;
+                    console.log(res.data);
                     if (user) {
                         return user;
                     }
@@ -48,11 +48,6 @@ export const options = {
                     return null;
                 }
                 console.log("probably okay?")
-                // console.log(JSON.stringify({
-                //     email: username,
-                //     password,
-                // }),)
-                // console.log("hehe here")
             },
         }),
     ],
@@ -72,4 +67,5 @@ export const options = {
     pages: {
         signIn: "/auth/login",
     },
+
 }
