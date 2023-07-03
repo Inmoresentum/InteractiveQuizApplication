@@ -32,9 +32,6 @@ export default function CustomLogin() {
     };
 
     const isValidEmail = (email) => {
-        // Perform email validation logic here
-        // Return true if email is valid, false otherwise
-        // Example:
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     };
@@ -138,8 +135,10 @@ export default function CustomLogin() {
                             )}
                         </div>
                         <div className="flex justify-end items-center mb-6">
-                            <Link href={"/forgot/password"}
-                                  className="text-gray-200 hover:text-black hover:underline hover:translate-y-[-2px] transition-colors duration-300 ease-linear">
+                            <Link href={"/auth/forgot/password"}
+                                  className="text-gray-200 hover:text-black hover:underline hover:translate-y-[-2px] transition-colors duration-300 ease-linear tooltip"
+                                  data-tooltip="Click Here to Reset Your Password"
+                            >
                                 Forgot password?
                             </Link>
                         </div>
@@ -154,7 +153,7 @@ export default function CustomLogin() {
                         <span className="flex justify-between text-purple-700 font-medium m-2">
                             New here And No Account?
                             <Link
-                                href={"/register"}
+                                href={"/auth/register/"}
                                 className="text-gray-200 hover:text-black hover:underline hover:translate-y-[-2px] transition-colors duration-300 ease-linear ml-2 tooltip"
                                 data-tooltip="Click to register an account with us">
                                 Register account
