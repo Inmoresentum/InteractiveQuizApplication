@@ -14,7 +14,6 @@ export default function CustomLogin() {
     const dragAbleConstraints = useRef(null);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    // const [callbackUrl, setCallbackUrl] = useState("");
     const [errorMessage, setErrorMessage] = useState(null);
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
