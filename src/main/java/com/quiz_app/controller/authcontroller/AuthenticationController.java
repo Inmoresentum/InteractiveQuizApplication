@@ -42,13 +42,18 @@ public class AuthenticationController {
     }
 
     @GetMapping("/account/verify")
-    public ResponseEntity<AccountVerificationResponse> verifyToken(@RequestParam("token") String token) {
+    public ResponseEntity<AccountVerificationResponse> verifyAccountVerification(@RequestParam("token") String token) {
         return authService.verifyUser(token);
     }
 
-//    @PostMapping("/forgot")
-//    public ResponseEntity<?> forgotPassword(@Valid @RequestBody ForgotPasswordRequest resetRequest) {
-//        passwordResetService.generatePasswordResetToken(resetRequest.getEmail());
-//        return ResponseEntity.ok(new MessageResponse("If there is any account associated with this email then you will receive further instruction there!"));
-//    }
+    @PostMapping("/account/forgot")
+    public ResponseEntity<ForgotPasswordVerificationResponse> forgotPassword(@Valid @RequestBody ForgotPasswordRequest resetRequest) {
+        return authService.generatePasswordResetLink(resetRequest.getEmail());
+    }
+    @GetMapping("/account/forgot/verify")
+    public ResponseEntity<ForgotPasswordVerificationResponse> verifyForgotPasswordToken(
+            @RequestParam("token") String token,
+            @RequestBody ForgotPasswordVerificationRequest forgotPasswordVerificationRequest) {
+    return authService.verifyForgotPasswordToken(token, forgotPasswordVerificationRequest);
+    }
 }

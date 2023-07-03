@@ -4,8 +4,10 @@ import com.quiz_app.config.JwtService;
 import com.quiz_app.controller.authcontroller.*;
 import com.quiz_app.entity.jwttoken.Token;
 import com.quiz_app.entity.jwttoken.TokenType;
+import com.quiz_app.entity.user.ForgotPasswordVerificationToken;
 import com.quiz_app.entity.user.User;
 import com.quiz_app.entity.user.UserVerificationToken;
+import com.quiz_app.repository.ForgotPasswordVerificationRepository;
 import com.quiz_app.repository.TokenRepository;
 import com.quiz_app.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,6 +42,7 @@ public class AuthenticationService {
     private final UserVerificationTokenRepository userVerificationTokenRepository;
     private final EmailService emailService;
     private final EmailUtils emailUtils;
+    private final ForgotPasswordVerificationRepository forgotPasswordVerificationRepository;
 
     @Transactional
     public ResponseEntity<AccountRegistrationResponse> register(RegisterRequest request) {
@@ -182,7 +185,7 @@ public class AuthenticationService {
             var response = AccountVerificationResponse.builder()
                     .message("The Link is broken")
                     .build();
-        return ResponseEntity.status(404).body(response);
+            return ResponseEntity.status(404).body(response);
         }
 
         var userVerificationToken = optionalUserVerificationToken.get();
@@ -191,7 +194,7 @@ public class AuthenticationService {
             var response = AccountVerificationResponse.builder()
                     .message("This link has already been used")
                     .build();
-        return ResponseEntity.badRequest().body(response);
+            return ResponseEntity.badRequest().body(response);
         }
 
         // Verify it later.
@@ -212,5 +215,82 @@ public class AuthenticationService {
                 .message("Account Verification Successful")
                 .build();
         return ResponseEntity.ok(response);
+    }
+
+    public ResponseEntity<ForgotPasswordVerificationResponse> generatePasswordResetLink(String email) {
+        var optionalUser = userRepository.findByEmail(email);
+        if (optionalUser.isEmpty()) {
+            return ResponseEntity.status(404).body(
+                    ForgotPasswordVerificationResponse.builder()
+                            .message("There is no user associated with this email")
+                            .build()
+            );
+        }
+        final String forgotPasswordVerificationToken = UUID.randomUUID().toString();
+        final String EMAIL_VERIFICATION_URL = "http://localhost:3000/forgot/password/verify?token=";
+        final String resetLink = EMAIL_VERIFICATION_URL.concat(forgotPasswordVerificationToken);
+        var user = userRepository.findByEmail(email);
+        if (user.isEmpty()) throw new IllegalStateException("User details must need to be in the " +
+                "database");
+        emailService.send(user.get().getEmail(), "Password Resetting Link",
+                emailUtils.buildPasswordResetRequestEmail(user.get().getUsername(), resetLink));
+        var verificationToken = ForgotPasswordVerificationToken
+                .builder()
+                .user(user.get())
+                .token(forgotPasswordVerificationToken)
+                .createdAt(LocalDateTime.now())
+                .expiresAt(LocalDateTime.now().plusMinutes(10))
+                .build();
+        forgotPasswordVerificationRepository.save(verificationToken);
+        return ResponseEntity.status(201).body(
+                ForgotPasswordVerificationResponse
+                        .builder()
+                        .message("Sent Password Reset Link To Your Email")
+                        .build()
+        );
+    }
+
+    @Transactional
+    public ResponseEntity<ForgotPasswordVerificationResponse> verifyForgotPasswordToken(
+            String token,
+            ForgotPasswordVerificationRequest forgotPasswordVerificationRequest) {
+        var optionalToken = forgotPasswordVerificationRepository.findByToken(token);
+        if (optionalToken.isEmpty()) {
+            return ResponseEntity.status(404).body(
+                    ForgotPasswordVerificationResponse
+                            .builder()
+                            .message("The link is broken")
+                            .build()
+            );
+        }
+
+        // Time to check the validity of the token
+        if (optionalToken.get().getExpiresAt().isBefore(LocalDateTime.now())) {
+            return ResponseEntity.badRequest().body(ForgotPasswordVerificationResponse
+                    .builder()
+                    .message("The Link Has Expired")
+                    .build());
+        }
+        // time to check if the new password is the same as the old password
+        var user = optionalToken.get().getUser();
+        if (passwordEncoder.matches(forgotPasswordVerificationRequest.getNewPassword(), user.getPassword())) {
+            return ResponseEntity.badRequest().body(
+                    ForgotPasswordVerificationResponse
+                            .builder()
+                            .message("New Password is the same as old password")
+                            .build()
+            );
+        }
+
+        var encodedNewPassword = passwordEncoder.encode(forgotPasswordVerificationRequest.getNewPassword());
+        user.setPassword(encodedNewPassword);
+        userRepository.save(user);
+        forgotPasswordVerificationRepository.updateConfirmedAt(optionalToken.get().getToken(), LocalDateTime.now());
+        return ResponseEntity.status(200).body(
+                ForgotPasswordVerificationResponse
+                        .builder()
+                        .message("The Password Has Been Successfully changed")
+                        .build()
+        );
     }
 }
