@@ -28,10 +28,10 @@ public class AuthenticationController {
         return authService.register(request);
     }
 
-    @GetMapping("/quiz")
-    public List<Quiz> getQuiz() {
-        return quizRepository.findAll();
-    }
+//    @GetMapping("/quiz")
+//    public List<Quiz> getQuiz() {
+//        return quizRepository.findAll();
+//    }
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
@@ -46,4 +46,15 @@ public class AuthenticationController {
     ) throws IOException {
         authService.refreshToken(request, response);
     }
+
+    @GetMapping("/account/verify")
+    public ResponseEntity<AccountVerificationResponse> verifyToken(@RequestParam("token") String token) {
+        return authService.verifyUser(token);
+    }
+
+//    @PostMapping("/forgot")
+//    public ResponseEntity<?> forgotPassword(@Valid @RequestBody ForgotPasswordRequest resetRequest) {
+//        passwordResetService.generatePasswordResetToken(resetRequest.getEmail());
+//        return ResponseEntity.ok(new MessageResponse("If there is any account associated with this email then you will receive further instruction there!"));
+//    }
 }

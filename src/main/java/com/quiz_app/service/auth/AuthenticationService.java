@@ -1,13 +1,10 @@
 package com.quiz_app.service.auth;
 
 import com.quiz_app.config.JwtService;
-import com.quiz_app.controller.authcontroller.AccountRegistrationResponse;
-import com.quiz_app.controller.authcontroller.AuthenticationRequest;
+import com.quiz_app.controller.authcontroller.*;
 import com.quiz_app.entity.jwttoken.Token;
 import com.quiz_app.entity.jwttoken.TokenType;
 import com.quiz_app.entity.user.User;
-import com.quiz_app.controller.authcontroller.AuthenticationResponse;
-import com.quiz_app.controller.authcontroller.RegisterRequest;
 import com.quiz_app.entity.user.UserVerificationToken;
 import com.quiz_app.repository.TokenRepository;
 import com.quiz_app.repository.UserRepository;
@@ -176,5 +173,44 @@ public class AuthenticationService {
                 new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
             }
         }
+    }
+
+    public ResponseEntity<AccountVerificationResponse> verifyUser(String token) {
+        var optionalUserVerificationToken =
+                userVerificationTokenRepository.findByToken(token);
+        if (optionalUserVerificationToken.isEmpty()) {
+            var response = AccountVerificationResponse.builder()
+                    .message("The Link is broken")
+                    .build();
+        return ResponseEntity.status(404).body(response);
+        }
+
+        var userVerificationToken = optionalUserVerificationToken.get();
+
+        if (userVerificationToken.getConfirmedAt() != null) {
+            var response = AccountVerificationResponse.builder()
+                    .message("This link has already been used")
+                    .build();
+        return ResponseEntity.badRequest().body(response);
+        }
+
+        // Verify it later.
+        LocalDateTime expireAt = userVerificationToken.getExpiresAt();
+        if (LocalDateTime.now().isAfter(expireAt)) {
+            var response = AccountVerificationResponse.builder()
+                    .message("The Link Has Expired")
+                    .build();
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        userVerificationTokenRepository.updateConfirmedAt(token,
+                LocalDateTime.now());
+        User user = userVerificationToken.getUser();
+        user.setAccountVerified(true);
+        userRepository.save(user);
+        var response = AccountVerificationResponse.builder()
+                .message("Account Verification Successful")
+                .build();
+        return ResponseEntity.ok(response);
     }
 }
