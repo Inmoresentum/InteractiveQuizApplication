@@ -8,20 +8,61 @@ import Image from "next/image";
 import quizAppLogo from "@/public/quiz-app-logo.png";
 import reactLogo from "@/public/react.svg";
 import {RiLockPasswordLine, RiMailLine} from "react-icons/ri";
+import {redirect} from "next/navigation";
 
 export default function CustomLogin() {
     const dragAbleConstraints = useRef(null);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    // const [callbackUrl, setCallbackUrl] = useState("");
+    const [errorMessage, setErrorMessage] = useState(null);
+    const [emailError, setEmailError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+
+    const handleChangeEmail = (e)=> {
+        setEmail(e.target.value.trim())
+        setEmailError(!isValidEmail(e.target.value.trim()))
+        setErrorMessage("");
+    }
+
+    const handleChangePassword = (e) => {
+        const enteredPassword = e.target.value.trim();
+        setPassword(enteredPassword);
+        setPasswordError(enteredPassword === '');
+        setErrorMessage("");
+    };
+
+    const isValidEmail = (email) => {
+        // Perform email validation logic here
+        // Return true if email is valid, false otherwise
+        // Example:
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (emailError || passwordError) {
+            setErrorMessage("Please Fill Up Form Correctly");
+            return;
+        }
         const result = await signIn("credentials", {
             email: email,
             password,
             redirect: false,
-            callbackUrl: "/register",
         });
+        console.log(result);
+        // setCallbackUrl(result.url);
+        if (result.error) {
+            setErrorMessage(result.error.replaceAll("\"", ""));
+            return;
+        }
+        if (result.url) {
+            redirect(result.url);
+        }
+        else {
+            redirect("/");
+        }
     };
 
     // noinspection JSValidateTypes
@@ -48,6 +89,12 @@ export default function CustomLogin() {
                             className="w-[110px] h-[110px] rounded-2xl hover:scale-105 hover:brightness-125 hover:contrast-150 hover:saturate-150 transition-all duration-300 ease-in-out"
                         />
                     </Link>                    <h2 className="text-2xl font-bold mb-4 animate-pulse">Login</h2>
+                    {errorMessage?
+                    <div class="flex justify-center items-center">
+                        <div class="bg-white rounded-xl border border-gray-300 shadow-lg p-4 max-w-sm animate-bounce backdrop-filter backdrop-blur-md bg-opacity-50 ">
+                            <p class="font-bold text-red-500 text-center">{errorMessage}</p>
+                        </div>
+                    </div> : "" }
                     <form className="max-w-md mx-auto">
                         <div className="relative mb-6">
                             <label htmlFor="email" className="text-lg px-4 font-medium mb-2 text-gray-800">
@@ -61,11 +108,14 @@ export default function CustomLogin() {
                                     type="email"
                                     id="email"
                                     className="w-full pl-10 px-6 py-3 bg-opacity-20 bg-white bg-clip-padding backdrop-filter backdrop-blur-md placeholder-gray-500 focus:placeholder-gray-300 focus:outline-none focus:border-blue-500 rounded-3xl text-gray-800 text-base shadow-md"
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    onChange={(e)=> handleChangeEmail(e)}
                                     placeholder="Enter Your email"
                                 />
 
                             </div>
+                            {emailError && (
+                                <p className="font-bold text-red-800 text-sm m-2 px-[8px]">Please enter a valid email address.</p>
+                            )}
                         </div>
                         <div className="relative mb-6">
                             <label htmlFor="password" className="text-lg px-4 font-medium mb-2 text-gray-800">
@@ -79,11 +129,14 @@ export default function CustomLogin() {
                                     type="password"
                                     id="password"
                                     className="w-full pl-10 px-6 py-3 bg-opacity-20 bg-white bg-clip-padding backdrop-filter backdrop-blur-md placeholder-gray-500 focus:placeholder-gray-300 focus:outline-none focus:border-blue-500 rounded-3xl text-gray-800 text-base shadow-md"
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    onChange={handleChangePassword}
                                     placeholder="Enter Your password"
                                 />
 
                             </div>
+                            {passwordError && (
+                                <p className="text-red-800 text-sm m-2 px-[8px]">Please enter a password.</p>
+                            )}
                         </div>
                         <div className="flex justify-end items-center mb-6">
                             <Link href={"/forgot/password"}

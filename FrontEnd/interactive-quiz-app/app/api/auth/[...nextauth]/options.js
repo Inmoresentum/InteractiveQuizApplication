@@ -26,28 +26,33 @@ export const options = {
             async authorize(credentials, req) {
                 const {email, password} = credentials;
                 try {
-                    const res = await axios.post("http://localhost:8080/api/v1/auth/authenticate", {
-                        email: email,
-                        password: password,
-                    }, {
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                    });
+                    const response = await axios.post(
+                        "http://localhost:8080/api/v1/auth/authenticate",
+                        {
+                            email,
+                            password,
+                        }
+                    );
 
-                    // Process the response here
-                    const user = await res.data;
-                    console.log(res.data);
-                    if (user) {
+                    console.log(`I will write the response \n ${response.status}`)
+                    if (response.status === 200) {
+                        // Successful authentication
+
+                        // Retrieve or create the user in your database based on the response data
+                        const user = await response.data
+
+                        console.log(user);
+                        // Return the user object
                         return user;
                     }
+
                 } catch (error) {
-                    // Handle error here
-                    console.error(error);
-                    console.error(error.data());
-                    return null;
+                    // Handle errors
+                    console.error("Error during authentication:", error.response.data.message);
+                    // Throw an error to indicate the authentication failure
+                    // throw new Error(JSON.stringify(error.response.data.message))
+                    throw new Error(JSON.stringify(error.response.data.message));
                 }
-                console.log("probably okay?")
             },
         }),
     ],
