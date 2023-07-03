@@ -45,13 +45,17 @@ public class AuthenticationService {
     private final EmailUtils emailUtils;
 
     @Transactional
-    public ResponseEntity<?> register(RegisterRequest request) {
+    public ResponseEntity<AccountRegistrationResponse> register(RegisterRequest request) {
         if (userRepository.existsByEmail(request.getEmail())) {
-            return new ResponseEntity<>("This Email Exists with Another user", HttpStatus.CONFLICT);
+            return new ResponseEntity<>(AccountRegistrationResponse.builder()
+                    .message("There is already an account associated with this email")
+                    .build(), HttpStatus.CONFLICT);
         }
 
         if (userRepository.existsByUsername(request.getUsername())) {
-            return new ResponseEntity<>("`" + request.getUsername() + "` username is taken", HttpStatus.CONFLICT);
+            return new ResponseEntity<>(AccountRegistrationResponse.builder()
+                    .message("The Username is already taken")
+                    .build(), HttpStatus.CONFLICT);
         }
 
         var user = User.builder()
@@ -98,6 +102,17 @@ public class AuthenticationService {
             );
         }
         var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
+
+        // Checking if the user is verified or not
+
+        if (!user.isAccountVerified()) {
+            return ResponseEntity.badRequest().body(
+                    AuthenticationResponse.builder()
+                            .message("Please verify email first")
+                            .build()
+            );
+        }
+
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);
