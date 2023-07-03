@@ -204,7 +204,7 @@ public class EmailUtils {
                 "          <tr>\n" +
                 "            <td align=\"left\" bgcolor=\"#ffffff\" style=\"padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;\">\n" +
                 "              <p style=\"margin: 0;\">If that doesn't work, copy and paste the following link in your browser:</p>\n" +
-                "              <p style=\"margin: 0;\"><a href=\"" + link + "\" target=\"_blank\"></a>"+ link + "</p>\n" +
+                "              <p style=\"margin: 0;\"><a href=\"" + link + "\" target=\"_blank\">"+ link +"</a></p>\n" +
                 "            </td>\n" +
                 "          </tr>\n" +
                 "          <!-- end copy -->\n" +
