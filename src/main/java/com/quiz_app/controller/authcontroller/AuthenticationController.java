@@ -28,10 +28,11 @@ public class AuthenticationController {
         return authService.register(request);
     }
 
-   @GetMapping("/quiz")
-   public List<Quiz> getQuiz() {
+    @GetMapping("/quiz")
+    public List<Quiz> getQuiz() {
         return quizRepository.findAll();
-   }
+    }
+
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request) {
@@ -45,6 +46,4 @@ public class AuthenticationController {
     ) throws IOException {
         authService.refreshToken(request, response);
     }
-
-
 }
