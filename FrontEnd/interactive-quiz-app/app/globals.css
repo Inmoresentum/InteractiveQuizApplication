@@ -221,7 +221,7 @@
     }
 }
 
-.login-animate-gradient-x {
+.login-button-animate-gradient-x {
     animation: gradient-login-x 5s ease-in-out infinite;
 }
 
@@ -256,3 +256,50 @@
 }
 
 /* Done with the tooltip stuff */
+
+/* Doing registration page part */
+.registration-page-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #d0522b, #3ce758, #39bfef, #7b19d7);
+    background-size: 400% 400%;
+    /*animation: gradient 10s ease infinite;*/
+    animation: gradient-login-x 12s ease-in-out infinite;
+    font-family: 'El Messiri', sans-serif;
+    overflow: auto;
+}
+
+.circle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    animation: square 10s linear infinite;
+    /*noinspection CssUnresolvedCustomProperty*/
+    animation-delay: calc(-1s * var(--i));
+}
+
+.circle:nth-child(2) {
+    width: 150px;
+    height: 150px;
+    top: -75px;
+    left: -105px;
+}
+
+.circle:nth-child(5) {
+    width: 100px;
+    height: 100px;
+    top: 75px;
+    left: -105px;
+}
+
+.circle:nth-child(7) {
+    width: 100px;
+    height: 100px;
+    top: 275px;
+    left: -105px;
+}
