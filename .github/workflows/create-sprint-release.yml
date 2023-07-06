@@ -3,7 +3,7 @@ name: Create Sprint Release
 on:
   push:
     tags:
-      - '*'
+      - v*
     branches:
       - release
 
