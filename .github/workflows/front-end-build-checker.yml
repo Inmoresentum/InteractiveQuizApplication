@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: cd FrontEnd/interactive-quiz-app && npm ci
       - name: Build Next.js project
-        run: cd FrontEnd/interactive-quiz-app && npm ci
+        run: cd FrontEnd/interactive-quiz-app && npm run build
       - name: Check if build successful
         run: |
           if [ "$?" -ne 0 ]; then
