@@ -30,6 +30,7 @@ public class AuthenticationController {
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request) {
+        System.out.println("I was able to hit the end point");
         return authService.authenticate(request);
     }
 
