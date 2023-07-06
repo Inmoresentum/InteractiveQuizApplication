@@ -12,9 +12,9 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          ref: ${{ github.event.base_ref }}
       - name: Set up Java version
         uses: actions/setup-java@v1
         with:
