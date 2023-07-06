@@ -22,9 +22,9 @@ jobs:
         with:
           node-version: '18'
       - name: Install dependencies
-        run: cd front-end/interactive-quiz-app && npm ci
+        run: cd FrontEnd/interactive-quiz-app && npm ci
       - name: Build Next.js project
-        run:  npm run build
+        run:  cd FrontEnd/interactive-quiz-app && npm run build
       - name: Generate changelog
         id: changelog
         uses: TriPSs/conventional-changelog-action@v3
