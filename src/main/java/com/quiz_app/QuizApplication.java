@@ -39,7 +39,6 @@ public class QuizApplication {
                     .accountCreatedAt(LocalDateTime.now())
                     .agreesWithTermsAndConditions(true)
                     .build();
-//            System.out.println("Admin token: " + service.register(admin).getAccessToken());
             service.register(admin);
 
             var user = RegisterRequest.builder()
@@ -52,22 +51,26 @@ public class QuizApplication {
                     .agreesWithTermsAndConditions(true)
                     .role(USER)
                     .build();
-//            System.out.println("User token: " + service.register(user).getAccessToken());
             service.register(user);
 
             List<Question> questionList = new ArrayList<>();
-            Question firstQuestion = new Question();
-            firstQuestion.setQuestion("What is the capital of France?");
-            firstQuestion.setOptionsToChooseForm(List.of("Madrid", "Paris", "Rome", "Berlin"));
-            firstQuestion.setCorrectAnswer("Paris");
-            Question secondQuestion = new Question();
-            secondQuestion.setQuestion("What is the largest planet in our solar system?");
-            secondQuestion.setOptionsToChooseForm(List.of("Mars", "Jupiter", "Venus", "Saturn"));
-            secondQuestion.setCorrectAnswer("Jupiter");
+            Question firstQuestion = Question.builder()
+                    .question("What is the capital of France?")
+                    .optionsToChooseForm(List.of("Madrid", "Paris", "Rome", "Berlin"))
+                    .correctAnswer("Paris")
+                    .build();
+
+            Question secondQuestion = Question.builder()
+                    .question("What is the largest planet in our solar system?")
+                    .optionsToChooseForm(List.of("Mars", "Jupiter", "Venus", "Saturn"))
+                    .correctAnswer("Jupiter")
+                    .build();
             questionList.add(firstQuestion);
             questionList.add(secondQuestion);
-            var quiz = new Quiz();
-            quiz.setQuestionList(questionList);
+            var quiz = Quiz.builder()
+                    .questionList(questionList)
+                    .build();
+
             quizRepository.save(quiz);
         };
     }

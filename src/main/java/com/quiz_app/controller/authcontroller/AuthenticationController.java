@@ -1,6 +1,5 @@
 package com.quiz_app.controller.authcontroller;
 
-import com.quiz_app.repository.QuizRepository;
 import com.quiz_app.service.auth.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,7 +17,6 @@ import java.io.IOException;
 public class AuthenticationController {
 
     private final AuthenticationService authService;
-    private final QuizRepository quizRepository;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(
@@ -30,7 +28,6 @@ public class AuthenticationController {
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request) {
-        System.out.println("I was able to hit the end point");
         return authService.authenticate(request);
     }
 

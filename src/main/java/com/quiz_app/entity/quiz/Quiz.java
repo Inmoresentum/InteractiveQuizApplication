@@ -10,6 +10,9 @@ import java.util.List;
 @Setter
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Quiz {
     @Id
     @GeneratedValue
