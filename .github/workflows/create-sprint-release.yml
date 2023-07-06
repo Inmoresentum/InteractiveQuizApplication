@@ -2,19 +2,15 @@ name: Create Sprint Release
 
 on:
   push:
-    tags:
-      - '*'
-
+    branches:
+      - release
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.base_ref }}
       - name: Set up Java version
         uses: actions/setup-java@v1
         with:
@@ -34,12 +30,13 @@ jobs:
         uses: TriPSs/conventional-changelog-action@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          git-branch: 'release'
+      # Added the necessary permissions
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
           artifacts: "target/*.jar,front-end/interactive-quiz-application/.next/**/*"
           body: ${{ steps.changelog.outputs.changelog }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          tag: v0.1.0
           draft: false
           prerelease: false
