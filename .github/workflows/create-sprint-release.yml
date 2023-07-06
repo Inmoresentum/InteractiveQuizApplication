@@ -39,5 +39,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           generateReleaseNotes: true
           allowUpdates: true
+          tag: v0.1.0
           draft: false
           prerelease: false
