@@ -34,10 +34,10 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "target/*.jar,Front-End/interactive-quiz-application/.next/**/*"
+          artifacts: "target/*.jar,Front-End/interactive-quiz-app/.next/**/*"
           body: ${{ steps.changelog.outputs.changelog }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          generateReleaseNotes: false
-          tag: v0.1.0
+          generateReleaseNotes: true
+          allowUpdates: true
           draft: false
           prerelease: false
