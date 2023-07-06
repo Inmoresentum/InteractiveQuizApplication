@@ -1,4 +1,4 @@
-name: Back-End Build
+name: Back-End-Build
 
 on:
   pull_request:

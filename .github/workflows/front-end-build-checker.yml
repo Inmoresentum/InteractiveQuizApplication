@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: '18'
       - name: Install dependencies
-        run: cd front-end/interactive-quiz-application && npm ci
+        run: cd front-end/interactive-quiz-app && npm ci
       - name: Build Next.js project
         run: cd front-end/interactive-quiz-application && npm run build
       - name: Check if build successful
