@@ -5,9 +5,9 @@ on:
     tags:
       - '*'
 
-
 jobs:
   build:
+    if: github.ref == 'refs/heads/release'
     runs-on: ubuntu-latest
     permissions:
       contents: write
