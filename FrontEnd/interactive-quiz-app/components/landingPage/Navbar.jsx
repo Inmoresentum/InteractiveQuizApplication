@@ -27,7 +27,7 @@ export default function Navbar() {
                     </Link>
                     <Link className="peer-hover:text-purple-500 transition-colors duration-300
                      ease-in-out peer-hover:animate-pulse" href="/">
-                    <h1 className="px-2 shadow-2xl hover:shadow-green-500 hover:text-indigo-600 ease-in-out duration-300">QuiziFy</h1>
+                    <h1 className="px-2 shadow-2xl hover:shadow-green-500 hover:text-indigo-600 ease-in-out duration-300">WizeWiz</h1>
                     </Link>
                 </div>
                 <ul className="hidden md:flex">
@@ -53,7 +53,7 @@ export default function Navbar() {
                         </Link>
                         <Link className="peer-hover:text-purple-500 transition-colors duration-300
                      ease-in-out peer-hover:animate-pulse" href="/">
-                            <h1 className="px-2 shadow-2xl hover:shadow-green-500 hover:text-indigo-600 ease-in-out duration-300">QuiziFy</h1>
+                            <h1 className="px-2 shadow-2xl hover:shadow-green-500 hover:text-indigo-600 ease-in-out duration-300">WizeWiz</h1>
                         </Link>
                     </div>
                     {/*<li will be replaced with Link from next*/}
