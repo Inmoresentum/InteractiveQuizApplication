@@ -6,7 +6,7 @@
      width="180px"
      style="border-radius: 35px; box-shadow: 0px 10px 75px rgb(5,255,105);">
    </p>
-   An Interactive Quiz Application
+   An Interactive Web-Based Quiz Application
 </h1> 
 
 <p align ="center"> 
@@ -38,12 +38,41 @@
    </a>
 </p>
 
+[//]: # (![GitHub Release Date - Published_At]&#40;https://img.shields.io/github/Inmoresentum/InteractiveQuizApplication&#41;)
 
-This repository contains **CSE470** Lab Group No `9` PROJECT, `Summer 2023` Section `02`.
+[//]: # (![GitHub contributors &#40;via allcontributors.org&#41;]&#40;https://img.shields.io/github/all-contributors/Inmoresentum/InteractiveQuizApplication/main&#41;)
+<div align="center">
+<hr width="450px"/>   
+   <div align="center">
+      <h4>BUILD INFORMATION</h4>
+   </div>
+
+   <a href="https://github.com/Inmoresentum/InteractiveQuizApplication/actions/workflows/back-end-build-checker.yml">
+      <img src="https://github.com/Inmoresentum/InteractiveQuizApplication/actions/workflows/back-end-build-checker.yml/badge.svg" 
+         alt="https://img.shields.io/badge/daisyui 3-5A0EF8?style=for-the-badge&logo=daisyui&logoColor=orange"
+         style="border-radius:8px"/>
+   </a>
+   <a href="https://github.com/Inmoresentum/InteractiveQuizApplication/actions/workflows/front-end-build-checker.yml">
+      <img src="https://github.com/Inmoresentum/InteractiveQuizApplication/actions/workflows/front-end-build-checker.yml/badge.svg" 
+         alt="https://img.shields.io/badge/daisyui 3-5A0EF8?style=for-the-badge&logo=daisyui&logoColor=orange"
+         style="border-radius:8px"/>
+   </a>
+   <div align="center">
+   <a href="https://github.com/Inmoresentum/InteractiveQuizApplication/actions/workflows/create-sprint-release.yml">
+      <img src="https://github.com/Inmoresentum/InteractiveQuizApplication/actions/workflows/create-sprint-release.yml/badge.svg" 
+         alt="https://img.shields.io/badge/daisyui 3-5A0EF8?style=for-the-badge&logo=daisyui&logoColor=orange"
+         style="border-radius:8px"/>
+   </a>
+
+   </div>
+<hr width="450px"/>   
+</div>
 
 <h2 align="center" style="text-decoration: underline; text-decoration-color: #00f260; ">
    Group Information
 </h2>
+
+This repository contains **CSE470** Lab Group No `9` PROJECT, `Summer 2023` Section `02`.
 
 #### Group Name: _Enigma Enchanters_
 
@@ -80,7 +109,7 @@ you will have to install the following things.
 
 2. node
 
-   `node` version **18** or higher. Download [node](https://nodejs.org/en/download/) if you don't have it already.
+   `node` version **16.8** or higher. Download [node](https://nodejs.org/en/download/) if you don't have it already.
 
    To check your version of node, run:
 
