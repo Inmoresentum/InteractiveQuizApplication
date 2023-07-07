@@ -1,5 +1,5 @@
 "use client"
-import {useRef, useState} from 'react';
+import {useRef, useState} from "react";
 import {
     RiLockPasswordLine,
     RiMailLine,
@@ -20,10 +20,10 @@ import reactLogo from "@/public/react.svg";
 
 export default function ClientSideRegiFrom() {
     const dragAbleConstraints = useRef(null);
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [countryCode, setCountryCode] = useState('+880');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [countryCode, setCountryCode] = useState("+880");
+    const [phoneNumber, setPhoneNumber] = useState("");
 
     const handleCountryCodeChange = (e) => {
         setCountryCode(e.target.value);
@@ -32,7 +32,7 @@ export default function ClientSideRegiFrom() {
     const handlePhoneNumberChange = (e) => {
         const input = e.target.value;
         // Remove any non-numeric characters from the input
-        const sanitizedInput = input.replace(/\D/g, '');
+        const sanitizedInput = input.replace(/\D/g, "");
         setPhoneNumber(sanitizedInput);
     };
     const handleSubmit = (e) => {

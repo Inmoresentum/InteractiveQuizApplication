@@ -27,7 +27,7 @@ export default function CustomLogin() {
     const handleChangePassword = (e) => {
         const enteredPassword = e.target.value.trim();
         setPassword(enteredPassword);
-        setPasswordError(enteredPassword === '');
+        setPasswordError(enteredPassword === "");
         setErrorMessage("");
     };
 

@@ -1,6 +1,6 @@
-import Single from '../../public/single.png'
-import Double from '../../public/double.png'
-import Triple from '../../public/triple.png'
+import Single from "../../public/single.png"
+import Double from "../../public/double.png"
+import Triple from "../../public/triple.png"
 import Image from "next/image";
 
 const Cards = () => {

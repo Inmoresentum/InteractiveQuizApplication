@@ -42,8 +42,8 @@ export default function Navbar() {
                     {nav ? <AiOutlineClose size={20} className="text-gray-600 hover:text-rose-500"/> :
                         <AiOutlineMenu size={20} className="text-gray-600 hover:text-rose-500"/>}
                 </div>
-                <ul className={`${nav ? 'fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500' :
-                    'ease-in-out duration-500 fixed left-[-100%]'}`}>
+                <ul className={`${nav ? "fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500" :
+                    "ease-in-out duration-500 fixed left-[-100%]"}`}>
                     <div className="flex text-3xl font-bold text-[#00df9a] uppercase m-1.5">
                         <Link className="peer" href={"/"}>
                             <Image
