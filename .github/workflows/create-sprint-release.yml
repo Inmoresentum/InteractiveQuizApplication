@@ -36,7 +36,7 @@ jobs:
         with:
           artifacts: "target/*.jar,FrontEnd/interactive-quiz-app/.next/**/*"
           body: ${{ steps.changelog.outputs.changelog }}
-          bodyFile: "CHANGELOG.md"
+#          bodyFile: "CHANGELOG.md"
           token: ${{ secrets.GITHUB_TOKEN }}
           generateReleaseNotes: true
           allowUpdates: true
