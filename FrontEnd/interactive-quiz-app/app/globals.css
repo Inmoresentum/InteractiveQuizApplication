@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* DOING CUSTOM CURSOR */
-/** {*/
-/*    cursor: none;*/
-/*}*/
-
 .custom-cursor {
     position: fixed;
     top: 0;
