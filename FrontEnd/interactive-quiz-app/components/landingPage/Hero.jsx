@@ -3,7 +3,7 @@ import {TypeAnimation} from "react-type-animation";
 
 const Hero = () => {
     return (
-        <div className='text-white'>
+        <div className='text-white p-20'>
             <div className='max-w-[800px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center'>
                 <p className='text-[#00df9a] font-bold p-2'>
                     GROW YOUR KNOWLEDGE WITH US
@@ -16,10 +16,10 @@ const Hero = () => {
                         Fast, flexible learning for
                         <TypeAnimation
                             className='md:text-5xl sm:text-4xl text-xl font-bold md:pl-4 pl-2 bg-gradient-to-br text-transparent bg-clip-text animate-gradient w-full'
-                            style={{backgroundImage: 'radial-gradient(934px at 6% 39.5%, rgb(255, 35, 90) 0.2%, rgb(255, 35, 144) 54.8%, rgb(250, 99, 160) 93.4%)'}}
+                            style={{backgroundImage: "radial-gradient(934px at 6% 39.5%, rgb(255, 35, 90) 0.2%, rgb(255, 35, 144) 54.8%, rgb(250, 99, 160) 93.4%)"}}
                             sequence={[
                                 // The Same String at the start will only be typed once, initially
-                                '',
+                                "",
                                 500,
                                 "SCIENCE",
                                 500,

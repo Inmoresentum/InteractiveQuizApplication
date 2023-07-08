@@ -2,10 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    background-color: #000300;
+/* DOING CUSTOM CURSOR */
+/** {*/
+/*    cursor: none;*/
+/*}*/
+
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    mix-blend-mode: difference;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
 }
 
+.cursor-text {
+    font-size: 5px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    display: none;
+}
+
+/* xD Done with the stuff */
 .wavy {
     background: linear-gradient(
             to right,
@@ -56,4 +82,230 @@ body {
 .h1-sp-effect:hover .h1-sp-effect-span {
     left: 0;
     width: 100%;
+}
+
+/*Login Form Section*/
+.login-page-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+    font-family: 'El Messiri', sans-serif;
+    overflow: hidden;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.box {
+    position: relative;
+}
+
+.square {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    animation: square 10s linear infinite;
+    /*noinspection CssUnresolvedCustomProperty*/
+    animation-delay: calc(-1s * var(--i));
+}
+
+@keyframes square {
+    0%, 100% {
+        transform: translateY(-20px);
+    }
+
+    50% {
+        transform: translateY(20px);
+    }
+}
+
+.square:nth-child(1) {
+    width: 100px;
+    height: 100px;
+    top: -15px;
+    right: -45px;
+}
+
+.square:nth-child(2) {
+    width: 150px;
+    height: 150px;
+    top: 105px;
+    left: -125px;
+    z-index: 2;
+}
+
+.square:nth-child(3) {
+    width: 60px;
+    height: 60px;
+    bottom: 85px;
+    right: -45px;
+    z-index: 2;
+}
+
+.square:nth-child(4) {
+    width: 50px;
+    height: 50px;
+    bottom: 35px;
+    left: -95px;
+}
+
+.square:nth-child(5) {
+    width: 50px;
+    height: 50px;
+    top: -15px;
+    left: -25px;
+}
+
+.square:nth-child(6) {
+    width: 85px;
+    height: 85px;
+    top: 165px;
+    right: -155px;
+    z-index: 2;
+}
+
+.login-page-container {
+    position: relative;
+    padding: 50px;
+    width: 450px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 25px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.login-page-container::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    left: 5px;
+    border-radius: 50px;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 2%
+    );
+}
+
+@keyframes gradient-login-x {
+    0%,
+    100% {
+        background-size: 200% 200%;
+        background-position: left center;
+    }
+    50% {
+        background-size: 200% 200%;
+        background-position: right center;
+    }
+}
+
+.login-button-animate-gradient-x {
+    animation: gradient-login-x 5s ease-in-out infinite;
+}
+
+/* Tool Tip stuff going on here */
+.tooltip {
+    position: relative;
+}
+
+.tooltip:hover:after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 5px);
+    transform: translateX(-50%);
+    padding: 8px 12px;
+    background-color: black;
+    color: white;
+    font-size: 14px;
+    white-space: nowrap;
+    border-radius: 4px;
+}
+
+.tooltip:hover:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 1px);
+    transform: translateX(-50%) rotate(45deg);
+    width: 10px;
+    height: 10px;
+    background-color: black;
+}
+
+/* Done with the tooltip stuff */
+
+/* Doing registration page part */
+.registration-page-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #d0522b, #3ce758, #39bfef, #7b19d7);
+    background-size: 400% 400%;
+    /*animation: gradient 10s ease infinite;*/
+    animation: gradient-login-x 12s ease-in-out infinite;
+    font-family: 'El Messiri', sans-serif;
+    overflow: auto;
+}
+
+.circle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    animation: square 10s linear infinite;
+    /*noinspection CssUnresolvedCustomProperty*/
+    animation-delay: calc(-1s * var(--i));
+}
+
+.circle:nth-child(2) {
+    width: 150px;
+    height: 150px;
+    top: -75px;
+    left: -105px;
+}
+
+.circle:nth-child(5) {
+    width: 100px;
+    height: 100px;
+    top: 75px;
+    left: -105px;
+}
+
+.circle:nth-child(7) {
+    width: 100px;
+    height: 100px;
+    top: 275px;
+    left: -105px;
+}
+
+.google-icon {
+    background: linear-gradient(to right, #4285F4, #DB4437, #F4B400, #0F9D58);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

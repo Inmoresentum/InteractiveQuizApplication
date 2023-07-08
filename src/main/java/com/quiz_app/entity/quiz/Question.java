@@ -6,11 +6,13 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@RequiredArgsConstructor
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Question {
     @Id
     @GeneratedValue
