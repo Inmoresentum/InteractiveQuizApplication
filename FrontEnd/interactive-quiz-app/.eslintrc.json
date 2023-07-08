@@ -7,6 +7,13 @@
       {
         "avoidEscape": true
       }
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 100
+      }
     ]
   }
 }
+
