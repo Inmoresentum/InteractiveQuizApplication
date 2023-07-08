@@ -1,11 +1,11 @@
-import Analytics from "@/components/landingPage/Analytics";
-import Hero from "@/components/landingPage/Hero";
-import Newsletter from "@/components/landingPage/NewsLetter";
-import Cards from "@/components/landingPage/Cards";
-import Testimonial from "@/components/landingPage/Testimonial";
-import Navbar from "@/components/landingPage/Navbar";
-import Footer from "@/components/landingPage/Footer";
-import CustomCursor from "@/components/customCursor/CustomCursor";
+import Analytics from "@/components/landing-page/Analytics";
+import Hero from "@/components/landing-page/Hero";
+import Newsletter from "@/components/landing-page/NewsLetter";
+import Cards from "@/components/landing-page/Cards";
+import Testimonial from "@/components/landing-page/Testimonial";
+import Navbar from "@/components/landing-page/Navbar";
+import Footer from "@/components/landing-page/Footer";
+import CustomCursor from "@/components/custom-cursor/CustomCursor";
 
 export default function Home() {
     return (
