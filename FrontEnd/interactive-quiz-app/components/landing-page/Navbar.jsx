@@ -57,11 +57,16 @@ export default function Navbar() {
                         </Link>
                     </div>
                     {/*<li will be replaced with Link from next*/}
-                    <li className="bg-[#000300] p-4 border-b border-gray-600 hover:bg-rose-500 hover:cursor-pointer active:bg-amber-300 transition duration-700 ease-in-out">Home</li>
-                    <li className="bg-[#000300] p-4 border-b border-gray-600 hover:bg-rose-500 hover:cursor-pointer active:bg-amber-300 transition duration-700 ease-in-out">Company</li>
-                    <li className="bg-[#000300] p-4 border-b border-gray-600 hover:bg-rose-500 hover:cursor-pointer active:bg-amber-300 transition duration-700 ease-in-out">Resources</li>
-                    <li className="bg-[#000300] p-4 border-b border-gray-600 hover:bg-rose-500 hover:cursor-pointer active:bg-amber-300 transition duration-700 ease-in-out">About</li>
-                    <li className="bg-[#000300] p-4 border-b border-gray-600 hover:bg-rose-500 hover:cursor-pointer active:bg-amber-300 transition duration-700 ease-in-out">Contact</li>
+                    <li className="bg-[#000300] p-4 border-b border-gray-600 hover:bg-rose-500
+                     hover:cursor-pointer active:bg-amber-300 transition duration-700 ease-in-out">Home</li>
+                    <li className="bg-[#000300] p-4 border-b border-gray-600 hover:bg-rose-500
+                     hover:cursor-pointer active:bg-amber-300 transition duration-700 ease-in-out">Company</li>
+                    <li className="bg-[#000300] p-4 border-b border-gray-600 hover:bg-rose-500
+                     hover:cursor-pointer active:bg-amber-300 transition duration-700 ease-in-out">Resources</li>
+                    <li className="bg-[#000300] p-4 border-b border-gray-600 hover:bg-rose-500
+                     hover:cursor-pointer active:bg-amber-300 transition duration-700 ease-in-out">About</li>
+                    <li className="bg-[#000300] p-4 border-b border-gray-600 hover:bg-rose-500
+                     hover:cursor-pointer active:bg-amber-300 transition duration-700 ease-in-out">Contact</li>
                     {/*<li will be replaced with Link from next*/}
                 </ul>
             </div>
