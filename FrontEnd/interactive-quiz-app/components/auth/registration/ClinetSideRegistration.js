@@ -67,13 +67,18 @@ export default function ClientSideRegiFrom() {
                     </Link>
                     <h2 className="font-bold text-2xl mt-4">
                         Create An Account Using
-                        {/*<FaGithubSquare className="ml-0.5 mr-0.5 cursor-pointer hover:scale-110 duration-300 ease-in" size={24}/>*/}
-                        {/*or <FaGoogle className="ml-0.5 mr-0.5 cursor-pointer hover:scale-110 duration-300 ease-in" size={24}/>*/}
+                        {/*<FaGithubSquare className="ml-0.5 mr-0.5 cursor-pointer
+                         hover:scale-110 duration-300 ease-in" size={24}/>*/}
+                        {/*or <FaGoogle className="ml-0.5 mr-0.5 cursor-pointer
+                         hover:scale-110 duration-300 ease-in" size={24}/>*/}
                     </h2>
                     <div className="flex justify-evenly w-full">
-                    <FaGithubSquare className="ml-0.5 mr-0.5 text-gray-700 cursor-pointer hover:scale-110 hover:text-black duration-300 ease-in" size={44}/>
-                    <FaGoogle className="ml-0.5 mr-0.5 cursor-pointer hover:scale-110 hover:text-orange-500  duration-300 ease-in" size={44}/>
-                    <FaDiscord className="ml-0.5 mr-0.5 cursor-pointer hover:scale-110 hover:text-blue-500 duration-300 ease-in" size={44}/>
+                        <FaGithubSquare className="ml-0.5 mr-0.5 text-gray-700
+                     cursor-pointer hover:scale-110 hover:text-black duration-300 ease-in" size={44}/>
+                        <FaGoogle className="ml-0.5 mr-0.5 cursor-pointer hover:scale-110
+                     hover:text-orange-500  duration-300 ease-in" size={44}/>
+                        <FaDiscord className="ml-0.5 mr-0.5 cursor-pointer hover:scale-110
+                     hover:text-blue-500 duration-300 ease-in" size={44}/>
                     </div>
                     <h2 className="text-2xl font-bold italic mt-4 antialiased"> OR</h2>
                     <h2 className="text-2xl font-bold mb-4 mt-4 animate-pulse">REGISTRATION FORM</h2>
@@ -102,7 +107,8 @@ export default function ClientSideRegiFrom() {
 
                             </div>
                             {/*{emailError && (*/}
-                            {/*    <p className="font-bold text-red-800 text-sm m-2 px-[8px]">Please enter a valid email address.</p>*/}
+                            {/*    <p className="font-bold text-red-800 text-sm m-2
+                             px-[8px]">Please enter a valid email address.</p>*/}
                             {/*)}*/}
                         </div>
                         <div className="relative mb-6">
@@ -159,9 +165,11 @@ export default function ClientSideRegiFrom() {
                                 <input
                                     type="password"
                                     id="confirm-password"
-                                    className="w-full pl-10 px-6 py-3 bg-opacity-20 bg-white bg-clip-padding backdrop-filter
-                                     backdrop-blur-md placeholder-gray-500 focus:placeholder-gray-900
-                                      focus:outline-none focus:border-blue-500 rounded-3xl text-gray-800 text-base shadow-md"
+                                    className="w-full pl-10 px-6 py-3 bg-opacity-20 bg-white
+                                     bg-clip-padding backdrop-filter backdrop-blur-md placeholder-gray-500
+                                      focus:placeholder-gray-900
+                                      focus:outline-none focus:border-blue-500 rounded-3xl
+                                       text-gray-800 text-base shadow-md"
                                     // onChange={handleChangePassword}
                                     placeholder="Enter your password again"
                                 />
@@ -177,19 +185,22 @@ export default function ClientSideRegiFrom() {
                                 <select
                                     value={countryCode}
                                     onChange={handleCountryCodeChange}
-                                    className="h-12 bg-opacity-20 bg-white bg-clip-padding backdrop-filter backdrop-blur-md
-                                     placeholder-gray-500 focus:placeholder-gray-900 focus:outline-none focus:border-blue-500
+                                    className="h-12 bg-opacity-20 bg-white bg-clip-padding
+                                     backdrop-filter backdrop-blur-md placeholder-gray-500
+                                      focus:placeholder-gray-900 focus:outline-none focus:border-blue-500
                                       rounded-3xl text-gray-800 text-base shadow-md mr-0.5 mb-2"
                                 >
                                     <option
-                                        className="bg-opacity-20 bg-white bg-clip-padding backdrop-filter backdrop-blur-md
-                                         placeholder-gray-500 focus:placeholder-gray-900 focus:outline-none focus:border-blue-500
+                                        className="bg-opacity-20 bg-white bg-clip-padding
+                                         backdrop-filter backdrop-blur-md placeholder-gray-500
+                                          focus:placeholder-gray-900 focus:outline-none focus:border-blue-500
                                           rounded-3xl text-gray-800 text-base shadow-md"
                                         value="+880">+880
                                     </option>
                                     <option
-                                        className="bg-opacity-20 bg-white bg-clip-padding backdrop-filter backdrop-blur-md
-                                         placeholder-gray-500 focus:placeholder-gray-900 focus:outline-none
+                                        className="bg-opacity-20 bg-white bg-clip-padding
+                                         backdrop-filter backdrop-blur-md placeholder-gray-500
+                                          focus:placeholder-gray-900 focus:outline-none
                                           focus:border-blue-500 rounded-3xl text-gray-800 text-base shadow-md"
                                         value="+1">+1
                                     </option>
@@ -222,8 +233,9 @@ export default function ClientSideRegiFrom() {
 
                             <div class="flex items-center justify-center w-full">
                                 <label htmlFor="dropzone-file"
-                                       className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-400
-                                        border-dashed rounded-lg cursor-pointer bg-opacity-20 bg-white bg-clip-padding
+                                       className="flex flex-col items-center justify-center w-full h-32 border-2
+                                        border-gray-400 border-dashed rounded-lg cursor-pointer
+                                         bg-opacity-20 bg-white bg-clip-padding
                                          backdrop-filter backdrop-blur-md hover:bg-opacity-30 dark:hover:bg-opacity-30
                                           dark:bg-gray-700 dark:border-gray-600 dark:hover:border-gray-500">
                                     <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -241,7 +253,8 @@ export default function ClientSideRegiFrom() {
                                         <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX.
                                             800x400px)</p>
                                     </div>
-                                    <input id="dropzone-file" type="file" className="hidden" accept="image/vnd.sealedmedia.softseal.jpg, .png, .svg"/>
+                                    <input id="dropzone-file" type="file" className="hidden"
+                                           accept="image/vnd.sealedmedia.softseal.jpg, .png, .svg"/>
                                 </label>
                             </div>
 
