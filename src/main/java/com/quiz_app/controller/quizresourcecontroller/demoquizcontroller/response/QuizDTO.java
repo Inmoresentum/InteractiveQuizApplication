@@ -3,7 +3,6 @@ package com.quiz_app.controller.quizresourcecontroller.demoquizcontroller.respon
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
-import lombok.ToString;
 
 import java.util.List;
 
