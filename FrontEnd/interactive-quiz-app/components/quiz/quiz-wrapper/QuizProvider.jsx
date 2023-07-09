@@ -3,8 +3,9 @@ import Quiz from "@/components/quiz/quiz-components/core-starter/Quiz";
 import {useState} from "react";
 
 
-export default function QuizProvider(quiz) {
+export default function QuizProvider({quiz}) {
     const [quizResult, setQuizResult] = useState()
+    console.log(quiz)
     return (
         <Quiz
             quiz={quiz}
