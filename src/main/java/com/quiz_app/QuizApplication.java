@@ -57,7 +57,7 @@ public class QuizApplication {
             Question firstQuestion = Question.builder()
                     .question("How can you access the state of a component from inside of a member function?")
                     .questionType(TEXT)
-                    .questionPic(null)
+                    .questionPic("https://dummyimage.com/600x400/000/fff&text=X")
                     .answerSelectionType(SINGLE)
                     .answers(List.of("this.getState()",
                             "this.prototype.stateValue",
