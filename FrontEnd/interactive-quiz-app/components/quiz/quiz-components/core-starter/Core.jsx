@@ -1,7 +1,7 @@
 import React, {
     useState, useEffect, useCallback, Fragment,
 } from "react";
-import QuizResultFilter from "@/Components/CustomQuiz/Core-Compoents/QuizResultFilter";
+import QuizResultFilter from "../Core-Compoents/QuizResultFilter";
 import { checkAnswer, selectAnswer, rawMarkup } from "../Core-Compoents/helper";
 import InstantFeedback from "../Core-Compoents/InstantFeedback"
 import Explanation from "../Core-Compoents/Explanation";
