@@ -13,7 +13,7 @@
     "axios": "^1.4.0",
     "dompurify": "^3.0.4",
     "eslint": "8.43.0",
-    "eslint-config-next": "13.4.6",
+    "eslint-config-next": "13.4.9",
     "framer-motion": "^10.12.17",
     "gsap": "^3.12.2",
     "next": "13.4.6",
