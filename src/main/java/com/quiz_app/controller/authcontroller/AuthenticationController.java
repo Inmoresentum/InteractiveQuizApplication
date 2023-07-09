@@ -1,5 +1,12 @@
 package com.quiz_app.controller.authcontroller;
 
+import com.quiz_app.controller.authcontroller.request.AuthenticationRequest;
+import com.quiz_app.controller.authcontroller.request.ForgotPasswordRequest;
+import com.quiz_app.controller.authcontroller.request.ForgotPasswordVerificationRequest;
+import com.quiz_app.controller.authcontroller.request.RegisterRequest;
+import com.quiz_app.controller.authcontroller.response.AccountVerificationResponse;
+import com.quiz_app.controller.authcontroller.response.AuthenticationResponse;
+import com.quiz_app.controller.authcontroller.response.ForgotPasswordVerificationResponse;
 import com.quiz_app.service.auth.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

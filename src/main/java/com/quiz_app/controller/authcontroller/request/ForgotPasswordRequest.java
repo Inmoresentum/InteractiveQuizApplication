@@ -1,4 +1,4 @@
-package com.quiz_app.controller.authcontroller;
+package com.quiz_app.controller.authcontroller.request;
 
 import jakarta.validation.constraints.Email;
 import lombok.Builder;

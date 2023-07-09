@@ -1,4 +1,4 @@
-package com.quiz_app.controller.authcontroller;
+package com.quiz_app.controller.authcontroller.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.quiz_app.entity.user.Role;

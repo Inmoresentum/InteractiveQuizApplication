@@ -1,4 +1,4 @@
-package com.quiz_app.controller.authcontroller;
+package com.quiz_app.controller.authcontroller.response;
 
 import lombok.Builder;
 import lombok.Data;

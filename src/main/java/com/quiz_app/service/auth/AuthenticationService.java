@@ -1,7 +1,13 @@
 package com.quiz_app.service.auth;
 
 import com.quiz_app.config.jwt.JwtService;
-import com.quiz_app.controller.authcontroller.*;
+import com.quiz_app.controller.authcontroller.request.AuthenticationRequest;
+import com.quiz_app.controller.authcontroller.request.ForgotPasswordVerificationRequest;
+import com.quiz_app.controller.authcontroller.request.RegisterRequest;
+import com.quiz_app.controller.authcontroller.response.AccountRegistrationResponse;
+import com.quiz_app.controller.authcontroller.response.AccountVerificationResponse;
+import com.quiz_app.controller.authcontroller.response.AuthenticationResponse;
+import com.quiz_app.controller.authcontroller.response.ForgotPasswordVerificationResponse;
 import com.quiz_app.entity.jwttoken.Token;
 import com.quiz_app.entity.jwttoken.TokenType;
 import com.quiz_app.entity.user.ForgotPasswordVerificationToken;
