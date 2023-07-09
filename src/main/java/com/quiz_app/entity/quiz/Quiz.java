@@ -13,11 +13,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "Created Quiz")
 public class Quiz {
     @Id
     @GeneratedValue
     private Integer quizId;
+    @Column(nullable = false)
     private String quizTitle;
+    @Column(nullable = false)
     private String quizSynopsis;
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Question> questions;
