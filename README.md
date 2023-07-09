@@ -42,7 +42,7 @@
 
 [//]: # (![GitHub contributors &#40;via allcontributors.org&#41;]&#40;https://img.shields.io/github/all-contributors/Inmoresentum/InteractiveQuizApplication/main&#41;)
 <div align="center">
-<hr width="450px"/>   
+<hr width="250px"/>   
    <div align="center">
       <h4>BUILD INFORMATION</h4>
    </div>
@@ -65,7 +65,7 @@
    </a>
 
    </div>
-<hr width="450px"/>   
+<hr width="250px"/>   
 </div>
 
 <h2 align="center" style="text-decoration: underline; text-decoration-color: #00f260; ">
@@ -232,6 +232,18 @@ please try to create bug reports that are:
 - _unique._ do not duplicate existing opened issues.
 - _scoped to a **single bug**._ one bug per report.
 
+[//]: # (## Contributor)
+
+[//]: # ()
+[//]: # (<p align="center">)
+
+[//]: # (<a href="https://github.com/Inmoresentum/Lawyer-Consultation-System/graphs/contributors">)
+
+[//]: # (  <img src="https://contrib.rocks/image?repo=Inmoresentum/InteractiveQuizApplication" />)
+
+[//]: # (</a>)
+
+[//]: # (</p>)
 &nbsp;
 
 <p align="center">Copyright &copy; 2023-present 
