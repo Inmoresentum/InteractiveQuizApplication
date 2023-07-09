@@ -1,4 +1,4 @@
-package com.quiz_app.config;
+package com.quiz_app.config.ipvalidation;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -12,7 +12,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
-public class CustomIPValidation extends OncePerRequestFilter {
+public class CustomIPFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(@NotNull HttpServletRequest request,
                                     @NotNull HttpServletResponse response,

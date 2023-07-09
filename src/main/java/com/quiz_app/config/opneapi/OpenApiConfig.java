@@ -1,4 +1,4 @@
-package com.quiz_app.config;
+package com.quiz_app.config.opneapi;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;

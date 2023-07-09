@@ -1,5 +1,6 @@
-package com.quiz_app.config;
+package com.quiz_app.config.security;
 
+import com.quiz_app.config.jwt.JwtAuthenticationFilter;
 import com.quiz_app.entity.user.Permission;
 import com.quiz_app.entity.user.Role;
 import lombok.RequiredArgsConstructor;

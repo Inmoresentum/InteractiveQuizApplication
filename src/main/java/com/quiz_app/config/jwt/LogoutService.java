@@ -1,4 +1,4 @@
-package com.quiz_app.config;
+package com.quiz_app.config.jwt;
 
 import com.quiz_app.repository.TokenRepository;
 import jakarta.servlet.http.HttpServletRequest;
