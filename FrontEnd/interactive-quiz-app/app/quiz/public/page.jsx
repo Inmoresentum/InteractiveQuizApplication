@@ -3,6 +3,8 @@ import {quiz} from "@/TestData/Quiz";
 
 export default function DemoQuiz() {
     return (
-        <QuizProvider quiz={quiz}/>
+        <div className="flex items-center content-center">
+            <QuizProvider quiz={quiz}/>
+        </div>
     );
 }
