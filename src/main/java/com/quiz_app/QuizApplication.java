@@ -53,25 +53,25 @@ public class QuizApplication {
                     .build();
             service.register(user);
 
-            List<Question> questionList = new ArrayList<>();
-            Question firstQuestion = Question.builder()
-                    .question("What is the capital of France?")
-                    .optionsToChooseForm(List.of("Madrid", "Paris", "Rome", "Berlin"))
-                    .correctAnswer("Paris")
-                    .build();
-
-            Question secondQuestion = Question.builder()
-                    .question("What is the largest planet in our solar system?")
-                    .optionsToChooseForm(List.of("Mars", "Jupiter", "Venus", "Saturn"))
-                    .correctAnswer("Jupiter")
-                    .build();
-            questionList.add(firstQuestion);
-            questionList.add(secondQuestion);
-            var quiz = Quiz.builder()
-                    .questionList(questionList)
-                    .build();
-
-            quizRepository.save(quiz);
+//            List<Question> questionList = new ArrayList<>();
+//            Question firstQuestion = Question.builder()
+//                    .question("What is the capital of France?")
+//                    .optionsToChooseForm(List.of("Madrid", "Paris", "Rome", "Berlin"))
+//                    .correctAnswer("Paris")
+//                    .build();
+//
+//            Question secondQuestion = Question.builder()
+//                    .question("What is the largest planet in our solar system?")
+//                    .optionsToChooseForm(List.of("Mars", "Jupiter", "Venus", "Saturn"))
+//                    .correctAnswer("Jupiter")
+//                    .build();
+//            questionList.add(firstQuestion);
+//            questionList.add(secondQuestion);
+//            var quiz = Quiz.builder()
+//                    .questionList(questionList)
+//                    .build();
+//
+//            quizRepository.save(quiz);
         };
     }
 }

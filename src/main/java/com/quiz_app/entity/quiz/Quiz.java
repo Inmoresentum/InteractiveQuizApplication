@@ -17,6 +17,8 @@ public class Quiz {
     @Id
     @GeneratedValue
     private Integer quizId;
+    private String quizTitle;
+    private String quizSynopsis;
     @OneToMany(cascade = CascadeType.PERSIST)
-    private List<Question> questionList;
+    private List<Question> questions;
 }
