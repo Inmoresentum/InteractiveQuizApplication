@@ -308,7 +308,7 @@
 /* Quiz Container part */
 .react-quiz-container {
     margin: 20px;
-    width: 500px;
+    width: 500px
 }
 
 .react-quiz-container .startQuizWrapper {
@@ -330,7 +330,6 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    cursor: pointer;
 }
 
 .react-quiz-container .questionWrapper .btn {
@@ -436,7 +435,6 @@
 
 .react-quiz-container .quiz-result-filter select {
     background: transparent;
-    border: none;
     font-size: 16px;
     padding: 5px;
     width: 100%;
