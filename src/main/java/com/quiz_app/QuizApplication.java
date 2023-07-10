@@ -93,7 +93,7 @@ public class QuizApplication {
 
             Question thirdQuestion = Question.builder()
                     .question("Choose the image that looks like **A**")
-                    .questionType(TEXT)
+                    .questionType(PHOTO)
                     .questionPic(null)
                     .answerSelectionType(SINGLE)
                     .answers(List.of(
