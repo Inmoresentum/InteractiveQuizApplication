@@ -28,7 +28,8 @@ public class QuizApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(AuthenticationService service, QuizRepository quizRepository) {
+    public CommandLineRunner commandLineRunner(AuthenticationService service,
+                                               QuizRepository quizRepository) {
         return args -> {
             var admin = RegisterRequest.builder()
                     .username("admin")
@@ -55,7 +56,8 @@ public class QuizApplication {
             service.register(user);
 
             Question firstQuestion = Question.builder()
-                    .question("How can you access the state of a component from inside of a member function?")
+                    .question("How can you access the state of a component" +
+                            " from inside of a member function?")
                     .questionType(TEXT)
                     .questionPic("https://dummyimage.com/600x400/000/fff&text=X")
                     .answerSelectionType(SINGLE)
