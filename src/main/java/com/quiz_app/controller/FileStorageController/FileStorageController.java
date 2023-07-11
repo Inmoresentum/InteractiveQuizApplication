@@ -3,6 +3,7 @@ package com.quiz_app.controller.FileStorageController;
 import com.quiz_app.service.minio.MinioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,7 +31,7 @@ public class FileStorageController {
     }
 
     @GetMapping("/download/{filename}")
-    public String downloadFile(@PathVariable String filename) {
+    public ResponseEntity<?> downloadFile(@PathVariable String filename) {
         return minioService.getObject(filename);
     }
 }

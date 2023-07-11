@@ -6,12 +6,15 @@ import io.minio.PutObjectArgs;
 import io.minio.errors.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
@@ -39,19 +42,22 @@ public class MinioService {
         }
     }
 
-    public String getObject(String objectName) {
+    public ResponseEntity<?> getObject(String objectName) {
         try (InputStream stream = minioClient
                 .getObject(GetObjectArgs.builder()
                         .bucket(bucketName)
                         .object(objectName)
                         .build());) {
-            return new String(stream.readAllBytes());
+//            return (stream.readAllBytes());
+            return ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_PNG)
+                    .body(stream.readAllBytes());
         } catch (ErrorResponseException | InsufficientDataException |
                  InternalException | InvalidKeyException | InvalidResponseException |
                  IOException | NoSuchAlgorithmException | ServerException |
                  XmlParserException | IllegalArgumentException e) {
             e.printStackTrace();
         }
-        return "You haven't uploaded anything yet.";
+        return ResponseEntity.status(404).body(Map.of("message", "file not found"));
     }
 }
