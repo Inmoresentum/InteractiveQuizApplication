@@ -14,12 +14,14 @@ public class MinioConfig {
     private String accessKey;
     @Value("${minio.secret-key}")
     private String secretKey;
+    @Value("${minio.endpoint-port}")
+    private Integer minioPort;
 
     @Bean
     public MinioClient minioClient() {
         try {
             return MinioClient.builder().credentials(accessKey, secretKey)
-                    .endpoint(minioUrl, 9000, false).build();
+                    .endpoint(minioUrl, minioPort, false).build();
         } catch (Exception e) {
             throw new RuntimeException("Failed to create connection \n" + e);
         }
