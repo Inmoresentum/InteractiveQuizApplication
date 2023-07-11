@@ -1,4 +1,4 @@
-package com.quiz_app.controller.filestoragecontroller;
+package com.quiz_app.controller.FileStorageController;
 
 import com.quiz_app.service.minio.MinioService;
 import lombok.RequiredArgsConstructor;

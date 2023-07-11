@@ -19,5 +19,10 @@
       "name": "minio.bucket-name",
       "type": "java.lang.String",
       "description": "This is where to define the minio bucket name."
+    },
+    {
+      "name": "minio.endpoint-port",
+      "type": "java.lang.Integer",
+      "description": "This is where to define the port through which the minio client should connect."
     }
   ] }
