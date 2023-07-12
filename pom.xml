@@ -9,8 +9,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.quiz-app</groupId>
-    <artifactId>CSE470</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>CSE470-Project-BackEnd</artifactId>
+    <version>0.2.0-SNAPSHOT</version>
     <name>CSE470</name>
     <description>Our interactive quiz application is a captivating platform that engages users with a wide range of
         quizzes,
