@@ -24,20 +24,21 @@ jobs:
       - name: Install dependencies
         run: cd FrontEnd/interactive-quiz-app && npm ci
       - name: Build Next.js project
-        run:  cd FrontEnd/interactive-quiz-app && npm run build
+        run: cd FrontEnd/interactive-quiz-app && npm run build
+      - name: Zip .next directory
+        run: cd FrontEnd/interactive-quiz-app && zip -r Front-End-Build.zip .next
       - name: Generate changelog
         id: changelog
         uses: TriPSs/conventional-changelog-action@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      # Added the necessary permissions
+#        Added the necessary permissions
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "target/*.jar,FrontEnd/interactive-quiz-app/.next/**/*"
+          artifacts: "target/*.jar,FrontEnd/interactive-quiz-app/Front-End-Build.zip"
           body: ${{ steps.changelog.outputs.changelog }}
-
-          #          bodyFile: "CHANGELOG.md"
+#          bodyFile: "CHANGELOG.md"
           token: ${{ secrets.GITHUB_TOKEN }}
           generateReleaseNotes: true
           allowUpdates: true
