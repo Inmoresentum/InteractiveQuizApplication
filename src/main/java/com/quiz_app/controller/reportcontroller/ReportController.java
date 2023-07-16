@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/reports")
@@ -37,20 +38,9 @@ public class ReportController {
 
     @GetMapping("/users/csv")
     public ResponseEntity<String> generateUserReportCSV() {
-        System.out.println("ggggggggggggggggggggggggggggg");
-//        List<User> users = reportService.getAllUsers();
-        User user = User.builder()
-                .id(1)
-                .username("user1")
-                .firstname("Abu")
-                .lastname("Darda")
-                .email("a@a.com")
-                .role(Role.USER)
-                .phoneNumber("1234567890")
-                .dateOfBirth(LocalDate.now())
-                .build();
+//        System.out.println("ggggggggggggggggggggggggggggg");
+        List<User> users = reportService.getAllUsers();
 
-        List<User> users = Collections.singletonList(user);
         // Generate CSV content using OpenCSV
         String csvContent = generateCSV(users);
         System.out.println("Number of users: " + users.size());
@@ -73,6 +63,9 @@ public class ReportController {
             csvWriter.writeNext(header);
 
             for (User user : users) {
+                String dateOfBirthString = Optional.ofNullable(user.getDateOfBirth())
+                        .map(LocalDate::toString)
+                        .orElse("");
                 String[] row = {
                         String.valueOf(user.getId()),
                         user.getUsername(),
@@ -81,7 +74,7 @@ public class ReportController {
                         user.getEmail(),
                         user.getRole().toString(),
                         user.getPhoneNumber(),
-                        user.getDateOfBirth().toString()
+                        dateOfBirthString
                 };
                 csvWriter.writeNext(row);
             }
