@@ -1,0 +1,51 @@
+# This will mainly be used to run a bunch of end to end and integration tests
+version: '3.1'
+services:
+  mariadb:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 'yes'
+      MARIADB_DATABASE: quiz_application_database
+    ports:
+      - "3306:3306"
+  maildev:
+    image: maildev/maildev
+    restart: always
+    ports:
+      - "1025:1025"
+      - "1080:1080"
+  minio:
+    image: minio/minio
+    restart: always
+    environment:
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+    command: server /data
+    ports:
+      - "9000:9000"
+      - "43111:43111"
+  mc:
+    image: minio/mc
+    restart: on-failure
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc alias set myminio http://minio:9000 minioadmin minioadmin;
+      /usr/bin/mc mb myminio/quiz-storage;
+      /usr/bin/mc policy set public myminio/quiz-storage;
+      exit 0;
+      "
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spring-boot-back-end-container
+    restart: always
+    depends_on:
+      - mariadb
+      - maildev
+      - minio
+    ports:
+      - "8080:8080"
