@@ -1,6 +1,6 @@
 {
   "name": "interactive-quiz-app",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -14,7 +14,7 @@
     "dompurify": "^3.0.4",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.6",
-    "framer-motion": "^10.12.18",
+    "framer-motion": "^10.12.21",
     "gsap": "^3.12.2",
     "next": "13.4.6",
     "next-auth": "^4.22.1",
