@@ -40,18 +40,7 @@ public class ReportController {
     public ResponseEntity<String> generateUserReportCSV() {
 //        System.out.println("ggggggggggggggggggggggggggggg");
         List<User> users = reportService.getAllUsers();
-//        User user = User.builder()
-//                .id(1)
-//                .username("user1")
-//                .firstname("Abu")
-//                .lastname("Darda")
-//                .email("a@a.com")
-//                .role(Role.USER)
-//                .phoneNumber("1234567890")
-//                .dateOfBirth(LocalDate.now())
-//                .build();
-//
-//        List<User> users = Collections.singletonList(user);
+
         // Generate CSV content using OpenCSV
         String csvContent = generateCSV(users);
         System.out.println("Number of users: " + users.size());
