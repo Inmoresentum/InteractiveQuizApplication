@@ -17,6 +17,12 @@ jobs:
           java-version: '17'
       - name: Build with Maven
         run: mvn -B clean package -DskipTests --file pom.xml
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Start backend with Docker Compose
+        run: docker-compose up -d
+      - name: Wait for backend to start
+        run: sleep 45 # adjust this value as needed
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -24,23 +30,24 @@ jobs:
       - name: Install dependencies
         run: cd FrontEnd/interactive-quiz-app && npm ci
       - name: Build Next.js project
-        run:  cd FrontEnd/interactive-quiz-app && npm run build
+        run: cd FrontEnd/interactive-quiz-app && npm run build
+      - name: Zip .next directory
+        run: cd FrontEnd/interactive-quiz-app && zip -r Front-End-Build.zip .next
       - name: Generate changelog
         id: changelog
         uses: TriPSs/conventional-changelog-action@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      # Added the necessary permissions
+#        Added the necessary permissions
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "target/*.jar,FrontEnd/interactive-quiz-app/.next/**/*"
+          artifacts: "target/*.jar,FrontEnd/interactive-quiz-app/Front-End-Build.zip"
           body: ${{ steps.changelog.outputs.changelog }}
-
-          #          bodyFile: "CHANGELOG.md"
+#          bodyFile: "CHANGELOG.md"
           token: ${{ secrets.GITHUB_TOKEN }}
           generateReleaseNotes: true
           allowUpdates: true
-          tag: v0.2.0
+          tag: v0.3.0
           draft: false
           prerelease: false

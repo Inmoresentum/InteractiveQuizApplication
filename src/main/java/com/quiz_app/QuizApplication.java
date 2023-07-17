@@ -4,7 +4,7 @@ import com.quiz_app.entity.quiz.Question;
 import com.quiz_app.entity.quiz.Quiz;
 import com.quiz_app.repository.QuizRepository;
 import com.quiz_app.service.auth.AuthenticationService;
-import com.quiz_app.controller.authcontroller.RegisterRequest;
+import com.quiz_app.controller.authcontroller.request.RegisterRequest;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,9 +12,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Async;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
+import static com.quiz_app.entity.quiz.AnswerSelectionType.*;
+import static com.quiz_app.entity.quiz.QuestionType.*;
 import static com.quiz_app.entity.user.Role.ADMIN;
 import static com.quiz_app.entity.user.Role.USER;
 
@@ -27,7 +28,8 @@ public class QuizApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(AuthenticationService service, QuizRepository quizRepository) {
+    public CommandLineRunner commandLineRunner(AuthenticationService service,
+                                               QuizRepository quizRepository) {
         return args -> {
             var admin = RegisterRequest.builder()
                     .username("admin")
@@ -53,22 +55,68 @@ public class QuizApplication {
                     .build();
             service.register(user);
 
-            List<Question> questionList = new ArrayList<>();
             Question firstQuestion = Question.builder()
-                    .question("What is the capital of France?")
-                    .optionsToChooseForm(List.of("Madrid", "Paris", "Rome", "Berlin"))
-                    .correctAnswer("Paris")
+                    .question("How can you access the state of a component" +
+                            " from inside of a member function?")
+                    .questionType(TEXT)
+                    .questionPic("https://dummyimage.com/600x400/000/fff&text=X")
+                    .answerSelectionType(SINGLE)
+                    .answers(List.of("this.getState()",
+                            "this.prototype.stateValue",
+                            "this.state",
+                            "this.values"))
+                    .correctAnswer(List.of(3))
+                    .messageForIncorrectAnswer("Incorrect Answer. Please try again")
+                    .messageForCorrectAnswer("GG")
+                    .explanation("Well, you know xD")
+                    .point((double) 20)
                     .build();
 
             Question secondQuestion = Question.builder()
-                    .question("What is the largest planet in our solar system?")
-                    .optionsToChooseForm(List.of("Mars", "Jupiter", "Venus", "Saturn"))
-                    .correctAnswer("Jupiter")
+                    .question("What are the advantages of React JS?")
+                    .questionType(TEXT)
+                    .questionPic(null)
+                    .answerSelectionType(MULTIPLE)
+                    .answers(List.of(
+                            "React can be used on client and as well as server side too",
+                            "Using React increases readability and makes maintainability easier. Component," +
+                                    " Data patterns improves readability and thus makes it easier for manitaining larger apps",
+                            "React components have lifecycle events that fall into State/Property Updates",
+                            "React can be used with any other framework (Backbone.js, Angular.js) as it is only a view layer"
+                    ))
+                    .correctAnswer(List.of(1, 2, 4))
+                    .messageForIncorrectAnswer("Incorrect Answer. Please try again")
+                    .messageForCorrectAnswer("GG")
+                    .explanation("Well, you know xD")
+                    .point((double) 20)
                     .build();
-            questionList.add(firstQuestion);
-            questionList.add(secondQuestion);
+
+            Question thirdQuestion = Question.builder()
+                    .question("Choose the image that looks like **A**")
+                    .questionType(PHOTO)
+                    .questionPic(null)
+                    .answerSelectionType(SINGLE)
+                    .answers(List.of(
+                            "https://dummyimage.com/600x400/000/fff&text=A",
+                            "https://dummyimage.com/600x400/000/fff&text=B",
+                            "https://dummyimage.com/600x400/000/fff&text=C",
+                            "https://dummyimage.com/600x400/000/fff&text=D"
+                    ))
+                    .correctAnswer(List.of(1))
+                    .messageForIncorrectAnswer("Incorrect Answer. Please try again")
+                    .messageForCorrectAnswer("GG")
+                    .explanation("Well, you know xD")
+                    .point((double) 5)
+                    .build();
+
+            List<Question> questionList = List.of(firstQuestion,
+                    secondQuestion,
+                    thirdQuestion);
+
             var quiz = Quiz.builder()
-                    .questionList(questionList)
+                    .quizTitle("Checking Test Quiz")
+                    .quizSynopsis("Well, I do not want to type anything")
+                    .questions(questionList)
                     .build();
 
             quizRepository.save(quiz);

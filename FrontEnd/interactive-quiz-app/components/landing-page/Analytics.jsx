@@ -1,4 +1,4 @@
-import Laptop from "../../public/laptop.jpg"
+import Laptop from "../../public/landingpage/laptop.jpg"
 import Image from "next/image";
 
 const Analytics = () => {
