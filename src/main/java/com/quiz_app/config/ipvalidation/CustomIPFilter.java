@@ -18,8 +18,10 @@ public class CustomIPFilter extends OncePerRequestFilter {
                                     @NotNull HttpServletResponse response,
                                     @NotNull FilterChain filterChain)
             throws ServletException, IOException {
+//        System.out.println("custom docker ip :" + request.getRemoteAddr());
         if (matches(request, "127.0.0.1")
                 || matches(request, "0:0:0:0:0:0:0:1")
+                || matches(request, "172.20.0.1/8")
         ) {
             filterChain.doFilter(request, response);
         }
