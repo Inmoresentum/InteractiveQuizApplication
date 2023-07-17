@@ -1,3 +1,43 @@
+# [0.3.0](https://github.com/Inmoresentum/InteractiveQuizApplication/compare/v0.2.0...v0.3.0) (2023-07-17)
+
+
+### Bug Fixes
+
+* added necessary dependencies ([5913056](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/591305626ee8b652f3d6e8b8bf2cc1b06cdaede2))
+* added servlet configuration to upload and download files that are higher than default 512kb ([2a63c7b](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/2a63c7bd41b6ff930606808b35cfcf9f31f9ee03))
+* Configured Spring Security to allow FileStorageController to be accessible via outside ([b64a051](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/b64a051109a7c35a45de0df2b30182c20b759d4e))
+* **eslint:** fixed the issue with the eslint max line count ([effb3f1](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/effb3f115c792e44ad24db02f6dfb6d9e1ae3ff2))
+* fixed import alias ([5d62088](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/5d620880f537e219880f4006809613d5715b4235))
+* fixed serialization bug on CorrectAnswerSerializer.java ([00d7edc](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/00d7edceccd74c998ff55990207ff4c8fe5a5ddd))
+* fixed the data entry issue ([3f73f7f](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/3f73f7f4dfd4327ccd190a418678b5f47613d0ff))
+* fixed the default alternative env value ([0b17176](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/0b171768f0459d84262ec3cccee2de2f3fa11733))
+* fixed the environment variable naming issue on the linux file system ([9d6f643](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/9d6f64366e6770f65273b755269d1de7cbc5c36f))
+* fixed the front-end build workflow to be more concise ([524ab57](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/524ab57e985f3ff154842cc3da60519bc8ece1df))
+* fixed the issue minio client was not connecting to minio server due to wrong url address ([4ece749](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/4ece7494433392bd27cee2a3e42a10b184ecd816))
+* fixed the issue proper props were not being passed ([d0edfdc](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/d0edfdc16b6c2fb827a780e1c69693b3fba91d1a))
+* fixed the issue with globals.css which occurred due to refactor ([6a8d317](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/6a8d317ca7fdcd21e6be57db4e1684bc30b14021))
+* fixed the issue with nextConfig image origins ([6dbb152](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/6dbb152bf776dd8922d504984391369b49b89007))
+* fixed the json serialization issue ([36a3f10](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/36a3f10f4a2f8350713c6b7f94377626d586097c))
+* got rid of duplicated styles ([9a23834](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/9a238344a582be025a14bf73bf0bafecf7d2c432))
+* temporarily fixed dynamic metadata generation ([b1753a5](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/b1753a5a3715969668b717031dff05f233932616))
+* used de-structuring to get the desired quiz object ([4057b23](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/4057b2315c3461141b0ba32bd2ee8368e094cba9))
+
+
+### Features
+
+* added data validation for quiz entity ([9ce69c4](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/9ce69c4097057ec77328696fad9bcdc1e0a1b702))
+* added default css for quiz components ([ee1de7f](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/ee1de7fb9d1b84d6b2dedb1b92b3bbc558aaa8c5))
+* added DTOs to effectively transfer data for quizzes ([3ba024e](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/3ba024e2469d813c359355ac5122d90c62c38703))
+* added feature for downloading user report csv file ([955b8c8](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/955b8c8a8ecce05d65cd23e7b0f791fe9c180bf7))
+* added fetch request to fetch quiz data ([b83db8a](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/b83db8a327e0ae9013b9d792d520575269e05281))
+* added publicly accessibly quiz api ([d40b4c8](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/d40b4c8828b9622f360da507b4ac7e692b2c7c78))
+* added the ability to store any kind of files ([dbec2ad](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/dbec2adc2daaff454cafbb4771b3444d36cec534))
+* did the basic data modeling for Quiz Entity ([1254318](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/12543189e5de84460ed7f42f21322c0166565d17))
+* successfully integrated react-quiz-component with the existing project ([f5ed638](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/f5ed6380077b32546ae20ff6d2fcbf6ae626b829))
+* very basic styles to QuizProvider component ([c026df7](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/c026df7c013623e64d33fa9a277b4c98cb61809b))
+
+
+
 # [0.2.0](https://github.com/Inmoresentum/InteractiveQuizApplication/compare/v0.1.0...v0.2.0) (2023-07-08)
 
 
