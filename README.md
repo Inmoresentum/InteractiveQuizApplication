@@ -232,18 +232,18 @@ please try to create bug reports that are:
 - _unique._ do not duplicate existing opened issues.
 - _scoped to a **single bug**._ one bug per report.
 
-[//]: # (## Contributor)
+## Contributor
 
-[//]: # ()
-[//]: # (<p align="center">)
 
-[//]: # (<a href="https://github.com/Inmoresentum/Lawyer-Consultation-System/graphs/contributors">)
+<p align="center">
 
-[//]: # (  <img src="https://contrib.rocks/image?repo=Inmoresentum/InteractiveQuizApplication" />)
+<a href="https://github.com/Inmoresentum/Lawyer-Consultation-System/graphs/contributors">
 
-[//]: # (</a>)
+  <img src="https://contrib.rocks/image?repo=Inmoresentum/InteractiveQuizApplication" />
 
-[//]: # (</p>)
+</a>
+
+</p>
 &nbsp;
 
 <p align="center">Copyright &copy; 2023-present 
