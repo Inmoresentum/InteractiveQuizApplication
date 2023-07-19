@@ -155,6 +155,7 @@ to set up, please follow these steps:
    `editors` or `IDES` will also do the job.
 
 3. Wait for Maven to download all the dependencies.
+
 4. Now You have to Set up MariaDB and to do that you can either [download MariaDB](https://mariadb.org/) for your
    operating system or use [docker to spin up a MariaDB container](https://hub.docker.com/_/mariadb).
    By default, the backend server is expecting MariaDB to run on `port: 3306`, so you will have
@@ -166,20 +167,31 @@ to set up, please follow these steps:
 
    Furthermore, you have to create a database called `quiz_application_database` else you can
    override the configuration mentioned in the previous steps.
+
 5. For email sending and testing purpose while developing the application, we used
    [MailDev](https://maildev.github.io/maildev/) which you can easily set up through docker
    using their [latest image](https://hub.docker.com/r/maildev/maildev).
    If you are planning on overriding or changing the default configuration
    and then please consult with
    [application.properties](src/main/resources/application.properties) file.
-6. And then finally Click the `play` icon which will start the spring boot application
+
+6. For storing images, videos and other objects, you will need to have [minio](https://min.io/)
+   which is a S3 compatible object storage solution.
+   You can easily spin up container [minio container](https://min.io/docs/minio/container/index.html) using docker, 
+   or you can manually download docker for your respective platform from this [here](https://min.io/download#/linux).
+   Furthermore, you have to make sure that you create the necessary user account(s) with permissions.
+   Important thing to note that spring boot is expecting a bucket called **quiz_storage** already be there
+   when the server starts.
+   So make sure to create it if it does not already exist
+7. And then finally Click the `play` icon which will start the spring boot application
    Alternatively, from the terminal use the included `maven` wrapper to build and
    run using
     ```shell
     ./mvnw clean install
     ``` 
-7. By default, the backed server should start at **http://localhost:8080**
-8. To check the OpenAPI documentation for created APIs,
+8. By default, the backed server should start at **http://localhost:8080**
+
+9. To check the OpenAPI documentation for created APIs,
    please visit **https://localhost:8080/swagger-ui.html**
 
 </details>
@@ -232,6 +244,10 @@ please try to create bug reports that are:
 - _unique._ do not duplicate existing opened issues.
 - _scoped to a **single bug**._ one bug per report.
 
+## Acknowledgement
+
+Todo: I will be adding stuff here later
+
 ## Contributor
 
 
@@ -244,7 +260,7 @@ please try to create bug reports that are:
 </a>
 
 </p>
-&nbsp;
+&#160;
 
 <p align="center">Copyright &copy; 2023-present 
    <a href="https://github.com/Inmoresentum" target="_blank">Inmoresentum</a>
