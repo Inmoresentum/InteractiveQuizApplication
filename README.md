@@ -182,7 +182,9 @@ to set up, please follow these steps:
    Furthermore, you have to make sure that you create the necessary user account(s) with permissions.
    Important thing to note that spring boot is expecting a bucket called **quiz_storage** already be there
    when the server starts.
-   So make sure to create it if it does not already exist
+   So make sure to create it if it does not already exist.
+   * Note: It's also possible to use [AWS S3](https://aws.amazon.com/s3/) as well with `minioClinet` but for that 
+      you will have to do some extra configuration by yourself
 7. And then finally Click the `play` icon which will start the spring boot application
    Alternatively, from the terminal use the included `maven` wrapper to build and
    run using
@@ -192,7 +194,7 @@ to set up, please follow these steps:
 8. By default, the backed server should start at **http://localhost:8080**
 
 9. To check the OpenAPI documentation for created APIs,
-   please visit **https://localhost:8080/swagger-ui.html**
+   please visit **https://localhost:8080/swagger-ui.html** 😀
 
 </details>
 
