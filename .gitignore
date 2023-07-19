@@ -18,7 +18,8 @@ target/
 *.iws
 *.iml
 *.ipr
-
+### JPA Buddy ###
+.jpb
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
