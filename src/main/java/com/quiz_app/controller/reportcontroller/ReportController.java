@@ -48,6 +48,7 @@ public class ReportController {
 
     @GetMapping("/users/pdf")
     public ResponseEntity<byte[]> generateUserReportPDF() {
+//        String imageUrl = "http://localhost:3000/FrontEnd/interactive-quiz-app/public/quiz-app-logo.png"; // Update this URL with the correct path to your image
         byte[] pdfContent = reportService.generateUserReportPDF();
 
         HttpHeaders headers = new HttpHeaders();
