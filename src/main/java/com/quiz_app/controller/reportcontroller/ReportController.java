@@ -46,60 +46,14 @@ public class ReportController {
         return new ResponseEntity<>(csvContent, headers, HttpStatus.OK);
     }
 
-//    private final ReportService reportService;
-//
-//    @Autowired
-//    public ReportController(ReportService reportService) {
-//        this.reportService = reportService;
-//    }
-//
-//    @GetMapping("/users/csv")
-//    public ResponseEntity<String> generateUserReportCSV() {
-////        System.out.println("ggggggggggggggggggggggggggggg");
-//        List<User> users = reportService.getAllUsers();
-//
-//        // Generate CSV content using OpenCSV
-//        String csvContent = generateCSV(users);
-//        System.out.println("Number of users: " + users.size());
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.parseMediaType("text/csv"));
-//        headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=users_report.csv");
-//
-//        return new ResponseEntity<>(csvContent, headers, HttpStatus.OK);
-//    }
-//
-//    // go for pdf
-//
-//    private String generateCSV(List<User> users) {
-//        // Implement the logic to convert the user data into CSV format using OpenCSV
-//
-//        StringWriter writer = new StringWriter();
-//        try (CSVWriter csvWriter = new CSVWriter(writer)) {
-//            String[] header = {"ID", "Username", "Firstname", "Lastname", "Email", "Role", "Phone Number", "Date of Birth"};
-//            csvWriter.writeNext(header);
-//
-//            for (User user : users) {
-//                String dateOfBirthString = Optional.ofNullable(user.getDateOfBirth())
-//                        .map(LocalDate::toString)
-//                        .orElse("");
-//                String[] row = {
-//                        String.valueOf(user.getId()),
-//                        user.getUsername(),
-//                        user.getFirstname(),
-//                        user.getLastname(),
-//                        user.getEmail(),
-//                        user.getRole().toString(),
-//                        user.getPhoneNumber(),
-//                        dateOfBirthString
-//                };
-//                csvWriter.writeNext(row);
-//            }
-//        } catch (IOException e) {
-//            // Handle CSV generation error
-//            e.printStackTrace();
-//        }
-//
-//        return writer.toString();
-//    }
+    @GetMapping("/users/pdf")
+    public ResponseEntity<byte[]> generateUserReportPDF() {
+        byte[] pdfContent = reportService.generateUserReportPDF();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=users_report.pdf");
+
+        return new ResponseEntity<>(pdfContent, headers, HttpStatus.OK);
+    }
 }
