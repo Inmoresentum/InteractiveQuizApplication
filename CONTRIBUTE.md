@@ -67,7 +67,8 @@ We care deeply about the quality of our code. All new features and bug fixes sho
 
 ## Reporting Security Issues
 
-Security is of utmost importance to us. If you discover a security vulnerability, please disclose it responsibly. Contact us directly or send an email to [rafee69029@gmail.com](rafee69029@gmail.com). Please do not open a public GitHub issue for security-related concerns.
+Security is of utmost importance to us. If you discover a security vulnerability, please disclose it responsibly. Contact us directly or send an email to [noor.mohammad.rafee@g.bracu.ac.bd](noor.mohammad.rafee@g.bracu.ac.bd).
+Please do not open a public GitHub issue for security-related concerns.
 
 ## Attribution
 
