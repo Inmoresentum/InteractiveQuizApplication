@@ -12,13 +12,12 @@ import org.springframework.stereotype.Service;
 
 @AllArgsConstructor
 @Service
-public class EmailService implements EmailSender {
+public class EmailService {
     private final static Logger LOGGER = LoggerFactory
             .getLogger(EmailService.class);
 
     private final JavaMailSender mailSender;
 
-    @Override
     @Async
     //Todo: Later implement rabbitmq just like a large scale
     // production application.
