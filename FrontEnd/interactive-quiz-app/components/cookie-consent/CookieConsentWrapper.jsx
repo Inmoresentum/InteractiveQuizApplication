@@ -1,7 +1,5 @@
 "use client"
 import {CookieConsent} from "react-cookie-consent";
-import {BiSolidCookie} from "react-icons/bi";
-import {MdClose} from "react-icons/md";
 import {FaCookieBite} from "react-icons/fa";
 import Link from "next/link";
 
