@@ -17,12 +17,14 @@ import io.swagger.v3.oas.annotations.servers.Server;
                         email = "rafee69029@gmail.com",
                         url = "https://github.com/Inmoresentum"
                 ),
-                description = "OpenApi documentation for Inter-Active Quiz Application",
-                title = "OpenApi specification - Inmoresentum",
-                version = "0.5.1",
+                title = "An Interactive Web-Based Quiz Application - CSE470 PROJECT",
+                description = "OpenApi documentation for \"An Interactive Web-Based Quiz Application\"" +
+                        " which is my CSE470 Project. This documentation contains importation regarding various" +
+                        " endpoints that me and my team-mates have developed over a span of Month.",
+                version = "0.5.5",
                 license = @License(
                         name = "MIT",
-                        url = "https://some-url.com"
+                        url = "https://github.com/Inmoresentum/InteractiveQuizApplication/blob/main/LICENSE.md"
                 ),
                 termsOfService = "Terms of service"
         ),
