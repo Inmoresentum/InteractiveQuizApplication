@@ -9,7 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,7 +20,7 @@ import static com.quiz_app.entity.user.Role.ADMIN;
 import static com.quiz_app.entity.user.Role.USER;
 
 @SpringBootApplication
-@Async
+@EnableAsync
 public class QuizApplication {
 
     public static void main(String[] args) {
@@ -28,7 +28,7 @@ public class QuizApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(AuthenticationService service,
+    CommandLineRunner commandLineRunner(AuthenticationService service,
                                                QuizRepository quizRepository) {
         return args -> {
             var admin = RegisterRequest.builder()
