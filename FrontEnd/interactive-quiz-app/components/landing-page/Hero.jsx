@@ -4,7 +4,7 @@ import {TypeAnimation} from "react-type-animation";
 const Hero = () => {
     return (
         <div className='text-white p-20'>
-            <div className='max-w-[800px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center'>
+            <div className='max-w-[860px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center'>
                 <p className='text-[#00df9a] font-bold p-2'>
                     GROW YOUR KNOWLEDGE WITH US
                 </p>
@@ -24,26 +24,25 @@ const Hero = () => {
                             sequence={[
                                 // The Same String at the start will only be typed once, initially
                                 "",
-                                500,
+                                1000,
                                 "SCIENCE",
-                                500,
+                                1000,
                                 "HISTORY",
-                                500,
+                                1000,
                                 "BIOLOGY",
-                                500,
+                                1000,
                                 "ARTS",
-                                500,
+                                1000,
                                 "CODING",
-                                500,
+                                1000,
                                 "DRAWING",
-                                500,
+                                1000,
                                 "And much MORE!",
                                 1000,
                             ]}
                             repeat={Infinity}
                         />
                     </p>
-
 
                 </div>
                 <p className='md:text-2xl text-xl font-bold text-gray-500'>
