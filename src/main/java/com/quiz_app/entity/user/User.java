@@ -20,16 +20,14 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 @Builder
-//@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "app_user")
 @DynamicUpdate
 @DynamicInsert
+@AllArgsConstructor
 public class User implements UserDetails {
-
     @Id
     @GeneratedValue
     private Integer id;
