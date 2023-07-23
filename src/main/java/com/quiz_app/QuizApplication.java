@@ -40,17 +40,14 @@ public class QuizApplication {
                                         UserRepository userRepository) {
         return args -> {
             if (userRepository.count() == 0) {
-                Faker faker = new Faker();
                 Set<String> usedUsernames = ConcurrentHashMap.newKeySet();
                 Set<String> usedEmails = ConcurrentHashMap.newKeySet();
-                ExecutorService executor = Executors
-                        .newFixedThreadPool(Runtime.getRuntime()
-                                .availableProcessors());
+                ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
                 List<CompletableFuture<Void>> futures = new ArrayList<>();
-                // Trying to load 20k users
                 for (int i = 0; i < 20; i++) {
                     CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
+                        Faker faker = new Faker();
                         List<RegisterRequest> users = new ArrayList<>();
                         for (int j = 0; j < 1000; j++) {
                             String username = faker.name().username();
