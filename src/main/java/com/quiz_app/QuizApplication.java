@@ -15,13 +15,15 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static com.quiz_app.entity.quiz.AnswerSelectionType.*;
 import static com.quiz_app.entity.quiz.QuestionType.*;
-import static com.quiz_app.entity.user.Role.ADMIN;
 import static com.quiz_app.entity.user.Role.USER;
 
 @SpringBootApplication
@@ -39,39 +41,45 @@ public class QuizApplication {
         return args -> {
             if (userRepository.count() == 0) {
                 Faker faker = new Faker();
-                Set<String> usedUsernames = new HashSet<>();
-                Set<String> usedEmails = new HashSet<>();
+                Set<String> usedUsernames = ConcurrentHashMap.newKeySet();
+                Set<String> usedEmails = ConcurrentHashMap.newKeySet();
+                ExecutorService executor = Executors
+                        .newFixedThreadPool(Runtime.getRuntime()
+                                .availableProcessors());
 
+                List<CompletableFuture<Void>> futures = new ArrayList<>();
                 for (int i = 0; i < 10; i++) {
-                    List<RegisterRequest> users = new ArrayList<>();
-                    for (int j = 0; j < 1000; j++) {
-                        String username = faker.name().username();
-                        while (usedUsernames.contains(username)) {
-                            username = faker.name().username();
-                        }
-                        usedUsernames.add(username);
+                    CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
+                        List<RegisterRequest> users = new ArrayList<>();
+                        for (int j = 0; j < 1000; j++) {
+                            String username = faker.name().username();
+                            while (!usedUsernames.add(username)) {
+                                username = faker.name().username();
+                            }
 
-                        String email = faker.internet().emailAddress();
-                        while (usedEmails.contains(email)) {
-                            email = faker.internet().emailAddress();
-                        }
-                        usedEmails.add(email);
+                            String email = faker.internet().emailAddress();
+                            while (!usedEmails.add(email)) {
+                                email = faker.internet().emailAddress();
+                            }
 
-                        RegisterRequest user = RegisterRequest.builder()
-                                .username(username)
-                                .firstname(faker.name().firstName())
-                                .lastname(faker.name().lastName())
-                                .email(email)
-                                .password(faker.internet().password())
-                                .accountCreatedAt(LocalDateTime.now())
-                                .agreesWithTermsAndConditions(true)
-                                .role(USER)
-                                .build();
-                        users.add(user);
-                    }
-                    service.registerAll(users);
+                            RegisterRequest user = RegisterRequest.builder()
+                                    .username(username)
+                                    .firstname(faker.name().firstName())
+                                    .lastname(faker.name().lastName())
+                                    .email(email)
+                                    .password(faker.internet().password())
+                                    .accountCreatedAt(LocalDateTime.now())
+                                    .agreesWithTermsAndConditions(true)
+                                    .role(USER)
+                                    .build();
+                            users.add(user);
+                        }
+                        service.registerAll(users);
+                    }, executor);
+                    futures.add(future);
                 }
-            }
+                CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+                executor.shutdown();            }
 
 
             Question firstQuestion = Question.builder()
