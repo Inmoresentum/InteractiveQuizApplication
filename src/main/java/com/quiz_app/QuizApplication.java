@@ -43,7 +43,10 @@ public class QuizApplication {
                 Set<String> usedUsernames = ConcurrentHashMap.newKeySet();
                 Set<String> usedEmails = ConcurrentHashMap.newKeySet();
 
-                ExecutorService executor = Executors.newFixedThreadPool(22);
+                // Fixed issue for the lower end systems meaning
+                // CPU with lower number of threads.
+                ExecutorService executor = Executors
+                        .newFixedThreadPool(Math.min(22, Runtime.getRuntime().availableProcessors()));
 
                 List<CompletableFuture<Void>> futures = new ArrayList<>();
                 for (int i = 0; i < 40; i++) {
@@ -147,7 +150,6 @@ public class QuizApplication {
                     .build();
 
             quizRepository.save(quiz);
-            System.out.println(Runtime.getRuntime().availableProcessors());
         };
     }
 }
