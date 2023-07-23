@@ -6,6 +6,7 @@ import Testimonial from "@/components/landing-page/Testimonial";
 import Navbar from "@/components/landing-page/Navbar";
 import Footer from "@/components/landing-page/Footer";
 import CustomCursor from "@/components/custom-cursor/CustomCursor";
+import QuizCarousel from "@/components/landing-page/QuizCarousel";
 
 export default function Home() {
     return (
@@ -13,6 +14,7 @@ export default function Home() {
             <CustomCursor/>
             <Navbar/>
             <Hero/>
+            <QuizCarousel/>
             <Analytics/>
             <Newsletter/>
             <Cards/>
