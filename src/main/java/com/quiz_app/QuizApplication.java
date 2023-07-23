@@ -3,8 +3,10 @@ package com.quiz_app;
 import com.quiz_app.entity.quiz.Question;
 import com.quiz_app.entity.quiz.Quiz;
 import com.quiz_app.repository.QuizRepository;
+import com.quiz_app.repository.UserRepository;
 import com.quiz_app.service.auth.AuthenticationService;
 import com.quiz_app.controller.authcontroller.request.RegisterRequest;
+import net.datafaker.Faker;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +14,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static com.quiz_app.entity.quiz.AnswerSelectionType.*;
 import static com.quiz_app.entity.quiz.QuestionType.*;
@@ -29,31 +34,45 @@ public class QuizApplication {
 
     @Bean
     CommandLineRunner commandLineRunner(AuthenticationService service,
-                                               QuizRepository quizRepository) {
+                                        QuizRepository quizRepository,
+                                        UserRepository userRepository) {
         return args -> {
-            var admin = RegisterRequest.builder()
-                    .username("admin")
-                    .firstname("Admin")
-                    .lastname("Admin")
-                    .email("admin@mail.com")
-                    .password("password")
-                    .role(ADMIN)
-                    .accountCreatedAt(LocalDateTime.now())
-                    .agreesWithTermsAndConditions(true)
-                    .build();
-            service.register(admin);
+            if (userRepository.count() == 0) {
+                Faker faker = new Faker();
+                Set<String> usedUsernames = new HashSet<>();
+                Set<String> usedEmails = new HashSet<>();
 
-            var user = RegisterRequest.builder()
-                    .username("some-user")
-                    .firstname("User")
-                    .lastname("User")
-                    .email("user@mail.com")
-                    .password("password")
-                    .accountCreatedAt(LocalDateTime.now())
-                    .agreesWithTermsAndConditions(true)
-                    .role(USER)
-                    .build();
-            service.register(user);
+                for (int i = 0; i < 10; i++) {
+                    List<RegisterRequest> users = new ArrayList<>();
+                    for (int j = 0; j < 1000; j++) {
+                        String username = faker.name().username();
+                        while (usedUsernames.contains(username)) {
+                            username = faker.name().username();
+                        }
+                        usedUsernames.add(username);
+
+                        String email = faker.internet().emailAddress();
+                        while (usedEmails.contains(email)) {
+                            email = faker.internet().emailAddress();
+                        }
+                        usedEmails.add(email);
+
+                        RegisterRequest user = RegisterRequest.builder()
+                                .username(username)
+                                .firstname(faker.name().firstName())
+                                .lastname(faker.name().lastName())
+                                .email(email)
+                                .password(faker.internet().password())
+                                .accountCreatedAt(LocalDateTime.now())
+                                .agreesWithTermsAndConditions(true)
+                                .role(USER)
+                                .build();
+                        users.add(user);
+                    }
+                    service.registerAll(users);
+                }
+            }
+
 
             Question firstQuestion = Question.builder()
                     .question("How can you access the state of a component" +

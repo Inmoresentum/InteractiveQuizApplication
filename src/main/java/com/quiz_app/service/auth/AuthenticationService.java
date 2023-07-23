@@ -36,6 +36,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -96,6 +97,45 @@ public class AuthenticationService {
                 .message("please check your email for further instructions")
                 .build();
         return ResponseEntity.ok(response);
+    }
+
+    @SuppressWarnings("DuplicatedCode")
+    @Transactional
+    public void registerAll(List<RegisterRequest> requests) {
+        for (var request : requests) {
+            if (userRepository.existsByEmail(request.getEmail())) {
+                throw new IllegalStateException("User with same email already exits\n" + requests);
+            }
+
+            if (userRepository.existsByUsername(request.getUsername())) {
+                throw new IllegalStateException("User with same username already exits\n" + requests);
+            }
+
+            var user = User.builder()
+                    .username(request.getUsername())
+                    .firstname(request.getFirstname())
+                    .lastname(request.getLastname())
+                    .email(request.getEmail())
+                    .password(passwordEncoder.encode(request.getPassword()))
+                    .accountCreated(LocalDateTime.now())
+                    .agreesWithTermsOfServicesAndPrivacyAndPolicy(request.isAgreesWithTermsAndConditions())
+                    .role(request.getRole())
+                    .build();
+
+            userRepository.save(user);
+
+
+            final String ACTIVATION_TOKEN = UUID.randomUUID().toString();
+            final String EMAIL_VERIFICATION_URL = FRONT_END_SERVER_BASE_URL + "/auth/verify/account/activate?token=";
+            final String ACTIVATION_LINK = EMAIL_VERIFICATION_URL.concat(ACTIVATION_TOKEN);
+            // Also, have to save this activation token in the token repository.
+            UserVerificationToken userVerificationToken = new UserVerificationToken(ACTIVATION_TOKEN,
+                    LocalDateTime.now(), LocalDateTime.now().plusHours(3), user);
+            // Saving the token
+            userVerificationTokenRepository.save(userVerificationToken);
+            emailService.send(user.getEmail(), "Account Activation", emailUtils
+                    .buildAccountConfirmationEmail(user.getFirstname(), ACTIVATION_LINK));
+        }
     }
 
     public ResponseEntity<AuthenticationResponse> authenticate(AuthenticationRequest request) {
