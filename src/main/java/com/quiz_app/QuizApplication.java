@@ -48,7 +48,8 @@ public class QuizApplication {
                                 .availableProcessors());
 
                 List<CompletableFuture<Void>> futures = new ArrayList<>();
-                for (int i = 0; i < 10; i++) {
+                // Trying to load 20k users
+                for (int i = 0; i < 20; i++) {
                     CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
                         List<RegisterRequest> users = new ArrayList<>();
                         for (int j = 0; j < 1000; j++) {
@@ -79,7 +80,8 @@ public class QuizApplication {
                     futures.add(future);
                 }
                 CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
-                executor.shutdown();            }
+                executor.shutdown();
+            }
 
 
             Question firstQuestion = Question.builder()
