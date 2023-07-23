@@ -24,5 +24,10 @@
       "name": "minio.endpoint-port",
       "type": "java.lang.Integer",
       "description": "This is where to define the port through which the minio client should connect."
+    },
+    {
+      "name": "front.server.address",
+      "type": "java.lang.String",
+      "description": "This where you will put the frontend server address."
     }
   ] }

@@ -23,6 +23,7 @@ import com.quiz_app.service.email.EmailUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +50,8 @@ public class AuthenticationService {
     private final EmailService emailService;
     private final EmailUtils emailUtils;
     private final ForgotPasswordVerificationRepository forgotPasswordVerificationRepository;
+    @Value("${front.server.address}")
+    private String FRONT_END_SERVER_BASE_URL;
 
     @Transactional
     public ResponseEntity<AccountRegistrationResponse> register(RegisterRequest request) {
@@ -77,16 +80,17 @@ public class AuthenticationService {
 
         userRepository.save(user);
 
-        final String activationToken = UUID.randomUUID().toString();
-        final String EMAIL_VERIFICATION_URL = "http://localhost:3000/activate?token=";
-        final String activationLink = EMAIL_VERIFICATION_URL.concat(activationToken);
+
+        final String ACTIVATION_TOKEN = UUID.randomUUID().toString();
+        final String EMAIL_VERIFICATION_URL = FRONT_END_SERVER_BASE_URL + "/auth/verify/account/activate?token=";
+        final String ACTIVATION_LINK = EMAIL_VERIFICATION_URL.concat(ACTIVATION_TOKEN);
         // Also, have to save this activation token in the token repository.
-        UserVerificationToken userVerificationToken = new UserVerificationToken(activationToken,
+        UserVerificationToken userVerificationToken = new UserVerificationToken(ACTIVATION_TOKEN,
                 LocalDateTime.now(), LocalDateTime.now().plusHours(3), user);
         // Saving the token
         userVerificationTokenRepository.save(userVerificationToken);
         emailService.send(user.getEmail(), "Account Activation", emailUtils
-                .buildAccountConfirmationEmail(user.getFirstname(), activationLink));
+                .buildAccountConfirmationEmail(user.getFirstname(), ACTIVATION_LINK));
 
         var response = AccountRegistrationResponse.builder()
                 .message("please check your email for further instructions")
@@ -233,7 +237,7 @@ public class AuthenticationService {
             );
         }
         final String forgotPasswordVerificationToken = UUID.randomUUID().toString();
-        final String EMAIL_VERIFICATION_URL = "http://localhost:3000/forgot/password/verify?token=";
+        final String EMAIL_VERIFICATION_URL = FRONT_END_SERVER_BASE_URL + "/auth/forgot/password/verify?token=";
         final String resetLink = EMAIL_VERIFICATION_URL.concat(forgotPasswordVerificationToken);
         var user = userRepository.findByEmail(email);
         if (user.isEmpty()) throw new IllegalStateException("User details must need to be in the " +
