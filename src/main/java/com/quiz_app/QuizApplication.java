@@ -42,10 +42,11 @@ public class QuizApplication {
             if (userRepository.count() == 0) {
                 Set<String> usedUsernames = ConcurrentHashMap.newKeySet();
                 Set<String> usedEmails = ConcurrentHashMap.newKeySet();
-                ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+
+                ExecutorService executor = Executors.newFixedThreadPool(22);
 
                 List<CompletableFuture<Void>> futures = new ArrayList<>();
-                for (int i = 0; i < 20; i++) {
+                for (int i = 0; i < 40; i++) {
                     CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
                         Faker faker = new Faker();
                         List<RegisterRequest> users = new ArrayList<>();
@@ -146,6 +147,7 @@ public class QuizApplication {
                     .build();
 
             quizRepository.save(quiz);
+            System.out.println(Runtime.getRuntime().availableProcessors());
         };
     }
 }
