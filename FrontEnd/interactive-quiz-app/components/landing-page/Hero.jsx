@@ -56,10 +56,10 @@ const Hero = () => {
                 <p className='z-10 md:text-2xl text-xl font-bold text-gray-500'>
                     Monitor your learning progress with analytics to get the maximum benefits
                 </p>
-                <button className='z-[999] bg-[#00df9a] w-[200px] rounded-full font-medium my-6 mx-auto py-3
-                 text-black hover:bg-fuchsia-500 hover:shadow-2xl hover:shadow-fuchsia-400 hover:text-white transition
-                         duration-700 ease-in-out'>Get
-                    Started
+                <button className='z-[999] bg-green-500 w-[200px] shadow-xl rounded-full font-semibold my-6 mx-auto py-3
+                 text-black hover:bg-fuchsia-500 hover:shadow-2xl hover:shadow-fuchsia-400
+                  hover:text-white transition duration-700 ease-in-out'>
+                    Get Started
                 </button>
             </div>
         </div>
