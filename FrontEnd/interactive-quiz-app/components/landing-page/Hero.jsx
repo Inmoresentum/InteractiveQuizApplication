@@ -4,14 +4,22 @@ import {TypeAnimation} from "react-type-animation";
 const Hero = () => {
     return (
         <div className='text-white p-20'>
-            <div className='max-w-[860px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center'>
-                <p className='text-[#00df9a] font-bold p-2'>
+            <div className='md:relative md:z-10 max-w-[860px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center'>
+                <div className="hidden md:block absolute left-[100px] transform -translate-y-1/2 h-[475px] w-[475px]
+                 animate-blob  overflow-x-hidden bg-purple-300 opacity-80 mix-blend-multiply blur-xl filter"></div>
+                <div className="hidden md:block animation-delay-2000 absolute left-[200px] top-[600px]  transform -translate-y-1/2 h-[375px] w-[375px]
+                 animate-blob overflow-hidden rounded-2xl bg-pink-300 opacity-90 mix-blend-multiply blur-xl filter"></div>
+                <div className="hidden md:block animation-delay-2000 absolute left-[200px]  transform -translate-y-1/2 h-[375px] w-[375px]
+                 animate-blob overflow-hidden  bg-yellow-300 opacity-70 mix-blend-multiply blur-xl filter"></div>
+                <div className="hidden md:block animation-delay-4000 absolute  left-[300px] top-[400px] transform -translate-x-1/2 h-[310px] w-[310px]
+                 animate-blob overflow-hidden rounded-md bg-pink-300 opacity-80 mix-blend-multiply blur-xl filter"></div>
+                <p className='z-10 text-[#00df9a] md:text-black font-bold p-2 mt-20'>
                     GROW YOUR KNOWLEDGE WITH US
                 </p>
-                <h1 className='md:text-7xl sm:text-6xl text-4xl font-bold md:py-6'>
+                <h1 className='z-10 md:text-7xl sm:text-6xl text-4xl font-bold md:py-6'>
                     Learn Things about different Domain.
                 </h1>
-                <div className='flex justify-center items-center'>
+                <div className='z-10 flex justify-center items-center'>
                     <p className='md:text-5xl sm:text-4xl text-xl font-bold py-4 w-full'>
                         Fast, flexible learning for
                         <TypeAnimation
@@ -23,7 +31,7 @@ const Hero = () => {
                                     " rgb(250, 99, 160) 93.4%)"}}
                             sequence={[
                                 // The Same String at the start will only be typed once, initially
-                                "",
+                                " ",
                                 1000,
                                 "SCIENCE",
                                 1000,
@@ -37,7 +45,7 @@ const Hero = () => {
                                 1000,
                                 "DRAWING",
                                 1000,
-                                "And much MORE!",
+                                "AND MUCH MORE!",
                                 1000,
                             ]}
                             repeat={Infinity}
@@ -45,10 +53,10 @@ const Hero = () => {
                     </p>
 
                 </div>
-                <p className='md:text-2xl text-xl font-bold text-gray-500'>
+                <p className='z-10 md:text-2xl text-xl font-bold text-gray-500'>
                     Monitor your learning progress with analytics to get the maximum benefits
                 </p>
-                <button className='bg-[#00df9a] w-[200px] rounded-full font-medium my-6 mx-auto py-3
+                <button className='z-[999] bg-[#00df9a] w-[200px] rounded-full font-medium my-6 mx-auto py-3
                  text-black hover:bg-fuchsia-500 hover:shadow-2xl hover:shadow-fuchsia-400 hover:text-white transition
                          duration-700 ease-in-out'>Get
                     Started
