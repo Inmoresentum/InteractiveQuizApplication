@@ -114,7 +114,7 @@ const Quiz = function ({
     };
 
     return (
-        <div className="react-quiz-container">
+        <div className="react-quiz-container bg-gradient-to-r from-blue-300 to-pink-300 p-5 rounded-lg shadow-lg">
             {!start
                 && (
                     <div>
@@ -128,13 +128,14 @@ const Quiz = function ({
                             )}
                         <div className="startQuizWrapper">
                             <button onClick={() => setStart(true)}
-                                    className="startQuizBtn btn">{appLocale.startQuizBtn}</button>
+                                    className="startQuizBtn btn bg-transparent hover:bg-gray-600 duration-300 rounded-lg">{appLocale.startQuizBtn}</button>
                         </div>
                     </div>
                 )}
 
             {start && (
                 <Core
+                    className="mx-5 px-5 bg-red-400"
                     questions={questions}
                     showDefaultResult={showDefaultResult}
                     onComplete={onComplete}

@@ -9,7 +9,6 @@ import quizAppLogo from "@/public/quiz-app-logo.png";
 import reactLogo from "@/public/react.svg";
 import {RiLockPasswordLine, RiMailLine} from "react-icons/ri";
 import {redirect} from "next/navigation";
-import {toast} from "react-toastify";
 
 export default function CustomLogin() {
     const dragAbleConstraints = useRef(null);
@@ -52,11 +51,6 @@ export default function CustomLogin() {
         // setCallbackUrl(result.url);
         if (result.error) {
             setErrorMessage(result.error.replaceAll("\"", ""));
-            toast.error("Wrong username or password! Please try again.", {
-                position: toast.POSITION.BOTTOM_CENTER,
-                theme: "dark",
-                draggable: true
-            });
             return;
         }
         if (result.url) {
@@ -88,16 +82,12 @@ export default function CustomLogin() {
                         <Image
                             src={quizAppLogo}
                             alt={reactLogo}
-                            className="w-[110px] h-[110px] rounded-2xl hover:scale-105
-                             hover:brightness-125 hover:contrast-150 hover:saturate-150
-                              transition-all duration-300 ease-in-out"
+                            className="w-[110px] h-[110px] rounded-2xl hover:scale-105 hover:brightness-125 hover:contrast-150 hover:saturate-150 transition-all duration-300 ease-in-out"
                         />
                     </Link>                    <h2 className="text-2xl font-bold mb-4 animate-pulse">Login</h2>
                     {errorMessage?
                     <div class="flex justify-center items-center">
-                        <div class="bg-white rounded-xl border border-gray-300
-                         shadow-lg p-4 max-w-sm animate-bounce backdrop-filter
-                          backdrop-blur-md bg-opacity-50 ">
+                        <div class="bg-white rounded-xl border border-gray-300 shadow-lg p-4 max-w-sm animate-bounce backdrop-filter backdrop-blur-md bg-opacity-50 ">
                             <p class="font-bold text-red-500 text-center">{errorMessage}</p>
                         </div>
                     </div> : "" }
@@ -113,10 +103,7 @@ export default function CustomLogin() {
                                 <input
                                     type="email"
                                     id="email"
-                                    className="w-full pl-10 px-6 py-3 bg-opacity-20 bg-white
-                                     bg-clip-padding backdrop-filter backdrop-blur-md placeholder-gray-500
-                                      focus:placeholder-gray-300 focus:outline-none focus:border-blue-500
-                                       rounded-3xl text-gray-800 text-base shadow-md"
+                                    className="w-full pl-10 px-6 py-3 bg-opacity-20 bg-white bg-clip-padding backdrop-filter backdrop-blur-md placeholder-gray-500 focus:placeholder-gray-300 focus:outline-none focus:border-blue-500 rounded-3xl text-gray-800 text-base shadow-md"
                                     onChange={(e)=> handleChangeEmail(e)}
                                     placeholder="Enter Your email"
                                 />
@@ -137,9 +124,7 @@ export default function CustomLogin() {
                                 <input
                                     type="password"
                                     id="password"
-                                    className="w-full pl-10 px-6 py-3 bg-opacity-20 bg-white bg-clip-padding
-                                     backdrop-filter backdrop-blur-md placeholder-gray-500 focus:placeholder-gray-300
-                                      focus:outline-none focus:border-blue-500 rounded-3xl text-gray-800 text-base shadow-md"
+                                    className="w-full pl-10 px-6 py-3 bg-opacity-20 bg-white bg-clip-padding backdrop-filter backdrop-blur-md placeholder-gray-500 focus:placeholder-gray-300 focus:outline-none focus:border-blue-500 rounded-3xl text-gray-800 text-base shadow-md"
                                     onChange={handleChangePassword}
                                     placeholder="Enter Your password"
                                 />
@@ -151,8 +136,7 @@ export default function CustomLogin() {
                         </div>
                         <div className="flex justify-end items-center mb-6">
                             <Link href={"/auth/forgot/password"}
-                                  className="text-gray-200 hover:text-black hover:underline
-                                   hover:translate-y-[-2px] transition-colors duration-300 ease-linear tooltip"
+                                  className="text-gray-200 hover:text-black hover:underline hover:translate-y-[-2px] transition-colors duration-300 ease-linear tooltip"
                                   data-tooltip="Click Here to Reset Your Password"
                             >
                                 Forgot password?
@@ -161,10 +145,7 @@ export default function CustomLogin() {
                         <button
                             type="button"
                             onClick={handleSubmit}
-                            className="w-full text-white py-2 px-4 rounded-full transition-colors duration-300
-                             ease-in-out bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500
-                              hover:from-blue-400 hover:via-indigo-500 hover:to-purple-500
-                               focus:from-blue-400 focus:via-indigo-500 focus:to-purple-500 login-animate-gradient-x"
+                            className="w-full text-white py-2 px-4 rounded-full transition-colors duration-300 ease-in-out bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 hover:from-blue-400 hover:via-indigo-500 hover:to-purple-500 focus:from-blue-400 focus:via-indigo-500 focus:to-purple-500 login-animate-gradient-x"
                         >
                             Log In
                         </button>
@@ -173,9 +154,7 @@ export default function CustomLogin() {
                             New here And No Account?
                             <Link
                                 href={"/auth/register/"}
-                                className="text-gray-200 hover:text-black hover:underline
-                                 hover:translate-y-[-2px] transition-colors duration-300
-                                  ease-linear ml-2 tooltip"
+                                className="text-gray-200 hover:text-black hover:underline hover:translate-y-[-2px] transition-colors duration-300 ease-linear ml-2 tooltip"
                                 data-tooltip="Click to register an account with us">
                                 Register account
                             </Link>

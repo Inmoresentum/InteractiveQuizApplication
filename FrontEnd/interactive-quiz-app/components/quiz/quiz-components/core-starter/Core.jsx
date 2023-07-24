@@ -227,13 +227,13 @@ const Core = function ({
         answerSelectionType = answerSelectionType || "single";
 
         return answers.map((answer, index) => (
-            <Fragment key={index}>
+            <Fragment key={index} className="bg-transparent hover:bg-white duration-300">
                 {(buttons[index] !== undefined)
                     ? (
                         <button
                             type="button"
                             disabled={buttons[index].disabled || false}
-                            className={`${buttons[index].className} answerBtn btn`}
+                            className={`${buttons[index].className} answerBtn btn bg-transparent hover:bg-white duration-300`}
                             onClick={() => (revealAnswerOnSubmit ? onSelectAnswer(index) : onClickAnswer(index))}
                         >
                             {questionType === "text" && <span>{answer}</span>}
@@ -276,7 +276,7 @@ const Core = function ({
     };
 
     const renderResult = () => (
-        <div className="card-body">
+        <div className="card-body ">
             <h2>
                 {appLocale.resultPageHeaderText
                     .replace("<correctIndexLength>", correct.length)
@@ -300,8 +300,8 @@ const Core = function ({
         <div className="questionWrapper">
             {!endQuiz
                 && (
-                    <div className="questionWrapperBody">
-                        <div className="questionModal">
+                    <div className="questionWrapperBody bg-gradient-to-r from-blue-300 to-pink-300 p-5 rounded-lg shadow-lg">
+                        <div className="questionModal ">
                             <InstantFeedback
                                 question={question}
                                 showInstantFeedback={showInstantFeedback}
@@ -311,13 +311,13 @@ const Core = function ({
                                 userAnswer={[...userInput].pop()}
                             />
                         </div>
-                        <div>
+                        <div className="font-bold mb-3">
                             {appLocale.question}
                             {" "}
                             {currentQuestionIndex + 1}
                             :
                         </div>
-                        <h3 dangerouslySetInnerHTML={rawMarkup(question && question.question)} />
+                        <h3 dangerouslySetInnerHTML={rawMarkup(question && question.question)} className="mb-3"/>
                         {question && question.questionPic && <img src={question.questionPic} alt="image" />}
                         {question && renderTags(answerSelectionTypeState, question.correctAnswer.length, question.segment)}
                         {question && renderAnswers(question, buttons)}
