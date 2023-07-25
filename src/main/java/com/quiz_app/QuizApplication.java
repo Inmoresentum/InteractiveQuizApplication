@@ -84,72 +84,73 @@ public class QuizApplication {
                 executor.shutdown();
             }
 
+            if (quizRepository.count() == 0) {
+                Question firstQuestion = Question.builder()
+                        .question("How can you access the state of a component" +
+                                " from inside of a member function?")
+                        .questionType(TEXT)
+                        .questionPic("https://dummyimage.com/600x400/000/fff&text=X")
+                        .answerSelectionType(SINGLE)
+                        .answers(List.of("this.getState()",
+                                "this.prototype.stateValue",
+                                "this.state",
+                                "this.values"))
+                        .correctAnswer(List.of(3))
+                        .messageForIncorrectAnswer("Incorrect Answer. Please try again")
+                        .messageForCorrectAnswer("GG")
+                        .explanation("Well, you know xD")
+                        .point((double) 20)
+                        .build();
 
-            Question firstQuestion = Question.builder()
-                    .question("How can you access the state of a component" +
-                            " from inside of a member function?")
-                    .questionType(TEXT)
-                    .questionPic("https://dummyimage.com/600x400/000/fff&text=X")
-                    .answerSelectionType(SINGLE)
-                    .answers(List.of("this.getState()",
-                            "this.prototype.stateValue",
-                            "this.state",
-                            "this.values"))
-                    .correctAnswer(List.of(3))
-                    .messageForIncorrectAnswer("Incorrect Answer. Please try again")
-                    .messageForCorrectAnswer("GG")
-                    .explanation("Well, you know xD")
-                    .point((double) 20)
-                    .build();
+                Question secondQuestion = Question.builder()
+                        .question("What are the advantages of React JS?")
+                        .questionType(TEXT)
+                        .questionPic(null)
+                        .answerSelectionType(MULTIPLE)
+                        .answers(List.of(
+                                "React can be used on client and as well as server side too",
+                                "Using React increases readability and makes maintainability easier. Component," +
+                                        " Data patterns improves readability and thus makes it easier for manitaining larger apps",
+                                "React components have lifecycle events that fall into State/Property Updates",
+                                "React can be used with any other framework (Backbone.js, Angular.js) as it is only a view layer"
+                        ))
+                        .correctAnswer(List.of(1, 2, 4))
+                        .messageForIncorrectAnswer("Incorrect Answer. Please try again")
+                        .messageForCorrectAnswer("GG")
+                        .explanation("Well, you know xD")
+                        .point((double) 20)
+                        .build();
 
-            Question secondQuestion = Question.builder()
-                    .question("What are the advantages of React JS?")
-                    .questionType(TEXT)
-                    .questionPic(null)
-                    .answerSelectionType(MULTIPLE)
-                    .answers(List.of(
-                            "React can be used on client and as well as server side too",
-                            "Using React increases readability and makes maintainability easier. Component," +
-                                    " Data patterns improves readability and thus makes it easier for manitaining larger apps",
-                            "React components have lifecycle events that fall into State/Property Updates",
-                            "React can be used with any other framework (Backbone.js, Angular.js) as it is only a view layer"
-                    ))
-                    .correctAnswer(List.of(1, 2, 4))
-                    .messageForIncorrectAnswer("Incorrect Answer. Please try again")
-                    .messageForCorrectAnswer("GG")
-                    .explanation("Well, you know xD")
-                    .point((double) 20)
-                    .build();
+                Question thirdQuestion = Question.builder()
+                        .question("Choose the image that looks like **A**")
+                        .questionType(PHOTO)
+                        .questionPic(null)
+                        .answerSelectionType(SINGLE)
+                        .answers(List.of(
+                                "https://dummyimage.com/600x400/000/fff&text=A",
+                                "https://dummyimage.com/600x400/000/fff&text=B",
+                                "https://dummyimage.com/600x400/000/fff&text=C",
+                                "https://dummyimage.com/600x400/000/fff&text=D"
+                        ))
+                        .correctAnswer(List.of(1))
+                        .messageForIncorrectAnswer("Incorrect Answer. Please try again")
+                        .messageForCorrectAnswer("GG")
+                        .explanation("Well, you know xD")
+                        .point((double) 5)
+                        .build();
 
-            Question thirdQuestion = Question.builder()
-                    .question("Choose the image that looks like **A**")
-                    .questionType(PHOTO)
-                    .questionPic(null)
-                    .answerSelectionType(SINGLE)
-                    .answers(List.of(
-                            "https://dummyimage.com/600x400/000/fff&text=A",
-                            "https://dummyimage.com/600x400/000/fff&text=B",
-                            "https://dummyimage.com/600x400/000/fff&text=C",
-                            "https://dummyimage.com/600x400/000/fff&text=D"
-                    ))
-                    .correctAnswer(List.of(1))
-                    .messageForIncorrectAnswer("Incorrect Answer. Please try again")
-                    .messageForCorrectAnswer("GG")
-                    .explanation("Well, you know xD")
-                    .point((double) 5)
-                    .build();
+                List<Question> questionList = List.of(firstQuestion,
+                        secondQuestion,
+                        thirdQuestion);
 
-            List<Question> questionList = List.of(firstQuestion,
-                    secondQuestion,
-                    thirdQuestion);
+                var quiz = Quiz.builder()
+                        .quizTitle("Checking Test Quiz")
+                        .quizSynopsis("Well, I do not want to type anything")
+                        .questions(questionList)
+                        .build();
 
-            var quiz = Quiz.builder()
-                    .quizTitle("Checking Test Quiz")
-                    .quizSynopsis("Well, I do not want to type anything")
-                    .questions(questionList)
-                    .build();
-
-            quizRepository.save(quiz);
+                quizRepository.save(quiz);
+            }
         };
     }
 }
