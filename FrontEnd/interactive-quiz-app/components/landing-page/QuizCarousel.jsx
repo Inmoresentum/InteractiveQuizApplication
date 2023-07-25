@@ -19,9 +19,9 @@ export default function QuizCarousel() {
                         </svg></div>
                     </div>
                     <div className="p-4">
-                        <div class="flex justify-between">
+                        <div className="flex justify-between">
                             <div className="text-purple-400 uppercase tracking-wider text-sm">Everything burns</div>
-                            <div class="pt-1 pl-32">
+                            <div className="pt-1 pl-32">
                                 <div className="bg-purple-200 rounded-full h-2 w-48 overflow-hidden">
                                     <div className="h-2 bg-purple-900 w-32"></div>
                                 </div>
