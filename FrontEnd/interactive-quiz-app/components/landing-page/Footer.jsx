@@ -31,11 +31,16 @@ export default function Footer() {
                     <p className='py-4'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id odit ullam iste
                         repellat consequatur libero reiciendis, blanditiis accusantium.</p>
                     <div className='flex justify-between md:w-[75%] my-6'>
-                        <FaFacebookSquare size={30} className="hover:cursor-pointer hover:text-orange-600 hover:scale-110 transition-all duration-500"/>
-                        <FaInstagram size={30} className="hover:cursor-pointer hover:text-pink-500 hover:scale-110 transition-all duration-500"/>
-                        <FaTwitterSquare size={30} className="hover:cursor-pointer hover:text-blue-600 hover:scale-110 transition-all duration-500"/>
-                        <FaGithubSquare size={30} className="hover:cursor-pointer hover:text-teal-600 hover:scale-110 transition-all duration-500"/>
-                        <FaDribbbleSquare size={30} className="hover:cursor-pointer hover:text-yellow-300 hover:scale-110 transition-all duration-500"/>
+                        <FaFacebookSquare size={30} className="hover:cursor-pointer hover:text-orange-600
+                         hover:scale-110 transition-all duration-500"/>
+                        <FaInstagram size={30} className="hover:cursor-pointer hover:text-pink-500
+                         hover:scale-110 transition-all duration-500"/>
+                        <FaTwitterSquare size={30} className="hover:cursor-pointer hover:text-blue-600
+                         hover:scale-110 transition-all duration-500"/>
+                        <FaGithubSquare size={30} className="hover:cursor-pointer hover:text-teal-600
+                         hover:scale-110 transition-all duration-500"/>
+                        <FaDribbbleSquare size={30} className="hover:cursor-pointer hover:text-yellow-300
+                         hover:scale-110 transition-all duration-500"/>
                     </div>
                 </div>
                 <div className='lg:col-span-2 flex justify-between mt-6'>
