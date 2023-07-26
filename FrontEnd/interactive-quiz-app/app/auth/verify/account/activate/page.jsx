@@ -10,7 +10,8 @@ async function verifyAccount(token) {
         const response = await axios.get(url);
         return {success: true, data: response.data};
     } catch (error) {
-        return {success: false, message: error.response.data.message};
+        return {success: false, message: (error?.response?.data)
+                ? error.response.data : "SERVER IS DOWN OR UNENVIABLE"};
     }
 }
 
