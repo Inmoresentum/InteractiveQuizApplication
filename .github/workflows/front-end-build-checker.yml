@@ -3,8 +3,8 @@ name: Front-End Build And BackEnd Integration
 on:
   pull_request:
     branches:
-#      - trying to fix the issue created by Nuraiya
-      - fixing-release
+      #      - trying to fix the issue created by Nuraiya
+      - release
 
 jobs:
   build:

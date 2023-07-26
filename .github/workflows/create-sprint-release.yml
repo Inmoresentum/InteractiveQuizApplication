@@ -3,7 +3,7 @@ name: Create Sprint Release
 on:
   push:
     branches:
-      - release
+      - fixing_release
 
 jobs:
   build:
