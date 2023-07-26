@@ -43,7 +43,6 @@ public class QuizApplication {
                                         UserRepository userRepository,
                                         Environment environment) {
         return args -> {
-            System.out.println(Arrays.toString(environment.getActiveProfiles()));
             if (!Arrays.asList(environment.getActiveProfiles()).contains("dev") && userRepository.count() == 0) {
                 Set<String> usedUsernames = ConcurrentHashMap.newKeySet();
                 Set<String> usedEmails = ConcurrentHashMap.newKeySet();
@@ -87,7 +86,7 @@ public class QuizApplication {
                 }
                 CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
                 executor.shutdown();
-            } else {
+            } else if (Arrays.asList(environment.getActiveProfiles()).contains("dev") && userRepository.count() == 0) {
                 var admin = RegisterRequest.builder()
                         .username("admin")
                         .firstname("Admin")

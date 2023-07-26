@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.quiz-app</groupId>
     <artifactId>CSE470-Project-BackEnd</artifactId>
-    <version>0.3.0-SNAPSHOT</version>
+    <version>0.4.0-SNAPSHOT</version>
     <name>CSE470</name>
     <description>Our interactive quiz application is a captivating platform that engages users with a wide range of
         quizzes,
