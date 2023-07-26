@@ -255,7 +255,7 @@ Todo: I will be adding stuff here later
 
 <p align="center">
 
-<a href="https://github.com/Inmoresentum/Lawyer-Consultation-System/graphs/contributors">
+<a href="https://github.com/Inmoresentum/InteractiveQuizApplication/graphs/contributors">
 
   <img src="https://contrib.rocks/image?repo=Inmoresentum/InteractiveQuizApplication" />
 
