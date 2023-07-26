@@ -11,10 +11,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -24,6 +26,7 @@ import java.util.concurrent.Executors;
 
 import static com.quiz_app.entity.quiz.AnswerSelectionType.*;
 import static com.quiz_app.entity.quiz.QuestionType.*;
+import static com.quiz_app.entity.user.Role.ADMIN;
 import static com.quiz_app.entity.user.Role.USER;
 
 @SpringBootApplication
@@ -37,9 +40,10 @@ public class QuizApplication {
     @Bean
     CommandLineRunner commandLineRunner(AuthenticationService service,
                                         QuizRepository quizRepository,
-                                        UserRepository userRepository) {
+                                        UserRepository userRepository,
+                                        Environment environment) {
         return args -> {
-            if (userRepository.count() == 0) {
+            if (!Arrays.asList(environment.getActiveProfiles()).contains("dev") && userRepository.count() == 0) {
                 Set<String> usedUsernames = ConcurrentHashMap.newKeySet();
                 Set<String> usedEmails = ConcurrentHashMap.newKeySet();
 
@@ -82,6 +86,30 @@ public class QuizApplication {
                 }
                 CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
                 executor.shutdown();
+            } else if (Arrays.asList(environment.getActiveProfiles()).contains("dev") && userRepository.count() == 0) {
+                var admin = RegisterRequest.builder()
+                        .username("admin")
+                        .firstname("Admin")
+                        .lastname("Admin")
+                        .email("admin@mail.com")
+                        .password("password")
+                        .role(ADMIN)
+                        .accountCreatedAt(LocalDateTime.now())
+                        .agreesWithTermsAndConditions(true)
+                        .build();
+                service.register(admin);
+
+                var user = RegisterRequest.builder()
+                        .username("some-user")
+                        .firstname("User")
+                        .lastname("User")
+                        .email("user@mail.com")
+                        .password("password")
+                        .accountCreatedAt(LocalDateTime.now())
+                        .agreesWithTermsAndConditions(true)
+                        .role(USER)
+                        .build();
+                service.register(user);
             }
 
             if (quizRepository.count() == 0) {
