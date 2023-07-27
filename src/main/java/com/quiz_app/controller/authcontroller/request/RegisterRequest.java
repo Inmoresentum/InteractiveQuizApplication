@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -21,5 +22,6 @@ public class RegisterRequest {
     private String password;
     private Role role;
     private LocalDateTime accountCreatedAt;
+    private LocalDate dateOfBirth;
     private boolean agreesWithTermsAndConditions;
 }

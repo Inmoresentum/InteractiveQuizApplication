@@ -1,17 +1,7 @@
 "use client"
-import {useEffect, useRef, useState} from "react";
-import {
-    RiLockPasswordLine,
-    RiMailLine,
-    RiPhoneLine,
-    RiUserAddLine
-} from "react-icons/ri";
-import {
-    FaDiscord,
-    FaGithubSquare,
-    FaGoogle
-}
-    from "react-icons/fa";
+import {useEffect, useRef} from "react";
+import {RiLockPasswordLine, RiMailLine, RiPhoneLine, RiUserAddLine} from "react-icons/ri";
+import {FaDiscord, FaGithubSquare, FaGoogle} from "react-icons/fa";
 import {motion} from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -20,12 +10,13 @@ import reactLogo from "@/public/react.svg";
 import {z} from "zod";
 import {Controller, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
+import {useMutation} from "@tanstack/react-query";
+import axios from "axios";
 
 export default function ClientSideRegiFrom() {
     // Todo: I will later make it clean
     //  its to much ugly.
     const dragAbleConstraints = useRef(null);
-
     useEffect(() => {
         const phoneInput = document.querySelector("#phone");
         phoneInput.addEventListener("keypress", (event) => {
@@ -63,12 +54,27 @@ export default function ClientSideRegiFrom() {
     });
 
 
-    const onSubmit = (data) => {
+    const onSubmit = async (formData) => {
         // Handle the form submission here
-        console.log(data);
-        const {username} = data;
+        console.log(formData);
+        const {username} = formData;
         console.log(username);
+
+        const body = {
+            username: formData.username,
+            email: formData.email,
+            password: formData.password,
+            role: "USER",
+            accountCreatedAt: new Date().toISOString(),
+            dateOfBirth: new Date(formData.date_of_birth).toISOString(),
+            agreesWithTermsAndConditions: true,
+        };
+        const {data} = await axios.post("http://localhost:8080/api/v1/auth/register"
+            , body);
+        console.log(data)
     };
+
+
     return (
         <section className="registration-page-section">
             <div className="box" ref={dragAbleConstraints}>
