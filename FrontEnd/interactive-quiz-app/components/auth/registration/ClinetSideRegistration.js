@@ -10,7 +10,6 @@ import reactLogo from "@/public/react.svg";
 import {z} from "zod";
 import {Controller, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {useMutation} from "@tanstack/react-query";
 import axios from "axios";
 
 export default function ClientSideRegiFrom() {
@@ -69,7 +68,7 @@ export default function ClientSideRegiFrom() {
             dateOfBirth: new Date(formData.date_of_birth).toISOString(),
             agreesWithTermsAndConditions: true,
         };
-        const {data} = await axios.post("http://localhost:8080/api/v1/auth/register"
+        const {data} = await axios.post(`${process.env.local.BACK_END_BASE_URL}/api/v1/auth/register`
             , body);
         console.log(data)
     };
@@ -300,10 +299,10 @@ export default function ClientSideRegiFrom() {
                                     )}
                                 />
                                 <div className="relative">
-            <span className="absolute left-3 top-3 text-gray-600">
-                <RiPhoneLine size={24}/>
-            </span>
-                                    <Controller
+                                        <span className="absolute left-3 top-3 text-gray-600">
+                                            <RiPhoneLine size={24}/>
+                                        </span>
+                                        <Controller
                                         name="phone"
                                         control={control}
                                         defaultValue=""
@@ -379,6 +378,5 @@ export default function ClientSideRegiFrom() {
                 </motion.div>
             </div>
         </section>
-    )
-        ;
+    );
 }
