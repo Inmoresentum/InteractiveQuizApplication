@@ -2,11 +2,12 @@ import "./globals.css"
 import {Inter} from "next/font/google"
 import ToastWrapper from "@/components/Toastify/ToastWrapper";
 import CookieConsentWrapper from "@/components/cookie-consent/CookieConsentWrapper";
+import ReactQueryWrapper from "@/components/ReactQueryWrapper/ReactQueryWrapper";
 
 const inter = Inter({subsets: ["latin"]})
 
 export const metadata = {
-    title: "Quiz Application",
+    title: "WIZE WIZ",
     description: "Our interactive quiz application is a captivating" +
         " platform that engages users with a wide range of quizzes," +
         " puzzles, and brain teasers. With customizable quiz creation," +
@@ -26,9 +27,11 @@ export default function RootLayout({children}) {
         <html lang="en">
         <body className={inter.className}>
         <>
-            {children}
-            <ToastWrapper/>
-            <CookieConsentWrapper/>
+            <ReactQueryWrapper>
+                {children}
+                <ToastWrapper/>
+                <CookieConsentWrapper/>
+            </ReactQueryWrapper>
         </>
         </body>
         </html>
