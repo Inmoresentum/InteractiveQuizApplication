@@ -5,12 +5,13 @@ import {FaExclamation} from "react-icons/fa6";
 import Link from "next/link";
 
 export default function VerifyAccountWrapper({verificationResult}) {
+    console.log(verificationResult);
     return (
         <div className="bg-black h-screen flex flex-col min-h-screen">
             <Navbar/>
 
             <div className="container mx-auto p-44 flex justify-center items-center flex-grow">
-                {!verificationResult.success ? (
+                {verificationResult.success ? (
                     <div className="bg-gradient-to-r from-green-400 via-purple-500 to-green-600 text-white font-bold border md:text-xl
                  border-green-500 rounded-full p-4 box-border w-full min-w-[15rem] duration-500
                  md:hover:scale-110 ease-linear">
@@ -31,7 +32,7 @@ export default function VerifyAccountWrapper({verificationResult}) {
                  md:hover:scale-110 ease-linear">
                             <span className="flex justify-center items-center">
                                 <FaExclamation className="w-12 h-16 mr-2 animate-bounce"/>
-                                {verificationResult.message}
+                                {verificationResult.message.message}
                             </span>
                     </div>
                 )}
