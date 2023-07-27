@@ -22,6 +22,8 @@ import {Controller, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 
 export default function ClientSideRegiFrom() {
+    // Todo: I will later make it clean
+    //  its to much ugly.
     const dragAbleConstraints = useRef(null);
 
     useEffect(() => {
@@ -37,6 +39,9 @@ export default function ClientSideRegiFrom() {
         });
     }, []);
 
+    const twelveYearsAgo = new Date();
+    twelveYearsAgo.setFullYear(twelveYearsAgo.getFullYear() - 12);
+
     const schema = z.object({
         username: z.string().min(3, "Username must be at least 3 characters").max(20, "Username can be at most 20 characters"),
         email: z.string().email("Invalid email address"),
@@ -46,6 +51,11 @@ export default function ClientSideRegiFrom() {
         phone: z.string().min(6, "Phone number must be at least 6 characters")
             .max(15, "Phone number can be at most 15 characters"),
         country_code: z.string(),
+        date_of_birth: z.string()
+            .transform(val => new Date(val))
+            .refine(val => val >= twelveYearsAgo, {
+                message: "You must be at least 12 years old",
+            }),
     });
 
     const {handleSubmit, control, formState: {errors}, watch, register, setValue} = useForm({
@@ -56,7 +66,7 @@ export default function ClientSideRegiFrom() {
     const onSubmit = (data) => {
         // Handle the form submission here
         console.log(data);
-        const {username}  = data;
+        const {username} = data;
         console.log(username);
     };
     return (
@@ -216,6 +226,29 @@ export default function ClientSideRegiFrom() {
                             {errors.confirm_password && <p className="text-red-500">{errors.confirm_password.message}</p>}
                         </div>
 
+                        <div className="relative mb-6">
+                            <label htmlFor="date_of_birth" className="text-lg px-4 font-medium mb-2 text-gray-800">
+                                Date of Birth
+                            </label>
+                            <div className="relative">
+                                <Controller
+                                    name="date_of_birth"
+                                    control={control}
+                                    defaultValue=""
+                                    render={({field}) => (
+                                        <input
+                                            {...field}
+                                            type="date"
+                                            id="date_of_birth"
+                                            className="w-full pl-10 px-6 py-3 bg-opacity-20 bg-white bg-clip-padding
+                        backdrop-filter backdrop-blur-md placeholder-gray-500 focus:placeholder-gray-900
+                        focus:outline-none focus:border-blue-500 rounded-3xl text-gray-800 text-base shadow-md"
+                                        />
+                                    )}
+                                />
+                            </div>
+                            {errors.date_of_birth && <p className="text-red-500">{errors.date_of_birth.message}</p>}
+                        </div>
 
                         <div className="relative mb-6">
                             <label htmlFor="phone" className="text-lg px-4 font-medium mb-2 text-gray-800">
