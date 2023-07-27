@@ -18,6 +18,20 @@
     }
 }
 
+@layer components {
+    @keyframes shake {
+        0% { transform: translateX(0); }
+        20% { transform: translateX(-10px); }
+        40% { transform: translateX(10px); }
+        60% { transform: translateX(-10px); }
+        80% { transform: translateX(10px); }
+        100% { transform: translateX(0); }
+    }
+    .animate-shake {
+        animation: shake 0.5s;
+    }
+}
+
 /*Browser scroll bar. Only going to work on Chrome, Firefox and Edge*/
 ::-webkit-scrollbar{
     width: 16px;
