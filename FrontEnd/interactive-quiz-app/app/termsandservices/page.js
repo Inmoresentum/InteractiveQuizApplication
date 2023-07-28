@@ -65,12 +65,12 @@ export default function TermsAndServices() {
         <>
             <div className="bg-black">
                 <Navbar/>
-                <div className="bg-gradient-to-r from-slate-300 to-slate-500 md:mt-[5rem] sm:mt-[6rem]">
+                <div className="bg-gradient-to-r from-slate-300 to-slate-500 md:mt-[5rem] py-14 md:py-0">
                     <div className="max-w-[1280px] w-full h-screen
                  mx-auto flex flex-col md:flex-row justify-center bg-gradient-to-r from-violet-200 to-pink-200">
-                        <div className="md:w-64 w-full bg-gradient-to-r from-neutral-300 to-stone-400 p-4 rounded-bl-full">
+                        <div className="md:w-64 w-full bg-gradient-to-r from-indigo-400 to-cyan-400 p-4 rounded-bl-full">
                             <h1 className="text-4xl font-bold mb-4 mt-4
-                         bg-gradient-to-r from-cyan-600 to-pink-600 bg-clip-text text-transparent text-center">
+                             text-white text-center">
                                 Sections
                             </h1>
                             <ul>
@@ -78,7 +78,7 @@ export default function TermsAndServices() {
                                     <li
                                         key={section.title}
                                         className={`mb-2 p-4 subpixel-antialiased font-bold text-center cursor-pointer rounded-full
-                                        hover:bg-rose-400 hover:text-white duration-300 ease-linear${
+                                        hover:bg-rose-400 hover:text-white duration-300 ease-linear shadow-2xl shadow-black${
                                             activeSection.title === section.title ? "bg-gray-200" +
                                                 " bg-gradient-to-r from-emerald-400 to-cyan-400" : "rounded-full bg-gray-200"
                                         }`}
@@ -90,8 +90,12 @@ export default function TermsAndServices() {
                             </ul>
                         </div>
                         <div className="flex-1 p-4 m-3 rounded-3xl bg-slate-100 max-h-[100vh] overflow-auto">
-                            <h1 className="text-2xl mt-3 font-bold mb-4 text-center h-20 bg-slate-200 rounded-full flex items-center justify-center">
-                                {activeSection.title}
+                            <h1 className="text-2xl mt-3 font-bold mb-4 text-center
+                             h-20 bg-slate-200 rounded-full flex items-center
+                              justify-center">
+                                <div className="bg-gradient-to-l from-sky-600 to-fuchsia-600 bg-clip-text text-transparent">
+                                    {activeSection.title}
+                                </div>
                             </h1>
                             <section className="ml-3 box-border">{activeSection.content}</section>
                         </div>
