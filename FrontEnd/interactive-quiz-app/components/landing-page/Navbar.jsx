@@ -39,8 +39,8 @@ export default function Navbar() {
                 </ul>
                 <div onClick={handleNav}
                      className="block md:hidden hover:cursor-pointer transition duration-300 ease-in-out">
-                    {nav ? <AiOutlineClose size={20} className="text-gray-600 hover:text-rose-500"/> :
-                        <AiOutlineMenu size={20} className="text-gray-600 hover:text-rose-500"/>}
+                    {nav ? <AiOutlineClose size={20} className="text-gray-600  mix-blend-color hover:text-rose-500"/> :
+                        <AiOutlineMenu size={20} className="text-gray-600 mix-blend-color hover:text-rose-500"/>}
                 </div>
                 <ul className={`${nav ? "fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500" :
                     "ease-in-out duration-500 fixed left-[-100%]"}`}>
