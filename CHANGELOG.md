@@ -1,3 +1,39 @@
+# [0.4.0](https://github.com/Inmoresentum/InteractiveQuizApplication/compare/v0.3.0...v0.4.0) (2023-07-26)
+
+
+### Bug Fixes
+
+* did some visual adjustments in the hero component ([624de8e](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/624de8eb8c4f7dc84c4da2ed094a370e9b8a1c31))
+* docker now won't try to load 40k users ([e253c43](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/e253c436203d0ed9b7038e4a63b7f941c0a94d66))
+* **DynamicProxy:** fixed bean injection issue ([deac996](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/deac9963eecf17a0bd5504592227831566d9c9bd))
+* fixed the bug with tailwindcss ([d38ec7d](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/d38ec7da12c1306b9fb85bfc7d574c23396bb3e7))
+* fixed the invalid dom properties issue ([71ab625](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/71ab6250742f13b39c20453b659b4fb2dfdd9a0f))
+* fixed the RACE condition issue with faker ([c6ac16b](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/c6ac16bede1e339c17b609c66503171e955adacd))
+* **performance:** :zap: fixed the Async issue ([bea4235](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/bea423568cbb3ef81ae94933d582b294a7df9475))
+* the max pool size issue for even better performance ([3ec910c](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/3ec910c03cfd8275face6fa1489b012e0c7322f6))
+
+
+### Features
+
+* added a smooth moving blob object in the hero section ([333529d](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/333529d61ad271eef6ca730044bc7d4e8fe86aa7))
+* added cookie-consent ([fb3660b](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/fb3660bc47b21d70cd69ca925f0addc6fa8df9e4))
+* added custom scroller ([56ed32f](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/56ed32f55c87dad45700a9901ed191806a21340e))
+* added option to generate pdf reports ([5d67086](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/5d67086cf75fd50a6f4a418ca7ef60b5d469d525))
+* added QuizCarousel ([20ab3ac](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/20ab3ac11d35f6a20942ffb7ca3b1d16b984b14c))
+* added ReviewSlider created by Nuraiya ([5c13600](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/5c1360062da343a91862893ae6a042831f2435a7))
+* added some accessibility, improved-edge case ([52a0052](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/52a0052de117bc4ca4d5237c5325bec1d2ddbf4e))
+* added user account verification via email ([ed19bf0](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/ed19bf056de0a88a7bcf4b9efae3a6627a206496))
+* Created Admin Dashboard Activity markup and did some SEO ([834a8d0](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/834a8d098ff25adb4340599851d89e1a2475cd21))
+* Created Markup admin dashboard and its components ([d676ad5](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/d676ad56ad06008956dcad8dbc7d20f5fc3e4703))
+* customized the scroller to be more transparent ([8339973](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/8339973c780b63ca8c8642ae64833a1b3b8da447))
+* **leaderboard:** did the necessary data modeling through JPA ([a39f908](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/a39f908a4580878f5ed92700df150827f6e8e543))
+* **Notification:** Added the ability to show notification ([87ebd62](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/87ebd6203c19c483ce6181b81a93aec9e142773e))
+* **pdf-generator:** Include logo in PDF generation ([dc0f54b](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/dc0f54b7229a6deee682a960ba50de95cd5c5879))
+* **resources:** Add image folder with logo ([f514ca6](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/f514ca60a6b99ffa17048d63f3babf6949bbae27))
+* **UI:** added styles in Quiz Core Components ([db6d9fb](https://github.com/Inmoresentum/InteractiveQuizApplication/commit/db6d9fbd7a9d393be8a9eefb6773b798bb7c304c))
+
+
+
 # [0.3.0](https://github.com/Inmoresentum/InteractiveQuizApplication/compare/v0.2.0...v0.3.0) (2023-07-17)
 
 
