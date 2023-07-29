@@ -12,7 +12,7 @@ export default function CustomCursor() {
 
         const onMouseMove = (event) => {
             const {clientX, clientY} = event;
-            gsap.to(cursor, {x: clientX, y: clientY});
+            gsap.to(cursor, {x: clientX, y: clientY  + 20});
         };
 
         const onMouseEnterLink = (event) => {
@@ -31,7 +31,7 @@ export default function CustomCursor() {
         }
 
         const onMouseEnterButton = (event) => {
-            gsap.to(cursor, {scale: 3})
+            gsap.to(cursor, {scale: 4})
             cursorText.innerHTML = "Click";
             cursorText.style.display = "block";
         }
