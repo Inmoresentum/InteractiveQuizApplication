@@ -53,7 +53,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(transparent, #ff9900);
+    background: linear-gradient(transparent, #eb359c);
     border-radius: 12px;
 }
 
@@ -101,6 +101,152 @@
 
 }
 
+.diagonal {
+    --skew-angle: -5deg;
+    --background: linear-gradient(
+            45deg,
+            #12c2e9,
+            #c471ed,
+            #f64f59
+    );
+
+    position: relative;
+    isolation: isolate;
+}
+
+.diagonal::after {
+    content: '';
+    background: var(--background);
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    transform: skewY(var(--skew-angle));
+}
+
+/*Going to work with content section*/
+
+.content-section-wrapper {
+    /*background:#EEF4FF;*/
+    margin:0;
+    font-family:sans-serif;
+    /*color:#333;*/
+}
+
+.gallery h1 {
+    font-size:clamp(2em, 4vw, 6em);
+}
+
+.gallery p {
+    font-size:clamp(1.1em, 2.1vw, 3.0em);
+    line-height:1.4;
+}
+
+.gallery {
+    display:flex;
+    max-width:960px;
+    margin:auto;
+}
+
+.left {
+    width:50%;
+}
+
+.right {
+    height:100vh;
+    width:50%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.desktopContent {
+    margin:auto;
+    width:80%;
+}
+
+.desktopContentSection {
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.desktopPhotos {
+    width:30vw;
+    height:50vh;
+    border-radius:35px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:4px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.desktopPhoto {
+    position:absolute;
+    border-radius: 35px;
+    width:100%;
+    height:100%;
+}
+
+.red {
+    background: crimson;
+}
+
+.green {
+    background:MediumSeaGreen;
+}
+
+.blue {
+    background:dodgerblue;
+}
+
+.pink{
+    background:deepPink;
+}
+
+/* small screen / mobile layout */
+.mobileContent {
+    display:none;
+    width:80vw;
+}
+
+.mobilePhoto {
+    width:80vw;
+    height:80vw;
+    margin-top:5em;
+    border-radius:6vw;
+}
+
+/* defines styles for screens up to 599px wide */
+@media screen and (max-width: 599px) {
+    .left {
+        display:none;
+    }
+
+    .right {
+        height:auto;
+        width:100%;
+        align-items:center;
+    }
+
+    .desktopPhotos {
+        display:none;
+    }
+
+    .mobileContent {
+        display:block;
+    }
+}
+
+/*wavy FAQ section*/
+.wavy-faq-section {
+    --mask: radial-gradient(4.47rem at 50% 6.00rem, #000 99%, #0000 101%) calc(50% - 4rem) 0/8rem 51% repeat-x,
+    radial-gradient(4.47rem at 50% -4rem, #0000 99%, #000 101%) 50% 2rem/8rem calc(51% - 2rem) repeat-x,
+    radial-gradient(4.47rem at 50% calc(100% - 6.00rem), #000 99%, #0000 101%) calc(50% - 4rem) 100%/8rem 51% repeat-x,
+    radial-gradient(4.47rem at 50% calc(100% + 4.00rem), #0000 99%, #000 101%) 50% calc(100% - 2rem)/8rem calc(51% - 2rem) repeat-x;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+}
+
 .wavy-footer {
     background: #000000; /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #434343, #000000); /* Chrome 10-25, Safari 5.1-6 */
@@ -116,8 +262,8 @@
 }
 
 .wavy-testimonial {
-    background: #F7F8F8;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #ACBB78, #F7F8F8);  /* Chrome 10-25, Safari 5.1-6 */
+    background: #F7F8F8; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ACBB78, #F7F8F8); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #ACBB78, #F7F8F8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     --mask: radial-gradient(164.01px at 50% 230.00px, #000 99%, #0000 101%) calc(50% - 200px) 0/400px 51% repeat-x,
@@ -537,14 +683,3 @@
 }
 
 /*I will later convert them to tailwind css right in the components*/
-
-/*wavy FAQ section*/
-.wavy-faq-section {
-    --mask:
-            radial-gradient(4.47rem at 50% 6.00rem,#000 99%,#0000 101%) calc(50% - 4rem) 0/8rem 51% repeat-x,
-            radial-gradient(4.47rem at 50% -4rem,#0000 99%,#000 101%) 50% 2rem/8rem calc(51% - 2rem) repeat-x,
-            radial-gradient(4.47rem at 50% calc(100% - 6.00rem),#000 99%,#0000 101%) calc(50% - 4rem) 100%/8rem 51% repeat-x,
-            radial-gradient(4.47rem at 50% calc(100% + 4.00rem),#0000 99%,#000 101%) 50% calc(100% - 2rem)/8rem calc(51% - 2rem) repeat-x;
-    -webkit-mask: var(--mask);
-    mask: var(--mask);
-}

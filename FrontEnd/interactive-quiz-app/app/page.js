@@ -8,6 +8,7 @@ import Footer from "@/components/landing-page/Footer";
 import CustomCursor from "@/components/custom-cursor/CustomCursor";
 import QuizCarousel from "@/components/landing-page/QuizCarousel";
 import FAQComponent from "@/components/landing-page/FAQComponent";
+import ContentSection from "@/components/landing-page/ContentSection";
 
 export default function Home() {
     return (
@@ -15,12 +16,13 @@ export default function Home() {
             <CustomCursor/>
             <Navbar/>
             <Hero/>
-            <QuizCarousel/>
+            <ContentSection/>
             <Analytics/>
             <Newsletter/>
             <Cards/>
             <Testimonial/>
             <FAQComponent/>
+            <QuizCarousel/>
             <Footer/>
         </div>
     );
