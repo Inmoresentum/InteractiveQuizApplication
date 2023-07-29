@@ -7,6 +7,7 @@ export default function CustomCursor() {
     useEffect(() => {
         const cursor = document.getElementById("custom-cursor");
         const links = document.querySelectorAll("a");
+        const buttons = document.querySelectorAll("button");
         const cursorText = document.querySelector(".cursor-text");
 
         const onMouseMove = (event) => {
@@ -29,10 +30,25 @@ export default function CustomCursor() {
             cursorText.style.display = "none";
         }
 
+        const onMouseEnterButton = (event) => {
+            gsap.to(cursor, {scale: 3})
+            cursorText.innerHTML = "Click";
+            cursorText.style.display = "block";
+        }
+
+        const onMouseLeaveButton = () => {
+            gsap.to(cursor, {scale: 1})
+            cursorText.style.display = "none";
+        }
+
         document.addEventListener("mousemove", onMouseMove);
-        links.forEach((links) => {
-            links.addEventListener("mouseenter", onMouseEnterLink);
-            links.addEventListener("mouseleave", onMouseLeaveLink);
+        links.forEach((link) => {
+            link.addEventListener("mouseenter", onMouseEnterLink);
+            link.addEventListener("mouseleave", onMouseLeaveLink);
+        });
+        buttons.forEach((button) => {
+            button.addEventListener("mouseenter", onMouseEnterButton);
+            button.addEventListener("mouseleave", onMouseLeaveButton);
         });
     }, []);
     return (
