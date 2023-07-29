@@ -1,7 +1,6 @@
 "use client"
 import React, {useState} from "react";
 import Link from "next/link";
-import {No} from "flowbite-react"
 
 export default function Accordion() {
     return (
@@ -67,16 +66,16 @@ export default function Accordion() {
                     </div>
                 </div>
                 <div className="flex justify-center content-center">
-                <Link href={"/"}
-                      className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500
+                    <Link href={"/"}
+                          className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500
                        hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300
                         dark:focus:ring-lime-800 shadow-2xl shadow-lime-500/50 dark:shadow-lg
                          dark:shadow-lime-800/80 font-medium font-sans rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2
                          md:text-2xl md:hover:translate-x-1.5 duration-300 ease-linear
                          "
-                >
-                    VIEW ALL THE FAQS
-                </Link>
+                    >
+                        VIEW ALL THE FAQS
+                    </Link>
                 </div>
             </div>
 
