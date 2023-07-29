@@ -24,7 +24,7 @@ export default function CustomCursor() {
             }
         }
 
-        const onMouseLeaveLink = (event) => {
+        const onMouseLeaveLink = () => {
             gsap.to(cursor, {scale: 1})
             cursorText.style.display = "none";
         }
