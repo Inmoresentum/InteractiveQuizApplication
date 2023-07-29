@@ -537,3 +537,14 @@
 }
 
 /*I will later convert them to tailwind css right in the components*/
+
+/*wavy FAQ section*/
+.wavy-faq-section {
+    --mask:
+            radial-gradient(4.47rem at 50% 6.00rem,#000 99%,#0000 101%) calc(50% - 4rem) 0/8rem 51% repeat-x,
+            radial-gradient(4.47rem at 50% -4rem,#0000 99%,#000 101%) 50% 2rem/8rem calc(51% - 2rem) repeat-x,
+            radial-gradient(4.47rem at 50% calc(100% - 6.00rem),#000 99%,#0000 101%) calc(50% - 4rem) 100%/8rem 51% repeat-x,
+            radial-gradient(4.47rem at 50% calc(100% + 4.00rem),#0000 99%,#000 101%) 50% calc(100% - 2rem)/8rem calc(51% - 2rem) repeat-x;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+}
