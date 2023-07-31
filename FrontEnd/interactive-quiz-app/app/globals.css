@@ -511,7 +511,7 @@
 /* Quiz Container part */
 .react-quiz-container {
     margin: 20px;
-    width: 500px
+    max-width: 750px
 }
 
 .react-quiz-container .startQuizWrapper {

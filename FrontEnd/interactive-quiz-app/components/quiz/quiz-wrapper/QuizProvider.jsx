@@ -10,14 +10,14 @@ export default function QuizProvider({quiz}) {
     return (
         <Quiz
             quiz={quiz}
-            shuffle
+            shuffle={true}
             // showInstantFeedback
             // continueTillCorrect
             onComplete={setQuizResult}
             onQuestionSubmit={(obj) => console.log("user question results:", obj)}
             disableSynopsis={false}
-            // revealAnswerOnSubmit
-            allowNavigation
+            // revealAnswerOnSubmit={true}
+            // allowNavigation={true}
         />
     );
 }

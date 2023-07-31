@@ -2,9 +2,10 @@ import React, {
     useState, useEffect, useCallback, Fragment,
 } from "react";
 import QuizResultFilter from "../Core-Compoents/QuizResultFilter";
-import { checkAnswer, selectAnswer, rawMarkup } from "../Core-Compoents/helper";
+import {checkAnswer, selectAnswer, rawMarkup} from "../Core-Compoents/helper";
 import InstantFeedback from "../Core-Compoents/InstantFeedback"
 import Explanation from "../Core-Compoents/Explanation";
+import ShowResultCard from "@/components/quiz/ShowResult/ShowResultCard";
 
 const Core = function ({
                            questions, appLocale, showDefaultResult, onComplete, customResultPage,
@@ -39,7 +40,7 @@ const Core = function ({
     }, [currentQuestionIndex]);
 
     useEffect(() => {
-        const { answerSelectionType } = question;
+        const {answerSelectionType} = question;
         // Default single to avoid code breaking due to automatic version upgrade
         setAnswerSelectionType(answerSelectionType || "single");
     }, [question, currentQuestionIndex]);
@@ -111,8 +112,8 @@ const Core = function ({
     };
 
     const renderAnswerInResult = (question, userInputIndex) => {
-        const { answers, correctAnswer, questionType } = question;
-        let { answerSelectionType } = question;
+        const {answers, correctAnswer, questionType} = question;
+        let {answerSelectionType} = question;
         let answerBtnCorrectClassName;
         let answerBtnIncorrectClassName;
 
@@ -137,7 +138,7 @@ const Core = function ({
                         className={`answerBtn btn ${answerBtnCorrectClassName}${answerBtnIncorrectClassName}`}
                     >
                         {questionType === "text" && <span>{answer}</span>}
-                        {questionType === "photo" && <img src={answer} alt="image" />}
+                        {questionType === "photo" && <img src={answer} alt="image"/>}
                     </button>
                 </div>
             );
@@ -166,13 +167,13 @@ const Core = function ({
 
             return (
                 <div className="result-answer-wrapper" key={index + 1}>
-                    <h3 dangerouslySetInnerHTML={rawMarkup(`Q${question.questionIndex}: ${question.question}`)} />
-                    {question.questionPic && <img src={question.questionPic} alt="image" />}
+                    <h3 dangerouslySetInnerHTML={rawMarkup(`Q${question.questionIndex}: ${question.question}`)}/>
+                    {question.questionPic && <img src={question.questionPic} alt="image"/>}
                     {renderTags(answerSelectionType, question.correctAnswer.length, question.segment)}
                     <div className="result-answer">
                         {renderAnswerInResult(question, userInputIndex)}
                     </div>
-                    <Explanation question={question} isResultPage />
+                    <Explanation question={question} isResultPage/>
                 </div>
             );
         });
@@ -182,7 +183,7 @@ const Core = function ({
         const {
             answers, correctAnswer, questionType, questionIndex,
         } = question;
-        let { answerSelectionType } = question;
+        let {answerSelectionType} = question;
         const onClickAnswer = (index) => checkAnswer(index + 1, correctAnswer, answerSelectionType, {
             userInput,
             userAttempt,
@@ -237,7 +238,7 @@ const Core = function ({
                             onClick={() => (revealAnswerOnSubmit ? onSelectAnswer(index) : onClickAnswer(index))}
                         >
                             {questionType === "text" && <span>{answer}</span>}
-                            {questionType === "photo" && <img src={answer} alt="image" />}
+                            {questionType === "photo" && <img src={answer} alt="image"/>}
                         </button>
                     )
                     : (
@@ -247,7 +248,7 @@ const Core = function ({
                             className={`answerBtn btn ${(allowNavigation && checkSelectedAnswer(index + 1)) ? "selected" : null}`}
                         >
                             {questionType === "text" && answer}
-                            {questionType === "photo" && <img src={answer} alt="image" />}
+                            {questionType === "photo" && <img src={answer} alt="image"/>}
                         </button>
                     )}
             </Fragment>
@@ -276,25 +277,28 @@ const Core = function ({
     };
 
     const renderResult = () => (
-        <div className="card-body">
-            <h2>
-                {appLocale.resultPageHeaderText
-                    .replace("<correctIndexLength>", correct.length)
-                    .replace("<questionLength>", questions.length)}
-            </h2>
-            <h2>
-                {appLocale.resultPagePoint
-                    .replace("<correctPoints>", correctPoints)
-                    .replace("<totalPoints>", totalPoints)}
-            </h2>
-            <br />
-            <QuizResultFilter
-                filteredValue={filteredValue}
-                handleChange={handleChange}
-                appLocale={appLocale}
-            />
-            {renderQuizResultQuestions()}
-        </div>
+        <>
+            <ShowResultCard/>
+            <div className="card-body">
+                <h2>
+                    {appLocale.resultPageHeaderText
+                        .replace("<correctIndexLength>", correct.length)
+                        .replace("<questionLength>", questions.length)}
+                </h2>
+                <h2>
+                    {appLocale.resultPagePoint
+                        .replace("<correctPoints>", correctPoints)
+                        .replace("<totalPoints>", totalPoints)}
+                </h2>
+                <br/>
+                <QuizResultFilter
+                    filteredValue={filteredValue}
+                    handleChange={handleChange}
+                    appLocale={appLocale}
+                />
+                {renderQuizResultQuestions()}
+            </div>
+        </>
     );
     return (
         <div className="questionWrapper">
@@ -317,8 +321,8 @@ const Core = function ({
                             {currentQuestionIndex + 1}
                             :
                         </div>
-                        <h3 dangerouslySetInnerHTML={rawMarkup(question && question.question)} />
-                        {question && question.questionPic && <img src={question.questionPic} alt="image" />}
+                        <h3 dangerouslySetInnerHTML={rawMarkup(question && question.question)}/>
+                        {question && question.questionPic && <img src={question.questionPic} alt="image"/>}
                         {question && renderTags(answerSelectionTypeState, question.correctAnswer.length, question.segment)}
                         {question && renderAnswers(question, buttons)}
                         {(showNextQuestionButton || allowNavigation)
