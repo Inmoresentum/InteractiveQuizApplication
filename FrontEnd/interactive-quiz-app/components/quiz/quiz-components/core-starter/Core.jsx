@@ -278,7 +278,7 @@ const Core = function ({
 
     const renderResult = () => (
         <>
-            <ShowResultCard/>
+            <ShowResultCard QuestionSummary={questionSummary}/>
             <div className="card-body">
                 <h2>
                     {appLocale.resultPageHeaderText

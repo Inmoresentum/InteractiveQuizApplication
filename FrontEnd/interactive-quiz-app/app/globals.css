@@ -741,9 +741,10 @@
 
 @media (min-width: 600px) {
     .show-result-main-container {
-        min-height: 100vh;
+        min-height: 60vh;
         display: grid;
         place-items: center;
+        padding: 2rem;
     }
 }
 

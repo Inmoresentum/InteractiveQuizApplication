@@ -1,5 +1,7 @@
 "use client"
-export default function ShowResultCard() {
+export default function ShowResultCard({QuestionSummary}) {
+    console.log("From ShowResultCard");
+    console.log(QuestionSummary);
     return (
         <main className="show-result-main-container">
             <div className="result-summary">
@@ -7,7 +9,11 @@ export default function ShowResultCard() {
                      data-spacing="large">
 
                     <h1 className="section-title">Your Result</h1>
-                    <p className="result-score"><span>76</span> of 100</p>
+                    <p className="result-score"><span>
+                        {QuestionSummary?.correctPoints != null ? QuestionSummary.correctPoints : "Error"}
+                    </span>
+                        {QuestionSummary?.totalPoints != null ? QuestionSummary.totalPoints : "Error"}
+                    </p>
 
                     <div className="grid-flow">
                         <p className="result-rank">Great</p>
