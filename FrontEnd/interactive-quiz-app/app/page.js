@@ -6,7 +6,6 @@ import Testimonial from "@/components/landing-page/Testimonial";
 import Navbar from "@/components/landing-page/Navbar";
 import Footer from "@/components/landing-page/Footer";
 import CustomCursor from "@/components/custom-cursor/CustomCursor";
-import QuizCarousel from "@/components/landing-page/QuizCarousel";
 import FAQComponent from "@/components/landing-page/FAQComponent";
 import ContentSection from "@/components/landing-page/ContentSection";
 
@@ -22,7 +21,6 @@ export default function Home() {
             <Cards/>
             <Testimonial/>
             <FAQComponent/>
-            <QuizCarousel/>
             <Footer/>
         </div>
     );
