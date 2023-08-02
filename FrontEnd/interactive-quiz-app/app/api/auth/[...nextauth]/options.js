@@ -58,9 +58,13 @@ export const options = {
     ],
 
     callbacks: {
-        async jwt({token, user}) {
+        async jwt({token, user, trigger, session}) {
+            if (trigger === "update") {
+                return {...token, ...session.user};
+            }
             return {...token, ...user};
         },
+
         async session({session, token, user}) {
             // Send properties to the client, like an access_token from a provider.
             session.user = token;
