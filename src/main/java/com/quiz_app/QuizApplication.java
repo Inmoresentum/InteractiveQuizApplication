@@ -117,7 +117,7 @@ public class QuizApplication {
                         .firstname("Admin")
                         .lastname("Admin")
                         .email("admin@mail.com")
-                        .password("password")
+                        .password("admin")
                         .role(ADMIN)
                         .accountCreatedAt(LocalDateTime.now())
                         .agreesWithTermsAndConditions(true)
@@ -125,6 +125,19 @@ public class QuizApplication {
                 service.register(admin);
             }
 
+            if (!userRepository.existsByEmail("user@mail.com")) {
+                var admin = RegisterRequest.builder()
+                        .username("user")
+                        .firstname("user")
+                        .lastname("User")
+                        .email("user@mail.com")
+                        .password("admin")
+                        .role(USER)
+                        .accountCreatedAt(LocalDateTime.now())
+                        .agreesWithTermsAndConditions(true)
+                        .build();
+                service.register(admin);
+            }
             if (quizRepository.count() == 0) {
                 Question firstQuestion = Question.builder()
                         .question("How can you access the state of a component" +

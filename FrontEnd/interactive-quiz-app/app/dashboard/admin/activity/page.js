@@ -4,12 +4,12 @@ import BarChar from "@/components/Dashboard/Admin/activity/RevenueCharts";
 import RecentlyAddedQuizzes from "@/components/Dashboard/Admin/activity/RecentlyAddedQuizzes";
 
 export default function AdminDashBoard() {
-    return(
+    return (
         <>
-            <main className='bg-gray-100 min-h-screen'>
-                <Header />
+            <main className="bg-gray-100 min-h-screen">
+                <Header/>
                 <TopCard/>
-                <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
+                <div className="p-4 grid md:grid-cols-3 grid-cols-1 gap-4">
                     <BarChar/>
                     <RecentlyAddedQuizzes/>
                 </div>
