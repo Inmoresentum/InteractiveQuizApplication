@@ -3,6 +3,10 @@ import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import {Avatar} from "@mui/material";
 import {BsCheck2All} from "react-icons/bs";
 import {ImCross} from "react-icons/im";
+import {useSession} from "next-auth/react";
+import {useState} from "react";
+import {useQuery} from "@tanstack/react-query";
+import axios from "axios";
 
 
 const columns = [
@@ -49,26 +53,74 @@ const columns = [
     {
         field: "agreesWithTermsOfServicesAndPrivacyAndPolicy",
         headerName: "Agrees with TOS and Privacy Policy",
-        width: 300,
+        width: 200,
         renderCell: (params) => {
             return params.value ? <BsCheck2All/> : <ImCross/>;
         }
     }
 ];
-export default function DataTable() {
+
+const fetchUsers = async (page, accessToken, refreshToken) => {
+    try {
+        const response = await axios.get(`http://localhost:8080/api/v1/admin/control/users?page=${page}`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.log("I am trying to check the status");
+        console.log(error.response.status);
+        if (error.response.status === 403) {
+            // access token has expired, acquire new access token using refresh token
+            const response = await axios.post("http://localhost:8080/api/v1/auth/refresh-token", null, {
+                headers: {
+                    Authorization: `Bearer ${refreshToken}`,
+                },
+            });
+            console.log("Trying to print the response data");
+            console.log(response.data);
+            const newAccessToken = response.data.access_token;
+            try {
+                const newResponse = await axios.get(`http://localhost:8080/api/v1/admin/control/users?page=${page}`, {
+                    headers: {Authorization: `Bearer ${newAccessToken}`,
+                    },
+                });
+                return newResponse.data;
+            } catch (newError) {
+                return newError.response;
+            }
+        }
+        return error.response;
+    }
+};
+
+export default function DataTable({authInfo}) {
+    const session = useSession();
+    const [page, setPage] = useState(0);
+    const {data, isLoading, isError, error} = useQuery(
+        ["users", page],
+        () => fetchUsers(page, authInfo.access_token, authInfo.refresh_token),
+    );
+
+    if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div>Error: {error.message}</div>;
+
+    console.log(data);
+
     return (
         <>
-            <div className="m-5 md:m-10 shadow-2xl rounded">
-                <h1 className="font-sans font-bold uppercase p-1 ">
+            <div className="">
+                <h1 className="uppercase">
                     All Users
                 </h1>
-                <DataGrid className="p-2.5"
-                          rows={rows}
+                <DataGrid className=""
+                          rows={data.content} //here you will have to make changes
                           columns={columns}
                           initialState={{
                               pagination: {
                                   paginationModel: {
-                                      pageSize: 5,
+                                      pageSize: 15,
                                   },
                               },
                           }}
