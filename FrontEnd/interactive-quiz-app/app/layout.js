@@ -3,6 +3,7 @@ import {Inter} from "next/font/google"
 import ToastWrapper from "@/components/Toastify/ToastWrapper";
 import CookieConsentWrapper from "@/components/cookie-consent/CookieConsentWrapper";
 import ReactQueryWrapper from "@/components/ReactQueryWrapper/ReactQueryWrapper";
+import NextAuthClientWrapper from "@/components/auth/NextAuthProviderWrapper/NextAuthProviderClientWrapper";
 
 const inter = Inter({subsets: ["latin"]})
 
@@ -27,11 +28,13 @@ export default function RootLayout({children}) {
         <html lang="en">
         <body className={inter.className}>
         <>
-            <ReactQueryWrapper>
-                {children}
-                <ToastWrapper/>
-                <CookieConsentWrapper/>
-            </ReactQueryWrapper>
+            <NextAuthClientWrapper>
+                <ReactQueryWrapper>
+                    {children}
+                    <ToastWrapper/>
+                    <CookieConsentWrapper/>
+                </ReactQueryWrapper>
+            </NextAuthClientWrapper>
         </>
         </body>
         </html>

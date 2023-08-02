@@ -111,6 +111,19 @@ public class QuizApplication {
                         .build();
                 service.register(user);
             }
+            if (!userRepository.existsByEmail("admin@mail.com")) {
+                var admin = RegisterRequest.builder()
+                        .username("admin")
+                        .firstname("Admin")
+                        .lastname("Admin")
+                        .email("admin@mail.com")
+                        .password("password")
+                        .role(ADMIN)
+                        .accountCreatedAt(LocalDateTime.now())
+                        .agreesWithTermsAndConditions(true)
+                        .build();
+                service.register(admin);
+            }
 
             if (quizRepository.count() == 0) {
                 Question firstQuestion = Question.builder()

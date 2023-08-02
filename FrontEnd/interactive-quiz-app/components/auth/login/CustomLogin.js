@@ -8,7 +8,7 @@ import Image from "next/image";
 import quizAppLogo from "@/public/quiz-app-logo.png";
 import reactLogo from "@/public/react.svg";
 import {RiLockPasswordLine, RiMailLine} from "react-icons/ri";
-import {redirect} from "next/navigation";
+import {useRouter, usePathname} from "next/navigation";
 import {toast} from "react-toastify";
 
 export default function CustomLogin() {
@@ -18,6 +18,8 @@ export default function CustomLogin() {
     const [errorMessage, setErrorMessage] = useState(null);
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
+    const pathName = usePathname();
+    const router = useRouter();
 
     const handleChangeEmail = (e)=> {
         setEmail(e.target.value.trim())
@@ -48,7 +50,7 @@ export default function CustomLogin() {
             password,
             redirect: false,
         });
-        console.log(result);
+        console.log(result.url);
         // setCallbackUrl(result.url);
         if (result.error) {
             setErrorMessage(result.error.replaceAll("\"", ""));
@@ -59,11 +61,15 @@ export default function CustomLogin() {
             });
             return;
         }
-        if (result.url) {
-            redirect(result.url);
+        console.log(result.url.toString())
+
+        if (result.url.toString() === pathName) {
+            console.log(result)
+            console.log("I should not be here")
+            router.push(result.url)
         }
         else {
-            redirect("/");
+            router.push("/");
         }
     };
 
