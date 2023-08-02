@@ -16,7 +16,7 @@ public class AdminService {
     private final ModelMapper modelMapper;
 
     public Page<UserDto> getUsers(int page) {
-        int pageSize = 350;
+        int pageSize = 100;
         Pageable pageable = PageRequest.of(page, pageSize);
         var listOfUsers = userRepository.findAll(pageable)
                 .map((user) -> modelMapper.map(user, UserDto.class));

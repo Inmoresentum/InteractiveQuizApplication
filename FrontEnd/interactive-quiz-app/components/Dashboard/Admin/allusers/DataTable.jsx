@@ -33,7 +33,7 @@ const columns = [
     {
         field: "accountVerified",
         headerName: "Account Verified?",
-        width: 180,
+        width: 130,
         renderCell: (params) => {
             return params.value ? <BsCheck2All/> : <ImCross/>;
         },
@@ -41,19 +41,19 @@ const columns = [
     {
         field: "deactivatedByAdmin",
         headerName: "Deactivated by Admin?",
-        width: 200,
+        width: 130,
         renderCell: (params) => {
             return params.value ? <BsCheck2All/> : <ImCross/>;
         },
     },
     {field: "aboutYourSelf", headerName: "About Yourself", width: 200},
-    {field: "address", headerName: "Address", width: 200},
+    {field: "address", headerName: "Address", width: 130},
     {field: "gender", headerName: "Gender", width: 130},
-    {field: "accountCreated", headerName: "Account Created Date", width: 200},
+    {field: "accountCreated", headerName: "Account Created Date", width: 150},
     {
         field: "agreesWithTermsOfServicesAndPrivacyAndPolicy",
         headerName: "Agrees with TOS and Privacy Policy",
-        width: 200,
+        width: 180,
         renderCell: (params) => {
             return params.value ? <BsCheck2All/> : <ImCross/>;
         }
@@ -83,7 +83,8 @@ const fetchUsers = async (page, accessToken, refreshToken) => {
             const newAccessToken = response.data.access_token;
             try {
                 const newResponse = await axios.get(`http://localhost:8080/api/v1/admin/control/users?page=${page}`, {
-                    headers: {Authorization: `Bearer ${newAccessToken}`,
+                    headers: {
+                        Authorization: `Bearer ${newAccessToken}`,
                     },
                 });
                 return newResponse.data;
@@ -96,7 +97,6 @@ const fetchUsers = async (page, accessToken, refreshToken) => {
 };
 
 export default function DataTable({authInfo}) {
-    const session = useSession();
     const [page, setPage] = useState(0);
     const {data, isLoading, isError, error} = useQuery(
         ["users", page],
@@ -110,31 +110,32 @@ export default function DataTable({authInfo}) {
 
     return (
         <>
-            <div className="">
-                <h1 className="uppercase">
-                    All Users
-                </h1>
-                <DataGrid className=""
-                          rows={data.content} //here you will have to make changes
-                          columns={columns}
-                          initialState={{
-                              pagination: {
-                                  paginationModel: {
-                                      pageSize: 15,
+            <div className="max-w-[1280px] grid">
+                <div className="p-16">
+                    <h1 className="uppercase font-bold text-red-400 text-3xl p-2 flex items-center justify-center">
+                        All Users
+                    </h1>
+                    <DataGrid className=""
+                              rows={data.content} //here you will have to make changes
+                              columns={columns}
+                              pageSizeOptions={[100]}
+                              checkboxSelection={true}
+                              disableRowSelectionOnClick={true}
+                              pagination={true}
+                              rowCount={data.totalElements}
+                              loading={isLoading}
+                              paginationMode="server"
+                              rowsPerPageOptions={[10, 30, 50, 70, 100]}
+                              onPaginationModelChange={newPage => setPage(newPage.page)}
+                              slots={{toolbar: GridToolbar}}
+                              slotProps={{
+                                  toolbar: {
+                                      showQuickFilter: true,
+                                      quickFilterProps: {debounceMs: 500},
                                   },
-                              },
-                          }}
-                          pageSizeOptions={[5]}
-                          checkboxSelection={true}
-                          disableRowSelectionOnClick={true}
-                          slots={{toolbar: GridToolbar}}
-                          slotProps={{
-                              toolbar: {
-                                  showQuickFilter: true,
-                                  quickFilterProps: {debounceMs: 500},
-                              },
-                          }}
-                />
+                              }}
+                    />
+                </div>
             </div>
         </>
     );
