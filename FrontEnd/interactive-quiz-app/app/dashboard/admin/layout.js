@@ -1,4 +1,4 @@
-import Navbar from "@/components/Dashboard/Admin/Navbar";
+import Navbar from "@/components/Dashboard/Admin/activity/Navbar";
 
 export const metadata = {
     title: "Dashboard",

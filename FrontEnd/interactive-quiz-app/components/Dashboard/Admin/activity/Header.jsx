@@ -1,6 +1,6 @@
 import Image from "next/image";
-import AppLog from "../../../public/quiz-app-logo.png"
-import NextLog from "../../../public/next.svg"
+import AppLog from "../../../../public/quiz-app-logo.png"
+import NextLog from "../../../../public/next.svg"
 import Link from "next/link";
 
 export default function Header() {

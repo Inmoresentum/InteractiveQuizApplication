@@ -1,7 +1,7 @@
-import Header from "@/components/Dashboard/Admin/Header";
-import TopCard from "@/components/Dashboard/Admin/Topcard";
-import BarChar from "@/components/Dashboard/Admin/RevenueCharts";
-import RecentlyAddedQuizzes from "@/components/Dashboard/Admin/RecentlyAddedQuizzes";
+import Header from "@/components/Dashboard/Admin/activity/Header";
+import TopCard from "@/components/Dashboard/Admin/activity/Topcard";
+import BarChar from "@/components/Dashboard/Admin/activity/RevenueCharts";
+import RecentlyAddedQuizzes from "@/components/Dashboard/Admin/activity/RecentlyAddedQuizzes";
 
 export default function AdminDashBoard() {
     return(

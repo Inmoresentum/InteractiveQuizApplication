@@ -962,3 +962,8 @@
 .summary-score span {
   color: var(--clr-neutral-700);
 }
+
+/* MUI DATA TABLE */
+.MuiDataGrid-toolbarContainer{
+  flex-direction: row-reverse;
+}
