@@ -21,7 +21,7 @@ export default function VerifyAccountWrapper({verificationResult}) {
                             </span>
                         <span className="flex content-center justify-center ">
                         <Link href={"/auth/login"} className="underline text-green-400
-                         hover:text-cyan-500 duration-300 ease-linear">
+                         hover:text-cyan-500 duration-300 ease-linear" prefetch={false}>
                             Login
                         </Link>
                             </span>
