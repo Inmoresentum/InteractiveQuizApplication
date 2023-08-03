@@ -4,8 +4,7 @@ import {Avatar} from "@mui/material";
 import {BsCheck2All} from "react-icons/bs";
 import {ImCross} from "react-icons/im";
 import {useState} from "react";
-import {useQuery} from "@tanstack/react-query";
-import axios from "axios";
+import useFetchAllAdmin from "@/components/hooks/FetchAllUsers";
 
 
 const columns = [
@@ -59,51 +58,13 @@ const columns = [
     }
 ];
 
-const fetchUsers = async (page, accessToken, refreshToken) => {
-    try {
-        const response = await axios.get(`http://localhost:8080/api/v1/admin/control/users?page=${page}`, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-        });
-        return response.data;
-    } catch (error) {
-        console.log("I am trying to check the status");
-        console.log(error.response.status);
-        if (error.response.status === 403) {
-            // access token has expired, acquire new access token using refresh token
-            const response = await axios.post("http://localhost:8080/api/v1/auth/refresh-token", null, {
-                headers: {
-                    Authorization: `Bearer ${refreshToken}`,
-                },
-            });
-            console.log("Trying to print the response data");
-            console.log(response.data);
-            const newAccessToken = response.data.access_token;
-            try {
-                const newResponse = await axios.get(`http://localhost:8080/api/v1/admin/control/users?page=${page}`, {
-                    headers: {
-                        Authorization: `Bearer ${newAccessToken}`,
-                    },
-                });
-                return newResponse.data;
-            } catch (newError) {
-                return newError.response;
-            }
-        }
-        return error.response;
-    }
-};
-
 export default function DataTable({authInfo}) {
     const [paginationModel, setPaginationModel] = useState({
         page: 0,
         pageSize: 100,
     });
-    const {data, isLoading, isError, error} = useQuery(
-        ["users", paginationModel],
-        () => fetchUsers(paginationModel.page, authInfo.access_token, authInfo.refresh_token),
-    );
+    const {data, isLoading, isError, error} = useFetchAllAdmin(paginationModel.page,
+        authInfo.access_token, authInfo.refresh_token);
 
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error: {error.message}</div>;
