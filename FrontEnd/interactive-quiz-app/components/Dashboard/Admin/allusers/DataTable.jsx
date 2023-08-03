@@ -5,10 +5,10 @@ import {BsCheck2All} from "react-icons/bs";
 import {ImCross} from "react-icons/im";
 import {useState} from "react";
 import useFetchAllAdmin from "@/components/hooks/FetchAllUsers";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import TextField from "@mui/material/TextField";
+import {Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger} from "@/components/ui/dialog";
+import {Button} from "@/components/ui/button";
+import {Label} from "@/components/ui/label";
+import {Input} from "@/components/ui/input";
 
 const columns = [
     {field: "id", headerName: "ID", width: 70},
@@ -77,7 +77,6 @@ export default function DataTable({authInfo}) {
     console.log(data);
 
 
-
     const handleRowDoubleClick = (params) => {
         setSelectedRow(params.row);
         setOpen(true);
@@ -89,50 +88,60 @@ export default function DataTable({authInfo}) {
 
     return (
         <>
-            <div className="max-w-[1280px] flex">
-                <div className="p-16">
-                    <h1 className="uppercase font-bold text-red-400 text-3xl p-2 flex items-center justify-center">
-                        All Users
-                    </h1>
-                    <DataGrid
-                        rows={data.content} //here you will have to make changes
-                        columns={columns}
-                        pageSizeOptions={[100]}
-                        checkboxSelection={true}
-                        disableRowSelectionOnClick={true}
-                        onRowDoubleClick={handleRowDoubleClick}
-                        pagination={true}
-                        rowCount={data.totalElements}
-                        loading={isLoading}
-                        paginationModel={paginationModel}
-                        paginationMode="server"
-                        rowsPerPageOptions={[100]}
-                        onPaginationModelChange={setPaginationModel}
-                        slots={{toolbar: GridToolbar}}
-                        slotProps={{
-                            toolbar: {
-                                showQuickFilter: true,
-                                quickFilterProps: {debounceMs: 500},
-                            },
-                        }}
-                    />
-                </div>
-            </div>
-            <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Selected Row</DialogTitle>
-                <DialogContent>
-                    {selectedRow && columns.map((column) => (
-                        <TextField
-                            key={column.field}
-                            label={column.headerName}
-                            defaultValue={selectedRow[column.field]}
-                            fullWidth
-                            margin="dense"
-                            InputProps={{
-                                readOnly: true,
+            <Dialog open={open} onOpenChange={handleClose}>
+                <div className="max-w-[1280px] flex">
+                    <div className="p-16">
+                        <h1 className="uppercase font-bold text-red-400 text-3xl p-2 flex items-center justify-center">
+                            All Users
+                        </h1>
+                        <DataGrid
+                            rows={data.content} //here you will have to make changes
+                            columns={columns}
+                            pageSizeOptions={[100]}
+                            checkboxSelection={true}
+                            disableRowSelectionOnClick={true}
+                            onRowDoubleClick={handleRowDoubleClick}
+                            pagination={true}
+                            rowCount={data.totalElements}
+                            loading={isLoading}
+                            paginationModel={paginationModel}
+                            paginationMode="server"
+                            rowsPerPageOptions={[100]}
+                            onPaginationModelChange={setPaginationModel}
+                            slots={{toolbar: GridToolbar}}
+                            slotProps={{
+                                toolbar: {
+                                    showQuickFilter: true,
+                                    quickFilterProps: {debounceMs: 500},
+                                },
                             }}
                         />
-                    ))}
+                    </div>
+                </div>
+                <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                        <DialogTitle>Make Changes To This User</DialogTitle>
+                        <DialogDescription>
+                            Make changes to user profile. Click save when you're done.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="grid gap-4 py-4">
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="name" className="text-right">
+                                Name
+                            </Label>
+                            <Input id="name" value="Pedro Duarte" className="col-span-3"/>
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="username" className="text-right">
+                                Username
+                            </Label>
+                            <Input id="username" value="@peduarte" className="col-span-3"/>
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <Button type="submit">Save changes</Button>
+                    </DialogFooter>
                 </DialogContent>
             </Dialog>
         </>
