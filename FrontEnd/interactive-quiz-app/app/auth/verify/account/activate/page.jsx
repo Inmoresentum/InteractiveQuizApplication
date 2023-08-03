@@ -4,7 +4,7 @@ import VerifyAccountWrapper from "@/components/auth/verify/account/VerifyAccount
 async function verifyAccount(token) {
     console.log(process.env.BACK_END_BASE_URL);
     const url = `${process.env.BACK_END_BASE_URL
-        ? process.env.BACK_END_BASE_URL : "http:localhost:8080"}/api/v1/auth/account/verify?token=${token}`;
+        ? process.env.BACK_END_BASE_URL : "http://localhost:8080"}/api/v1/auth/account/verify?token=${token}`;
     console.log(url);
 
     try {
