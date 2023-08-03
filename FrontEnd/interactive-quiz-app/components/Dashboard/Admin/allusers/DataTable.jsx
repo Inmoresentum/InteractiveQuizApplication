@@ -5,7 +5,10 @@ import {BsCheck2All} from "react-icons/bs";
 import {ImCross} from "react-icons/im";
 import {useState} from "react";
 import useFetchAllAdmin from "@/components/hooks/FetchAllUsers";
-
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import TextField from "@mui/material/TextField";
 
 const columns = [
     {field: "id", headerName: "ID", width: 70},
@@ -65,11 +68,24 @@ export default function DataTable({authInfo}) {
     });
     const {data, isLoading, isError, error} = useFetchAllAdmin(paginationModel.page,
         authInfo.access_token, authInfo.refresh_token);
+    const [open, setOpen] = useState(false);
+    const [selectedRow, setSelectedRow] = useState(null);
 
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error: {error.message}</div>;
 
     console.log(data);
+
+
+
+    const handleRowDoubleClick = (params) => {
+        setSelectedRow(params.row);
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <>
@@ -84,6 +100,7 @@ export default function DataTable({authInfo}) {
                         pageSizeOptions={[100]}
                         checkboxSelection={true}
                         disableRowSelectionOnClick={true}
+                        onRowDoubleClick={handleRowDoubleClick}
                         pagination={true}
                         rowCount={data.totalElements}
                         loading={isLoading}
@@ -101,6 +118,23 @@ export default function DataTable({authInfo}) {
                     />
                 </div>
             </div>
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Selected Row</DialogTitle>
+                <DialogContent>
+                    {selectedRow && columns.map((column) => (
+                        <TextField
+                            key={column.field}
+                            label={column.headerName}
+                            defaultValue={selectedRow[column.field]}
+                            fullWidth
+                            margin="dense"
+                            InputProps={{
+                                readOnly: true,
+                            }}
+                        />
+                    ))}
+                </DialogContent>
+            </Dialog>
         </>
     );
 }
