@@ -53,7 +53,7 @@ public class QuizApplication {
                 // Fixed issue for the lower end systems meaning
                 // CPU with lower number of threads.
                 ExecutorService executor = Executors
-                        .newFixedThreadPool(Math.min(22, Runtime.getRuntime().availableProcessors()));
+                        .newFixedThreadPool(Math.min(22, Runtime.getRuntime().availableProcessors() - 1));
 
                 List<CompletableFuture<Void>> futures = new ArrayList<>();
                 for (int i = 0; i < 50; i++) {
