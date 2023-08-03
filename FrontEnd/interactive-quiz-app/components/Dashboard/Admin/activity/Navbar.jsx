@@ -13,7 +13,7 @@ import {PiPencilFill} from "react-icons/pi";
 export default function Navbar() {
     const pathName = usePathname();
 
-    return <div className="fixed w-20 h-screen p-4 bg-white border-r-[1px] flex flex-col justify-between">
+    return <div className="fixed w-20 z-10 h-screen p-4 bg-white border-r-[1px] flex flex-col justify-between">
         <div className="flex flex-col items-center">
             <Link href={"/dashboard/admin/activity"}>
                 <div className={ pathName ==="/dashboard/admin/activity" ? "bg-purple-800 text-white p-3 rounded-lg" +
