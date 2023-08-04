@@ -8,10 +8,15 @@ import Footer from "@/components/landing-page/Footer";
 import CustomCursor from "@/components/custom-cursor/CustomCursor";
 import FAQComponent from "@/components/landing-page/FAQComponent";
 import ContentSection from "@/components/landing-page/ContentSection";
+import axios from "axios";
 
-export default function Home() {
+export default async function Home() {
+    // Fetching the FAQ data
+    const response = await axios.get("http://localhost:8080/api/v1/faq/common");
+    console.log("Printing the response");
+    console.log(response.data);
     return (
-        <div className="bg-[#000300]">
+        <div className="bg-[#000500]">
             <CustomCursor/>
             <Navbar/>
             <Hero/>
@@ -20,7 +25,7 @@ export default function Home() {
             <Newsletter/>
             <Cards/>
             <Testimonial/>
-            <FAQComponent/>
+            <FAQComponent faqs={response.data}/>
             <Footer/>
         </div>
     );
