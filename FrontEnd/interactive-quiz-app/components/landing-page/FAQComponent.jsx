@@ -2,7 +2,10 @@
 import React, {useState} from "react";
 import Link from "next/link";
 
-export default function Accordion() {
+export default function Accordion({faqs, showSupportButton}) {
+    const half = Math.ceil(faqs.length / 2);
+    const firstHalf = faqs.slice(0, half);
+    const secondHalf = faqs.slice(half);
     return (
         <section className="relative z-20 overflow-hidden bg-white pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] wavy-faq-section">
             <div className="container mx-auto">
@@ -25,57 +28,48 @@ export default function Accordion() {
 
                 <div className="-mx-4 flex flex-wrap">
                     <div className="w-full px-4 lg:w-1/2">
-                        <AccordionItem
-                            header="How long we deliver your first blog post?"
-                            text="It takes 2-3 weeks to get your first blog post ready.
-                             That includes the in-depth research & creation of your monthly
-                              content marketing strategy that we do before writing your first blog post, Ipsum available ."
-                        />
-                        <AccordionItem
-                            header="How long we deliver your first blog post?"
-                            text="It takes 2-3 weeks to get your first blog post ready.
-                             That includes the in-depth research & creation
-                              of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
-                        />
-                        <AccordionItem
-                            header="How long we deliver your first blog post?"
-                            text="It takes 2-3 weeks to get your first blog post ready.
-                             That includes the in-depth research & creation of your monthly
-                              content marketing strategy that we do before writing your first blog post, Ipsum available ."
-                        />
-                    </div>
+                        {firstHalf.map(f => (
+                            <AccordionItem
+                                key={f.id}
+                                header={f.question}
+                                text={f.answers}
+                            />
+                        ))}                    </div>
                     <div className="w-full px-4 lg:w-1/2">
-                        <AccordionItem
-                            header="How long we deliver your first blog post?"
-                            text="It takes 2-3 weeks to get your first blog post ready.
-                             That includes the in-depth research & creation of your monthly content marketing
-                              strategy that we do before writing your first blog post, Ipsum available ."
-                        />
-                        <AccordionItem
-                            header="How long we deliver your first blog post?"
-                            text="It takes 2-3 weeks to get your first blog post ready.
-                             That includes the in-depth research & creation of your monthly
-                              content marketing strategy that we do before writing your first blog post, Ipsum available ."
-                        />
-                        <AccordionItem
-                            header="How long we deliver your first blog post?"
-                            text="It takes 2-3 weeks to get your first blog post ready.
-                             That includes the in-depth research & creation of your monthly content marketing
-                              strategy that we do before writing your first blog post, Ipsum available ."
-                        />
+                        {secondHalf.map(f => (
+                            <AccordionItem
+                                key={f.id}
+                                header={f.question}
+                                text={f.answers}
+                            />
+                        ))}
                     </div>
                 </div>
+
                 <div className="flex justify-center content-center">
-                    <Link href={"/"}
-                          className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500
+                    {showSupportButton == null ?
+                        <Link href={"/allfaqs"}
+                              className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500
                        hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300
                         dark:focus:ring-lime-800 shadow-2xl shadow-lime-500/50 dark:shadow-lg
                          dark:shadow-lime-800/80 font-medium font-sans rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2
                          md:text-2xl md:hover:translate-x-1.5 duration-300 ease-linear
                          "
-                    >
-                        VIEW ALL THE FAQS
-                    </Link>
+                        >
+                            VIEW ALL THE FAQS
+                        </Link>
+                        :
+                        <Link href={"/support"}
+                              className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700
+                               hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300
+                                dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg
+                                 dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2
+                                 md:text-2xl md:hover:translate-x-1.5 duration-300 ease-linear
+                        "
+                        >
+                            STILL GOT QUESTION? OPEN A TICKET
+                        </Link>
+                    }
                 </div>
             </div>
 
