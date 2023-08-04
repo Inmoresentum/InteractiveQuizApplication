@@ -7,6 +7,9 @@ import com.quiz_app.repository.FAQRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +27,13 @@ public class FAQService {
                 .collect(Collectors.toList());
     }
 
+    public List<FAQDto> getFirstTenFAQs() {
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<FAQ> faqPage = faqRepository.findAll(pageable);
+        return faqPage.getContent().stream().
+                map((element) -> modelMapper.map(element,
+                        FAQDto.class)).collect(Collectors.toList());
+    }
     @Transactional
     public void updateFAQ(FAQ faq) {
         faqRepository.updateFAQ( faq.getQuestion(), faq.getAnswers(), faq.getId());

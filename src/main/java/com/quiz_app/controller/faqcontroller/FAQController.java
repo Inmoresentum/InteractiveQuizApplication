@@ -25,6 +25,10 @@ public class FAQController {
         return faqService.getAllFaqs();
     }
 
+    @GetMapping("/common")
+    public List<FAQDto> getMostFrequentOnes() {
+        return faqService.getFirstTenFAQs();
+    }
     @PatchMapping("/update")
     @PreAuthorize("hasRole('ADMIN')")
     public void updateFAQ(@RequestBody @Valid FAQDto faq) {
