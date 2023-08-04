@@ -26,16 +26,19 @@ public class FAQController {
     }
 
     @PatchMapping("/update")
+    @PreAuthorize("hasRole('ADMIN')")
     public void updateFAQ(@RequestBody @Valid FAQDto faq) {
         faqService.updateFAQ(modelMapper.map(faq, FAQ.class));
     }
 
     @PostMapping("/add")
+    @PreAuthorize("hasRole('ADMIN')")
     public void addNewFAQ(@RequestBody FAQDto faq) {
         faqService.addNewFAQ(modelMapper.map(faq, FAQ.class));
     }
 
     @DeleteMapping("/remove")
+    @PreAuthorize("hasRole('ADMIN')")
     public void addRemoveFAQ(@RequestBody FAQDto faq) {
         faqService.deleteFAQ(modelMapper.map(faq, FAQ.class));
     }

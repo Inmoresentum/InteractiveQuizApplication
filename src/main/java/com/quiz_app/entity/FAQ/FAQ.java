@@ -15,9 +15,10 @@ public class FAQ {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "FAQ_id", nullable = false)
     private Long id;
-    @Column(name = "FAQ_question", nullable = false)
+    @Column(name = "FAQ_question", nullable = false, unique = true)
     private String question;
-    @Column(name = "FAQ_anwers", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "FAQ_anwers", nullable = false,
+            columnDefinition = "TEXT", unique = true)
     private String answers;
     @Version
     private Integer version;

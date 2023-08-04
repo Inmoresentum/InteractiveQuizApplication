@@ -26,12 +26,12 @@ public class FAQService {
 
     @Transactional
     public void updateFAQ(FAQ faq) {
-        faqRepository.save(faq);
+        faqRepository.updateFAQ( faq.getQuestion(), faq.getAnswers(), faq.getId());
     }
 
     @Transactional
     public void deleteFAQ(FAQ faq) {
-        faqRepository.delete(faq);
+        faqRepository.deleteById(faq.getId());
     }
 
     @Transactional
