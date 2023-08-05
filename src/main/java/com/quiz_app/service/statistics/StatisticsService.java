@@ -8,6 +8,9 @@ import com.quiz_app.repository.SystemStatisticHistoryRepository;
 import com.quiz_app.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -15,17 +18,29 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class StatisticsService {
     private final DailySystemStatisticsRepository dailySystemStatisticsRepository;
     private final UserRepository userRepository;
     private final QuizRepository quizRepository;
     private final SystemStatisticHistoryRepository systemStatisticHistoryRepository;
 
+
+    public DailySystemStatistics getDailySystemStatistics() {
+        var returnedData = dailySystemStatisticsRepository.findAll();
+        if (returnedData.isEmpty()) {
+            log.error("dailySystemStatisticsRepository returned null data");
+            throw new RuntimeException("dailySystemStatisticsRepository returned null data");
+        }
+        return returnedData.get(0);
+    }
+
     @Transactional
     @Scheduled(cron = "0 0 0 * * *")
     public void updateHistory() throws IllegalAccessException {
         var returnedData = dailySystemStatisticsRepository.findAll();
         if (returnedData.isEmpty()) {
+            log.error("dailySystemStatisticsRepository returned null data");
             throw new IllegalAccessException("dailySystemStatisticsRepository returned null data");
         }
         var today_sData = returnedData.get(0);

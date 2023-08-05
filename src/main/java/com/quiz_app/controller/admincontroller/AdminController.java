@@ -1,7 +1,10 @@
 package com.quiz_app.controller.admincontroller;
 
+import com.quiz_app.entity.dailysystemstats.DailySystemStatistics;
 import com.quiz_app.entity.user.UserDto;
+import com.quiz_app.repository.DailySystemStatisticsRepository;
 import com.quiz_app.service.admin.AdminService;
+import com.quiz_app.service.statistics.StatisticsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AdminController {
     private final AdminService adminService;
+    private final StatisticsService statisticsService;
 
     @GetMapping
     public String get() {
@@ -25,5 +29,10 @@ public class AdminController {
     @GetMapping("/control/users")
     public Page<UserDto> getUsers(@RequestParam int page) {
         return adminService.getUsers(page);
+    }
+
+    @GetMapping("/stats/daily")
+    public DailySystemStatistics getUsers() {
+        return statisticsService.getDailySystemStatistics();
     }
 }
