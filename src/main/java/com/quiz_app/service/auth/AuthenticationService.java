@@ -151,10 +151,10 @@ public class AuthenticationService {
                             .build()
             );
         }
+
         var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
 
         // Checking if the user is verified or not
-
         if (!user.isAccountVerified()) {
             return ResponseEntity.badRequest().body(
                     AuthenticationResponse.builder()
@@ -174,6 +174,7 @@ public class AuthenticationService {
                 .email(user.getEmail())
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
+                .profilePicUrl(user.getProfilePicUrl())
                 .message("Successfully Authenticated")
                 .build());
     }

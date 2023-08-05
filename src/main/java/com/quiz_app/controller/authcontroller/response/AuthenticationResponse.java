@@ -23,4 +23,6 @@ public class AuthenticationResponse {
     private String refreshToken;
     @JsonProperty("message")
     private String message;
+    @JsonProperty("profile_picture_url")
+    private String profilePicUrl;
 }
