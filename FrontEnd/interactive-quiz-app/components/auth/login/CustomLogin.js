@@ -11,14 +11,13 @@ import {RiLockPasswordLine, RiMailLine} from "react-icons/ri";
 import {useRouter, usePathname} from "next/navigation";
 import {toast} from "react-toastify";
 
-export default function CustomLogin() {
+export default function CustomLogin({curRedirectUrl}) {
     const dragAbleConstraints = useRef(null);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState(null);
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
-    const pathName = usePathname();
     const router = useRouter();
 
     const handleChangeEmail = (e)=> {
@@ -62,11 +61,9 @@ export default function CustomLogin() {
             return;
         }
         console.log(result.url.toString())
-
-        if (result.url.toString() === pathName) {
-            console.log(result)
-            console.log("I should not be here")
-            router.push(result.url)
+        console.log(curRedirectUrl)
+        if (curRedirectUrl && curRedirectUrl !=="") {
+            router.push(curRedirectUrl.toString())
         }
         else {
             router.push("/");

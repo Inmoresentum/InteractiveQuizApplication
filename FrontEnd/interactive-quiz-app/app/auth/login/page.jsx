@@ -3,12 +3,14 @@ import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";
 import {redirect} from "next/navigation";
 
-export default async function Login() {
+export default async function Login({params, searchParams}) {
     const session = await getServerSession(options);
+    console.log(params, searchParams);
+    const callbackUrl = searchParams["callbackUrl"]
     if (session) {
         redirect("/");
     }
     return (
-        <CustomLogin/>
+        <CustomLogin curRedirectUrl={callbackUrl} />
     );
 }
