@@ -4,7 +4,7 @@ import FAQsAdmins from "@/components/Dashboard/Admin/faqs/FAQsAdmins";
 
 export default function FaqComponents() {
     const {isLoading, data} = useFetchAllFAQs();
-    if (isLoading) return <div>Loading</div>
+    if (isLoading) return;
     return (
         <>
         <FAQsAdmins faqs={data}/>
