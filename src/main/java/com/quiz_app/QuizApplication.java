@@ -1,8 +1,11 @@
 package com.quiz_app;
 
 import com.quiz_app.entity.FAQ.FAQ;
+import com.quiz_app.entity.dailysystemstats.DailySystemStatistics;
+import com.quiz_app.entity.dailysystemstats.DailySystemStatisticsKey;
 import com.quiz_app.entity.quiz.Question;
 import com.quiz_app.entity.quiz.Quiz;
+import com.quiz_app.repository.DailySystemStatisticsRepository;
 import com.quiz_app.repository.FAQRepository;
 import com.quiz_app.repository.QuizRepository;
 import com.quiz_app.repository.UserRepository;
@@ -12,9 +15,11 @@ import net.datafaker.Faker;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -33,6 +38,8 @@ import static com.quiz_app.entity.user.Role.USER;
 
 @SpringBootApplication
 @EnableAsync
+@EnableScheduling
+@EnableCaching
 public class QuizApplication {
 
     public static void main(String[] args) {
@@ -44,7 +51,8 @@ public class QuizApplication {
                                         QuizRepository quizRepository,
                                         UserRepository userRepository,
                                         FAQRepository faqRepository,
-                                        Environment environment) {
+                                        Environment environment,
+                                        DailySystemStatisticsRepository dailySystemStatisticsRepository) {
         return args -> {
             if (!Arrays.asList(environment.getActiveProfiles()).contains("dev") && userRepository.count() == 0) {
                 Set<String> usedUsernames = ConcurrentHashMap.newKeySet();
@@ -56,7 +64,7 @@ public class QuizApplication {
                         .newFixedThreadPool(Math.min(22, Runtime.getRuntime().availableProcessors() - 1));
 
                 List<CompletableFuture<Void>> futures = new ArrayList<>();
-                for (int i = 0; i < 50; i++) {
+                for (int i = 0; i < 5; i++) {
                     CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
                         Faker faker = new Faker();
                         List<RegisterRequest> users = new ArrayList<>();
@@ -504,6 +512,19 @@ public class QuizApplication {
                         .build();
                 faqList.add(faq50);
                 faqRepository.saveAll(faqList);
+            }
+
+            if (!Arrays.asList(environment.getActiveProfiles()).contains("dev") && dailySystemStatisticsRepository.count() == 0) {
+                var dailyStat = DailySystemStatistics.builder()
+                        .key(new DailySystemStatisticsKey())
+                        .totalNumberOfQuizzes(quizRepository.count())
+                        .totalNumberOfUsers(userRepository.count())
+                        .totalNumberOfNewUsersToday(userRepository.count())
+                        .totalNumberOfNewQuizzesToday(quizRepository.count())
+                        .totalNumberOfQuizzesPlayedToday(0L)
+                        .build();
+
+                dailySystemStatisticsRepository.save(dailyStat);
             }
         };
     }
