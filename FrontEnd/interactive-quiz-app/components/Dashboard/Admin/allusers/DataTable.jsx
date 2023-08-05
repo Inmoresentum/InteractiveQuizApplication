@@ -9,6 +9,7 @@ import {Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, Di
 import {Button} from "@/components/ui/button";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
+import AllUserLoadingSpinner from "@/components/loading-animation/AllUserLoadingSpinner";
 
 const columns = [
     {field: "id", headerName: "ID", width: 70},
@@ -71,7 +72,7 @@ export default function DataTable({authInfo}) {
     const [open, setOpen] = useState(false);
     const [selectedRow, setSelectedRow] = useState(null);
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <AllUserLoadingSpinner/>;
     if (isError) return <div>Error: {error.message}</div>;
 
     console.log(data);

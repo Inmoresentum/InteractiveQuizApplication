@@ -1,15 +1,10 @@
-"use client"
-import React from "react";
-import Lottie from "lottie-react";
-import animationData from "@/public/LottieAnimations/animation_loading_spinner.json"
+import MainLoadingSpinnerUi from "@/components/loading-animation/MainLoadingSpinnerUi";
 
-const LoadingSpinner = () => {
-
+export default function MainLoadingSpinner() {
     return (
         <>
-            <Lottie animationData={animationData}/>
+            <MainLoadingSpinnerUi/>
         </>
     );
 };
 
-export default LoadingSpinner;
