@@ -1,5 +1,7 @@
+import FaqComponents from "@/components/Dashboard/Admin/faqs/FAQComponents";
+
 export default function Faqs() {
     return (
-        <h1>Hi from faq page</h1>
+        <FaqComponents/>
     );
 }
