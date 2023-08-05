@@ -13,8 +13,11 @@ export default function FAQActions() {
                 </Button>
             </div>
             <div className="flex w-full max-w-sm items-center space-x-2">
-                <Input type="text" placeholder="Search FAQ"/>
-                <Button type="submit" className="rounded-3xl hover:bg-blue-600 duration-300 shadow-2xl shadow-white ease-in">SEARCH</Button>
+                <Input type="text" placeholder="Search FAQ" className="rounded-xl"/>
+                <Button type="submit" className="rounded-3xl hover:bg-blue-600 hover:translate-y-0.5
+                 duration-300 shadow-2xl shadow-white ease-in delay-100">
+                    SEARCH
+                </Button>
             </div>
         </div>
     );
