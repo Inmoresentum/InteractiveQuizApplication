@@ -3,7 +3,9 @@ import AppLog from "../../../../public/quiz-app-logo.png"
 import NextLog from "../../../../public/next.svg"
 import Link from "next/link";
 
-export default function Header() {
+export default function Header({authInfo}) {
+      console.log(authInfo)
+
     return (
         <div className='flex justify-between px-4 pt-4 items-center bg-gray-200'>
             <div className="flex flex-col md:flex-row items-center p-2">
@@ -16,8 +18,7 @@ export default function Header() {
             <div className="font-bold">
             <div className="flex flex-col md:flex-row items-center">Welcome Back
                 <div className="text-rose-500 ml-2">
-                    {/*Add a flyway menu of something here*/}
-                    Inmoresentum
+                    {authInfo.user.username}
                 </div>
             </div>
             </div>
