@@ -38,8 +38,8 @@ public class FileStorageController {
         return minioService.getQuizImage(filename);
     }
 
-    @GetMapping("/image/quiz/{filename}")
+    @GetMapping("/image/user/{filename}")
     public ResponseEntity<?> downloadUserImage(@PathVariable String filename) {
-        return minioService.getQuizImage(filename);
+        return minioService.getUserProfileImage(filename);
     }
 }

@@ -116,7 +116,7 @@ public class MinioService {
         try (InputStream stream = minioClient
                 .getObject(GetObjectArgs.builder()
                         .bucket(bucketName)
-                        .object("/quiz/" + objectName)
+                        .object("/user/" + objectName)
                         .build());) {
 //            return (stream.readAllBytes());
             return ResponseEntity.ok()
