@@ -1,5 +1,6 @@
 package com.quiz_app.entity.quiz;
 
+import com.quiz_app.entity.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
@@ -35,6 +36,10 @@ public class Quiz {
     @CollectionTable(name = "quiz_tags")
     @Enumerated(EnumType.STRING)
     private List<QuizTag> tags;
+
+    @ManyToOne
+    @JoinColumn(name = "author_of_the_quiz")
+    private User createdBy;
 
     @Override
     public final boolean equals(Object o) {
