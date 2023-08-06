@@ -26,6 +26,7 @@ public class Quiz {
     @OneToMany(cascade = CascadeType.PERSIST)
     @ToString.Exclude
     private List<Question> questions;
+    private String quizProfilePhotoUrl;
 
     @Override
     public final boolean equals(Object o) {

@@ -1,10 +1,11 @@
 package com.quiz_app.service.quiz;
 
-import com.quiz_app.controller.quizresourcecontroller.demoquizcontroller.response.DemoQuizResponse;
-import com.quiz_app.controller.quizresourcecontroller.demoquizcontroller.response.QuestionDTO;
-import com.quiz_app.controller.quizresourcecontroller.demoquizcontroller.response.QuizDTO;
+import com.quiz_app.controller.quizresourcecontroller.response.DemoQuizResponse;
+import com.quiz_app.controller.quizresourcecontroller.response.QuestionDTO;
+import com.quiz_app.controller.quizresourcecontroller.response.QuizDTO;
 import com.quiz_app.repository.QuizRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class DemoQuizService {
+public class QuizService {
     private final QuizRepository quizRepository;
 
 
@@ -50,10 +51,15 @@ public class DemoQuizService {
                 .questionDTOList(questionDTOs)
                 .build();
         System.out.println(quizDTO);
-        var demoQuizResponse =  DemoQuizResponse.builder()
+        var demoQuizResponse = DemoQuizResponse.builder()
                 .message("Success. Here is the quiz")
                 .quiz(quizDTO)
                 .build();
         return ResponseEntity.ok(demoQuizResponse);
+    }
+
+    public ResponseEntity<?> getQuizzesByPage(Integer page) {
+         var listOfQuizzes = quizRepository.findAll(PageRequest.of(page, 10));
+         return ResponseEntity.ok(listOfQuizzes);
     }
 }

@@ -1,4 +1,4 @@
-package com.quiz_app.controller.quizresourcecontroller.demoquizcontroller.response;
+package com.quiz_app.controller.quizresourcecontroller.response;
 
 import lombok.Builder;
 import lombok.Data;
@@ -8,4 +8,5 @@ import lombok.Data;
 public class DemoQuizResponse {
     private final QuizDTO quiz;
     private final String message;
+    private String quizCardPicture;
 }
