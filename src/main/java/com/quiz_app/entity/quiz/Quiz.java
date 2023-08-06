@@ -7,6 +7,8 @@ import org.hibernate.proxy.HibernateProxy;
 import java.util.List;
 import java.util.Objects;
 
+import static com.quiz_app.entity.quiz.Difficulty.*;
+
 @Entity
 @Getter
 @Setter
@@ -27,6 +29,12 @@ public class Quiz {
     @ToString.Exclude
     private List<Question> questions;
     private String quizProfilePhotoUrl;
+    @Enumerated(EnumType.STRING)
+    private Difficulty difficultyLevel = EASY;
+    @ElementCollection(targetClass = QuizTag.class)
+    @CollectionTable(name = "quiz_tags")
+    @Enumerated(EnumType.STRING)
+    private List<QuizTag> tags;
 
     @Override
     public final boolean equals(Object o) {
