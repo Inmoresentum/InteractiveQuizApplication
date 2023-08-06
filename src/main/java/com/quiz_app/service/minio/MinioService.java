@@ -60,4 +60,74 @@ public class MinioService {
         }
         return ResponseEntity.status(404).body(Map.of("message", "file not found"));
     }
+    public void putQuizImage(String objectName, InputStream inputStream) {
+        try {
+            minioClient.putObject(PutObjectArgs.builder().bucket(bucketName).object(objectName)
+                    .stream(inputStream, -1, 10485760).build());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+        }
+    }
+    public ResponseEntity<?> getQuizImage(String objectName) {
+        try (InputStream stream = minioClient
+                .getObject(GetObjectArgs.builder()
+                        .bucket(bucketName)
+                        .object("/quiz/" + objectName)
+                        .build());) {
+//            return (stream.readAllBytes());
+            return ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_PNG)
+                    .body(stream.readAllBytes());
+        } catch (ErrorResponseException | InsufficientDataException |
+                 InternalException | InvalidKeyException | InvalidResponseException |
+                 IOException | NoSuchAlgorithmException | ServerException |
+                 XmlParserException | IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.status(404).body(Map.of("message", "file not found"));
+    }
+    public void putUserProfileImage(String objectName, InputStream inputStream) {
+        try {
+            minioClient.putObject(PutObjectArgs.builder().bucket(bucketName).object(objectName)
+                    .stream(inputStream, -1, 10485760).build());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+        }
+    }
+    public ResponseEntity<?> getUserProfileImage(String objectName) {
+        try (InputStream stream = minioClient
+                .getObject(GetObjectArgs.builder()
+                        .bucket(bucketName)
+                        .object("/quiz/" + objectName)
+                        .build());) {
+//            return (stream.readAllBytes());
+            return ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_PNG)
+                    .body(stream.readAllBytes());
+        } catch (ErrorResponseException | InsufficientDataException |
+                 InternalException | InvalidKeyException | InvalidResponseException |
+                 IOException | NoSuchAlgorithmException | ServerException |
+                 XmlParserException | IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.status(404).body(Map.of("message", "file not found"));
+    }
 }
