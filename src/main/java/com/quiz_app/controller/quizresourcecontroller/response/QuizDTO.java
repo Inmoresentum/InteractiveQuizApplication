@@ -12,6 +12,6 @@ public class QuizDTO {
     private final String quizTitle;
     private final String quizSynopsis;
     private final Integer nrOfQuestions;
-    @JsonProperty("questionCreatedRequestBodies")
+    @JsonProperty("questions")
     private final List<QuestionDTO> questionDTOList;
 }

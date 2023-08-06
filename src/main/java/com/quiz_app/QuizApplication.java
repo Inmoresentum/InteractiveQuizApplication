@@ -154,7 +154,7 @@ public class QuizApplication {
                         .question("How can you access the state of a component" +
                                 " from inside of a member function?")
                         .questionType(TEXT)
-                        .questionPic("https://dummyimage.com/600x400/000/fff&text=X")
+                        .questionPic("http://localhost:8080/api/v1/storage/public/image/quiz/A")
                         .answerSelectionType(SINGLE)
                         .answers(List.of("this.getState()",
                                 "this.prototype.stateValue",
@@ -192,10 +192,10 @@ public class QuizApplication {
                         .questionPic(null)
                         .answerSelectionType(SINGLE)
                         .answers(List.of(
-                                "https://dummyimage.com/600x400/000/fff&text=A",
-                                "https://dummyimage.com/600x400/000/fff&text=B",
-                                "https://dummyimage.com/600x400/000/fff&text=C",
-                                "https://dummyimage.com/600x400/000/fff&text=D"
+                                "http://localhost:8080/api/v1/storage/public/image/quiz/A",
+                                "http://localhost:8080/api/v1/storage/public/image/quiz/B",
+                                "http://localhost:8080/api/v1/storage/public/image/quiz/C",
+                                "http://localhost:8080/api/v1/storage/public/image/quiz/D"
                         ))
                         .correctAnswer(List.of(1))
                         .messageForIncorrectAnswer("Incorrect Answer. Please try again")

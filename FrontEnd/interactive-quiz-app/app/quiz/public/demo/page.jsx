@@ -2,11 +2,14 @@ import QuizProvider from "@/components/quiz/quiz-wrapper/QuizProvider";
 
 export async function generateMetadata() {
     const response = await fetch(
-        "http://localhost:8080/api/v1/quiz/public/demo/getDemoQuiz/1",
+        "http://localhost:8080/api/v1/quiz/resource/getDemoQuiz",
         {next: {revalidate: 60}});
 
     if (!response.ok) {
-        throw Error("OPPS FIELD TO FETCH THE DATA FROM BACKEND");
+        console.log(response)
+        console.log(response.status)
+        // throw Error("OPPS FIELD TO FETCH THE DATA FROM BACKEND");
+        return <div>Failed to Load Data From Backend</div>;
     }
     const data = await response.json();
 
@@ -24,11 +27,15 @@ export async function generateMetadata() {
 
 export default async function DemoQuiz() {
     const response = await fetch(
-        "http://localhost:8080/api/v1/quiz/public/demo/getDemoQuiz/1",
+        "http://localhost:8080/api/v1/quiz/resource/getDemoQuiz",
         {next: {revalidate: 60}});
 
     if (!response.ok) {
-        throw Error("OPPS FIELD TO FETCH THE DATA FROM BACKEND");
+        return (
+            <div>
+                Failed Load Data From Backend server
+            </div>
+        );
     }
     const data = await response.json();
     const {quiz} = data;
