@@ -1,4 +1,4 @@
-package com.quiz_app.controller.quizresourcecontroller.demoquizcontroller.response;
+package com.quiz_app.controller.quizresourcecontroller.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
