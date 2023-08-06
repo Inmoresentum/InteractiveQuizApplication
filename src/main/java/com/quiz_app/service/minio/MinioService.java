@@ -62,7 +62,7 @@ public class MinioService {
     }
     public void putQuizImage(String objectName, InputStream inputStream) {
         try {
-            minioClient.putObject(PutObjectArgs.builder().bucket(bucketName).object(objectName)
+            minioClient.putObject(PutObjectArgs.builder().bucket(bucketName).object("/quiz/" + objectName)
                     .stream(inputStream, -1, 10485760).build());
 
         } catch (Exception e) {

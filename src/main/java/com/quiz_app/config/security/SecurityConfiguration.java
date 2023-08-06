@@ -49,7 +49,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(
                         auth -> auth.requestMatchers(
                                         "/api/v1/auth/**",
-                                        "/api/v1/quiz/public/**",
+                                        "/api/v1/quiz/resource/**",
                                         "/api/v1/storage/public/**",
                                         "/api/v1/reports/users/**",
                                         "/api/v1/faq/**",

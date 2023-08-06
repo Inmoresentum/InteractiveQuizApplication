@@ -245,19 +245,19 @@ public class QuizApplication {
 
                 var faq5 = FAQ.builder()
                         .question("How do I create a quiz on the Interactive Web-based Quiz Application?")
-                        .answers("To create a quiz on the Interactive Web-based Quiz Application, you can log in to your account and navigate to the 'Create Quiz' page. You will then be able to enter the details of your quiz, such as the title, description, and questions.")
+                        .answers("To create a quiz on the Interactive Web-based Quiz Application, you can log in to your account and navigate to the 'Create Quiz' page. You will then be able to enter the details of your quiz, such as the title, description, and questionCreatedRequestBodies.")
                         .build();
                 faqList.add(faq5);
 
                 var faq6 = FAQ.builder()
-                        .question("How do I add questions to a quiz on the Interactive Web-based Quiz Application?")
-                        .answers("To add questions to a quiz on the Interactive Web-based Quiz Application, you can navigate to the quiz editing page and click on the 'Add Question' button. You will then be able to enter the details of your question, such as the question text, answer options, and correct answer.")
+                        .question("How do I add questionCreatedRequestBodies to a quiz on the Interactive Web-based Quiz Application?")
+                        .answers("To add questionCreatedRequestBodies to a quiz on the Interactive Web-based Quiz Application, you can navigate to the quiz editing page and click on the 'Add QuestionCreatedRequestBody' button. You will then be able to enter the details of your question, such as the question text, answer options, and correct answer.")
                         .build();
                 faqList.add(faq6);
 
                 var faq7 = FAQ.builder()
                         .question("How do I edit a quiz on the Interactive Web-based Quiz Application?")
-                        .answers("To edit a quiz on the Interactive Web-based Quiz Application, you can navigate to the quiz editing page and make changes to the quiz details, such as the title, description, and questions. Once you have made your changes, you can save them by clicking on the 'Save' button.")
+                        .answers("To edit a quiz on the Interactive Web-based Quiz Application, you can navigate to the quiz editing page and make changes to the quiz details, such as the title, description, and questionCreatedRequestBodies. Once you have made your changes, you can save them by clicking on the 'Save' button.")
                         .build();
                 faqList.add(faq7);
 
@@ -274,7 +274,7 @@ public class QuizApplication {
                 faqList.add(faq9);
                 var faq10 = FAQ.builder()
                         .question("How do I take a quiz on the Interactive Web-based Quiz Application?")
-                        .answers("To take a quiz on the Interactive Web-based Quiz Application, you can navigate to the quiz page and click on the 'Take Quiz' button. You will then be able to answer the questions and submit your answers to see your results.")
+                        .answers("To take a quiz on the Interactive Web-based Quiz Application, you can navigate to the quiz page and click on the 'Take Quiz' button. You will then be able to answer the questionCreatedRequestBodies and submit your answers to see your results.")
                         .build();
                 faqList.add(faq10);
 
@@ -309,8 +309,8 @@ public class QuizApplication {
                 faqList.add(faq15);
 
                 var faq16 = FAQ.builder()
-                        .question("Can I view explanations for quiz questions on the Interactive Web-based Quiz Application?")
-                        .answers("Yes, you can view explanations for quiz questions on the Interactive Web-based Quiz Application. After completing a quiz, you can navigate to the 'Quiz Results' page and click on each question to view an explanation of the correct answer.")
+                        .question("Can I view explanations for quiz questionCreatedRequestBodies on the Interactive Web-based Quiz Application?")
+                        .answers("Yes, you can view explanations for quiz questionCreatedRequestBodies on the Interactive Web-based Quiz Application. After completing a quiz, you can navigate to the 'Quiz Results' page and click on each question to view an explanation of the correct answer.")
                         .build();
                 faqList.add(faq16);
 
@@ -337,8 +337,8 @@ public class QuizApplication {
                 faqList.add(faq20);
 
                 var faq21 = FAQ.builder()
-                        .question("Can I import questions from other sources into a quiz on the Interactive Web-based Quiz Application?")
-                        .answers("Yes, you can import questions from other sources into a quiz on the Interactive Web-based Quiz Application. You can use the quiz import tools to upload questions from external sources, such as text files or spreadsheets, into your quiz.")
+                        .question("Can I import questionCreatedRequestBodies from other sources into a quiz on the Interactive Web-based Quiz Application?")
+                        .answers("Yes, you can import questionCreatedRequestBodies from other sources into a quiz on the Interactive Web-based Quiz Application. You can use the quiz import tools to upload questionCreatedRequestBodies from external sources, such as text files or spreadsheets, into your quiz.")
                         .build();
                 faqList.add(faq21);
 
@@ -386,7 +386,7 @@ public class QuizApplication {
 
                 var faq29 = FAQ.builder()
                         .question("Can I compete with others in real-time quizzes using the Interactive Web-based Quiz Application?")
-                        .answers("Yes, you can compete with others in real-time quizzes using the Interactive Web-based Quiz Application. You can use the real-time quiz tools to join or create live quiz events, where you can compete against other users in real-time to answer questions and earn points.")
+                        .answers("Yes, you can compete with others in real-time quizzes using the Interactive Web-based Quiz Application. You can use the real-time quiz tools to join or create live quiz events, where you can compete against other users in real-time to answer questionCreatedRequestBodies and earn points.")
                         .build();
                 faqList.add(faq29);
                 var faq30 = FAQ.builder()
@@ -395,8 +395,8 @@ public class QuizApplication {
                         .build();
                 faqList.add(faq30);
                 var faq31 = FAQ.builder()
-                        .question("Is there a limit to how many quizzes or questions I can create using the Interactive Web-based Quiz Application?")
-                        .answers("The limit to how many quizzes or questions you can create using the Interactive Web-based Quiz Application may vary depending on the specific application and its terms of service. You can check the application's documentation or contact customer support for more information.")
+                        .question("Is there a limit to how many quizzes or questionCreatedRequestBodies I can create using the Interactive Web-based Quiz Application?")
+                        .answers("The limit to how many quizzes or questionCreatedRequestBodies you can create using the Interactive Web-based Quiz Application may vary depending on the specific application and its terms of service. You can check the application's documentation or contact customer support for more information.")
                         .build();
                 faqList.add(faq31);
 
