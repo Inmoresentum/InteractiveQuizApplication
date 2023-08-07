@@ -7,26 +7,31 @@ import axios from "axios";
 import {toast} from "react-toastify";
 
 // Create a schema for the form data using zod
+// Create a schema for the form data using zod
 const schema = z.object({
-    quizTitle: z.string().nonempty(),
-    quizSynopsis: z.string().nonempty(),
+    quizTitle: z.string()
+        .nonempty({ message: "Quiz title is required" })
+        .refine((value) => value.length >= 3, { message: "Quiz title must be at least 3 characters long" }),
+    quizSynopsis: z.string()
+        .nonempty({ message: "Quiz synopsis is required" })
+        .refine((value) => value.length >= 10, { message: "Quiz synopsis must be at least 10 characters long" }),
     quizProfileImage: z.any(),
-    quizTags: z.string().nonempty(),
-    difficulty: z.string().nonempty(),
+    quizTags: z.string().nonempty({ message: "Quiz tag is required" }),
+    difficulty: z.string().nonempty({ message: "Difficulty level is required" }),
     questions: z.array(
         z.object({
-            title: z.string().nonempty(),
-            type: z.string().nonempty(),
-            answers: z.array(z.any()).nonempty(),
-            answerType: z.string().nonempty(),
+            title: z.string().nonempty({ message: "Question title is required" }),
+            type: z.string().nonempty({ message: "Question type is required" }),
+            answers: z.array(z.any()).nonempty({ message: "At least one answer is required" }),
+            answerType: z.string().nonempty({ message: "Answer type is required" }),
             correctAnswer: z.any(),
             correctAnswers: z.array(z.number()),
-            correctMessage: z.string().nonempty(),
-            wrongMessage: z.string().nonempty(),
-            explanation: z.string().nonempty(),
-            points: z.number().positive()
+            correctMessage: z.string().nonempty({ message: "Message for correct answer is required" }),
+            wrongMessage: z.string().nonempty({ message: "Message for wrong answer is required" }),
+            explanation: z.string().nonempty({ message: "Explanation is required" }),
+            points: z.number().positive({ message: "Points must be a positive number" })
         })
-    ).nonempty()
+    ).nonempty({ message: "At least one question is required" })
 });
 
 export default function QuizCreationForm() {
@@ -39,6 +44,19 @@ export default function QuizCreationForm() {
             difficulty: "Easy",
             questions: []
         }
+    });
+    // Loop over the errors object and create a separate toast for each error
+    Object.values(errors).forEach((error) => {
+        toast.error(error.message, {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        });
     });
     const [questions, setQuestions] = useState([]);
 
