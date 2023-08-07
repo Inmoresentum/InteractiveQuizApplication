@@ -5,9 +5,7 @@ import com.quiz_app.service.quiz.QuizService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.Map;
 
 @RestController
@@ -32,18 +30,10 @@ public class QuizController {
     }
 
     @PostMapping(consumes = {"multipart/form-data"}, value = "/create")
-    public ResponseEntity<?> submitQuiz(
-            @RequestPart("quiz") QuizCreateRequestBody quiz,
-            @RequestPart("quizProfileImage") MultipartFile quizProfileImage,
-            @RequestPart("questionImages") MultipartFile[] questionImages
-    ) {
+    public ResponseEntity<?> submitQuiz(@RequestBody QuizCreateRequestBody quizCreateRequestBody) {
         // Handle the submission of the quiz form data and file uploads here
-        try {
-            quizService.handleQuizCreation(quiz, quizProfileImage, questionImages);
-            return ResponseEntity.status(201).body(Map.of("message",
-                    "successfully created the quiz"));
-        } catch (IOException e) {
-            return ResponseEntity.status(410).body(Map.of("message", "failed to create quiz"));
-        }
+        quizService.handleQuizCreation(quizCreateRequestBody);
+        return ResponseEntity.status(201).body(Map.of("message",
+                "successfully created the quiz"));
     }
 }

@@ -10,5 +10,6 @@ import java.util.List;
 public class QuizCreateRequestBody {
     private String quizTitle;
     private String quizSynopsis;
+    private String quizProfileImage;
     private List<QuestionCreatedRequestBody> questionCreatedRequestBodies;
 }

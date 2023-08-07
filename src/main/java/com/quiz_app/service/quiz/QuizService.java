@@ -76,24 +76,14 @@ public class QuizService {
 
 
     @Transactional
-    public void handleQuizCreation(QuizCreateRequestBody quizCreateRequestBody, MultipartFile quizProfileImage, MultipartFile[] questionImages) throws IOException {
+    public void handleQuizCreation(QuizCreateRequestBody quizCreateRequestBody){
         // Save the question images to files or upload them to a cloud storage service
-
-        // Todo: First step is to save the quiz profile image to minio
-        var quizProfileImageUrl = saveQuizImage(quizProfileImage);
-        // Done saving quiz profile image
-
-        List<String> questionImageUrls = new ArrayList<>();
-        for (MultipartFile questionImage : questionImages) {
-            String questionImageUrl = saveQuizImage(questionImage);
-            questionImageUrls.add(questionImageUrl);
-        }
 
         // Create a new Quiz entity and set its properties using the quiz form data
         Quiz quizEntity = new Quiz();
         quizEntity.setQuizTitle(quizCreateRequestBody.getQuizTitle());
         quizEntity.setQuizSynopsis(quizCreateRequestBody.getQuizSynopsis());
-        quizEntity.setQuizProfilePhotoUrl(quizProfileImageUrl);
+        quizEntity.setQuizProfilePhotoUrl(quizCreateRequestBody.getQuizProfileImage());
 //         Todo: Later add the missing values after completing features
         quizEntity.setDifficultyLevel(Difficulty.EASY);
 //         we will have to build logic here
@@ -116,19 +106,10 @@ public class QuizService {
             questionEntity.setMessageForIncorrectAnswer(questionCreatedRequestBody.getWrongMessage());
             questionEntity.setExplanation(questionCreatedRequestBody.getExplanation());
             questionEntity.setPoint((double) questionCreatedRequestBody.getPoints());
-            // If the questionCreatedRequestBody type is "image", set the answers property using the uploaded questionCreatedRequestBody images
-            if (questionCreatedRequestBody.getType().equals("image")) {
-                List<String> answers = new ArrayList<>();
-                for (int correctAnswerIndex : questionCreatedRequestBody.getCorrectAnswers()) {
-                    String answer = questionImageUrls.get(correctAnswerIndex);
-                    answers.add(answer);
-                }
-            }
-
+            questionEntity.setCorrectAnswer(questionCreatedRequestBody.getCorrectAnswers());
             listOfQuestionsEntity.add(questionEntity);
         }
         quizEntity.setQuestions(listOfQuestionsEntity);
-
         quizRepository.save(quizEntity);
     }
 
