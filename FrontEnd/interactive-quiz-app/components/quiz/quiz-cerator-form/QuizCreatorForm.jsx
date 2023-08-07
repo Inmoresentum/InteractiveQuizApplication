@@ -1,13 +1,74 @@
 "use client"
 import React, {useState} from "react";
 import {useForm} from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod";
+import * as z from "zod";
 import axios from "axios";
+import {toast} from "react-toastify";
+
+// Create a schema for the form data using zod
+const schema = z.object({
+    quizTitle: z.string().nonempty(),
+    quizSynopsis: z.string().nonempty(),
+    quizProfileImage: z.any(),
+    quizTags: z.string().nonempty(),
+    difficulty: z.string().nonempty(),
+    questions: z.array(
+        z.object({
+            title: z.string().nonempty(),
+            type: z.string().nonempty(),
+            answers: z.array(z.any()).nonempty(),
+            answerType: z.string().nonempty(),
+            correctAnswer: z.any(),
+            correctAnswers: z.array(z.number()),
+            correctMessage: z.string().nonempty(),
+            wrongMessage: z.string().nonempty(),
+            explanation: z.string().nonempty(),
+            points: z.number().positive()
+        })
+    ).nonempty()
+});
 
 export default function QuizCreationForm() {
-    const {register, handleSubmit, reset, watch} = useForm();
+    const {register, handleSubmit, reset, watch, formState: {errors}} = useForm({
+        resolver: zodResolver(schema),
+        defaultValues: {
+            quizTitle: "",
+            quizSynopsis: "",
+            quizTags: "Science",
+            difficulty: "Easy",
+            questions: []
+        }
+    });
     const [questions, setQuestions] = useState([]);
 
     const onSubmit = async (data) => {
+        // Check if there is at least one correct answer
+        let hasCorrectAnswer = false;
+        if (data.questions) {
+            for (const question of data.questions) {
+                if (question.correctAnswer || question.correctAnswers) {
+                    hasCorrectAnswer = true;
+                    break;
+                }
+            }
+        }
+
+        if (!hasCorrectAnswer) {
+            // If there is no correct answer, show an error message and return
+            toast.error("Please properly fill up the form", {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+            return;
+        }
+
         // Handle quizProfileImage upload
         const file = data.quizProfileImage[0];
         if (file) {
@@ -72,14 +133,12 @@ export default function QuizCreationForm() {
             }
         }
         console.log(data);
-
         try {
             const response = await axios.post("http://localhost:8080/api/v1/quiz/resource/create", data);
 
             if (response.status === 201) {
                 // If the server returns a 201 status code
                 console.log("Done with the submission");
-                setSubmitted(true);
             }
         } catch (error) {
             console.error(error);
@@ -145,6 +204,7 @@ export default function QuizCreationForm() {
                     id="quizTitle"
                     {...register("quizTitle")}
                 />
+                {errors.quizTitle && <p className="text-red-500">{errors.quizTitle.message}</p>}
             </div>
 
             <div className="mb-4">
@@ -159,6 +219,7 @@ export default function QuizCreationForm() {
                     id="quizSynopsis"
                     {...register("quizSynopsis")}
                 />
+                {errors.quizSynopsis && <p className="text-red-500">{errors.quizSynopsis.message}</p>}
             </div>
 
             <div className="mb-4">
@@ -175,6 +236,46 @@ export default function QuizCreationForm() {
                     id="quizProfileImage"
                     {...register("quizProfileImage")}
                 />
+            </div>
+
+            {/* Add the following code after the "Quiz Profile Image" input field */}
+            <div className="mb-4">
+                <label
+                    className="block text-gray-700 font-medium mb-2"
+                    htmlFor="quizTags"
+                >
+                    Quiz Tags
+                </label>
+                <select
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                    id="quizTags"
+                    {...register("quizTags")}
+                >
+                    <option value="Science">Science</option>
+                    <option value="Arts">Arts</option>
+                    <option value="History">History</option>
+                    {/*// Add more options here as needed*/}
+                </select>
+            </div>
+
+            <div className="mb-4">
+                <label
+                    className="block text-gray-700 font-medium mb-2"
+                    htmlFor="difficulty"
+                >
+                    Difficulty
+                </label>
+                <select
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                    id="difficulty"
+                    {...register("difficulty")}
+                >
+                    <option value="Easy">Easy</option>
+                    <option value="Normal">Normal</option>
+                    <option value="Moderate">Moderate</option>
+                    <option value="Hard">Hard</option>
+                    <option value="Crazy">Crazy</option>
+                </select>
             </div>
 
             <button
@@ -200,6 +301,7 @@ export default function QuizCreationForm() {
                             id={`questionTitle${index}`}
                             {...register(`questions.${index}.title`)}
                         />
+                        {errors.questions?.[index]?.title && <p className="text-red-500">{errors.questions[index].title.message}</p>}
                     </div>
 
                     <div className="mb-4">
@@ -318,6 +420,8 @@ export default function QuizCreationForm() {
                                     id={`correctMessage${index}`}
                                     {...register(`questions.${index}.correctMessage`)}
                                 />
+                                {errors.questions?.[index]?.correctMessage &&
+                                    <p className="text-red-500">{errors.questions[index].correctMessage.message}</p>}
                             </div>
 
                             <div className="mb-4">
@@ -332,6 +436,8 @@ export default function QuizCreationForm() {
                                     id={`wrongMessage${index}`}
                                     {...register(`questions.${index}.wrongMessage`)}
                                 />
+                                {errors.questions?.[index]?.wrongMessage &&
+                                    <p className="text-red-500">{errors.questions[index].wrongMessage.message}</p>}
                             </div>
 
                             <div className="mb-4">
@@ -346,6 +452,8 @@ export default function QuizCreationForm() {
                                     id={`explanation${index}`}
                                     {...register(`questions.${index}.explanation`)}
                                 />
+                                {errors.questions?.[index]?.explanation &&
+                                    <p className="text-red-500">{errors.questions[index].explanation.message}</p>}
                             </div>
 
                             <div className="mb-4">
@@ -361,6 +469,7 @@ export default function QuizCreationForm() {
                                     id={`points${index}`}
                                     {...register(`questions.${index}.points`)}
                                 />
+                                {errors.questions?.[index]?.points && <p className="text-red-500">{errors.questions[index].points.message}</p>}
                             </div>
                         </>
                     )}
@@ -382,4 +491,4 @@ export default function QuizCreationForm() {
             </button>
         </form>
     );
-};
+}
