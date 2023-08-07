@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public class QuizService {
     private final QuizRepository quizRepository;
     private final MinioService minioService;
-    private final String BASE_URL = "http://localhost:8080";
+    private final String BASE_URL = "http://localhost:8080/api/v1/storage/public";
 
     public ResponseEntity<DemoQuizResponse> getDemoQuiz() {
         var quiz = quizRepository.findById(1);
@@ -136,6 +136,6 @@ public class QuizService {
         var quizImageByteInputStream = new ByteArrayInputStream(image.getBytes());
         var generatedUniqueFileName = UUID.randomUUID().toString();
         minioService.putQuizImage(generatedUniqueFileName, quizImageByteInputStream);
-        return BASE_URL + "/quiz/" + generatedUniqueFileName;
+        return BASE_URL + "/image/quiz/" + generatedUniqueFileName;
     }
 }

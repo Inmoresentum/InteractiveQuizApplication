@@ -43,7 +43,7 @@ public class FileStorageController {
     public ResponseEntity<?> uploadQuizImageToMinIO(@RequestParam("image") MultipartFile imageData) {
         try {
             var url = quizService.saveQuizImage(imageData);
-            return ResponseEntity.status(201).body(Map.of("image_link", url));
+            return ResponseEntity.status(201).body(Map.of("image_url", url));
         } catch (IOException e) {
             log.error("Failed to upload quiz image");
             return ResponseEntity.badRequest().body(Map.of("message", "Failed to upload image to server"));
