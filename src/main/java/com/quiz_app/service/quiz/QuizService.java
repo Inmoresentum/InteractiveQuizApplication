@@ -132,7 +132,7 @@ public class QuizService {
         quizRepository.save(quizEntity);
     }
 
-    private String saveQuizImage(MultipartFile image) throws IOException {
+    public String saveQuizImage(MultipartFile image) throws IOException {
         var quizImageByteInputStream = new ByteArrayInputStream(image.getBytes());
         var generatedUniqueFileName = UUID.randomUUID().toString();
         minioService.putQuizImage(generatedUniqueFileName, quizImageByteInputStream);
