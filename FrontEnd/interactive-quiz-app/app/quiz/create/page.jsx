@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import {useForm} from "react-hook-form";
 import axios from "axios";
 
-export default function QuizCreationForm(){
+export default function QuizCreationForm() {
     const {register, handleSubmit, reset, watch} = useForm();
     const [questions, setQuestions] = useState([]);
 
@@ -32,9 +32,18 @@ export default function QuizCreationForm(){
         }
         if (data.questions) {
             console.log("I was able to reach data.questions");
+
             for (const question of data.questions) {
                 console.log("I was able to reach question for loop");
                 if (question.answers) {
+                    // Handle correctAnswers
+                    if (question.answerType === "single") {
+                        question.correctAnswers = [parseInt(question.correctAnswer) + 1];
+                    } else if (question.correctAnswers) {
+                        question.correctAnswers = Object.entries(question.correctAnswers)
+                            .filter(([key, value]) => value)
+                            .map(([key, value]) => parseInt(key) + 1);
+                    }
                     for (let i = 0; i < question.answers.length; i++) {
                         console.log("I was able to reach question.answer for loop");
                         const file = question.answers[i][0];
@@ -63,6 +72,18 @@ export default function QuizCreationForm(){
             }
         }
         console.log(data);
+
+        try {
+            const response = await axios.post("http://localhost:8080/api/v1/quiz/resource/create", data);
+
+            if (response.status === 201) {
+                // If the server returns a 201 status code
+                console.log("Done with the submission");
+                setSubmitted(true);
+            }
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const addQuestion = () => {

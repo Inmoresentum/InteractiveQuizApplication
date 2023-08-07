@@ -29,9 +29,10 @@ public class QuizController {
         return quizService.getQuizzesByPage(page);
     }
 
-    @PostMapping(consumes = {"multipart/form-data"}, value = "/create")
+    @PostMapping(value = "/create")
     public ResponseEntity<?> submitQuiz(@RequestBody QuizCreateRequestBody quizCreateRequestBody) {
         // Handle the submission of the quiz form data and file uploads here
+        System.out.println(quizCreateRequestBody);
         quizService.handleQuizCreation(quizCreateRequestBody);
         return ResponseEntity.status(201).body(Map.of("message",
                 "successfully created the quiz"));

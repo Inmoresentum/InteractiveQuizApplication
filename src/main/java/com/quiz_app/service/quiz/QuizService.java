@@ -91,7 +91,7 @@ public class QuizService {
 
         // Create new QuestionCreatedRequestBody entities for each question in the quiz form data
         List<Question> listOfQuestionsEntity = new ArrayList<>();
-        for (QuestionCreatedRequestBody questionCreatedRequestBody : quizCreateRequestBody.getQuestionCreatedRequestBodies()) {
+        for (QuestionCreatedRequestBody questionCreatedRequestBody : quizCreateRequestBody.getQuestions()) {
             Question questionEntity = new Question();
             questionEntity.setQuestion(questionCreatedRequestBody.getTitle());
             questionEntity.setQuestionType(questionCreatedRequestBody.getType().equals("text")
