@@ -1,12 +1,10 @@
 package com.quiz_app.service.clamav;
 
-import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Service
-@Log4j2
 public class ClamAVService {
     private final WebClient webClient;
 
