@@ -16,9 +16,8 @@ public class QuizDTO {
     private final String quizSynopsis;
     private final Integer nrOfQuestions;
     @JsonProperty("questions")
-    private final List<QuestionDTO> questionDTOList;
+    private final List<QuestionDTO> questions;
     private final Integer quizId;
-    private final List<Question> questions;
     private final String quizProfilePhotoUrl;
     private final Difficulty difficultyLevel;
     private final List<QuizTag> tags;

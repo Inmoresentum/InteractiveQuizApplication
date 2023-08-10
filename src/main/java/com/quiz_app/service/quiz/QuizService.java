@@ -59,7 +59,7 @@ public class QuizService {
                 .quizTitle(quiz.get().getQuizTitle())
                 .quizSynopsis(quiz.get().getQuizSynopsis())
                 .nrOfQuestions(quiz.get().getQuestions().size())
-                .questionDTOList(questionDTOs)
+                .questions(questionDTOs)
                 .build();
         System.out.println(quizDTO);
         var demoQuizResponse = DemoQuizResponse.builder()

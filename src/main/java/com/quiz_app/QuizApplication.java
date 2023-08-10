@@ -64,7 +64,7 @@ public class QuizApplication {
                         .newFixedThreadPool(Math.min(22, Runtime.getRuntime().availableProcessors() - 1));
 
                 List<CompletableFuture<Void>> futures = new ArrayList<>();
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 1; i++) {
                     CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
                         Faker faker = new Faker();
                         List<RegisterRequest> users = new ArrayList<>();

@@ -1,10 +1,12 @@
 package com.quiz_app.service.minio;
 
+import com.quiz_app.service.clamav.ClamAVService;
 import io.minio.GetObjectArgs;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import io.minio.errors.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +20,10 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
+@Log4j2
 public class MinioService {
     private final MinioClient minioClient;
+    private final ClamAVService clamAVService;
 
     @Value("${minio.bucket-name}")
     private String bucketName;
@@ -60,7 +64,11 @@ public class MinioService {
         }
         return ResponseEntity.status(404).body(Map.of("message", "file not found"));
     }
-    public void putQuizImage(String objectName, InputStream inputStream) {
+
+    public void putQuizImage(String objectName, InputStream inputStream) throws IOException {
+        if (!isFileOkayAndDoesNotContainsVirus(inputStream.readAllBytes(), objectName)) {
+            throw new IllegalStateException("The File Contains Virus");
+        }
         try {
             minioClient.putObject(PutObjectArgs.builder().bucket(bucketName).object("/quiz/" + objectName)
                     .stream(inputStream, -1, 10485760).build());
@@ -77,6 +85,7 @@ public class MinioService {
             }
         }
     }
+
     public ResponseEntity<?> getQuizImage(String objectName) {
         try (InputStream stream = minioClient
                 .getObject(GetObjectArgs.builder()
@@ -95,6 +104,7 @@ public class MinioService {
         }
         return ResponseEntity.status(404).body(Map.of("message", "file not found"));
     }
+
     public void putUserProfileImage(String objectName, InputStream inputStream) {
         try {
             minioClient.putObject(PutObjectArgs.builder().bucket(bucketName).object(objectName)
@@ -112,6 +122,7 @@ public class MinioService {
             }
         }
     }
+
     public ResponseEntity<?> getUserProfileImage(String objectName) {
         try (InputStream stream = minioClient
                 .getObject(GetObjectArgs.builder()
@@ -129,5 +140,19 @@ public class MinioService {
             e.printStackTrace();
         }
         return ResponseEntity.status(404).body(Map.of("message", "file not found"));
+    }
+
+
+    private boolean isFileOkayAndDoesNotContainsVirus(byte[] inputBytes, String fileName) {
+        try {
+            if (!clamAVService.scanFile(inputBytes)) {
+                log.warn(fileName + " contains virus");
+                throw new Exception("File contains virus");
+            }
+        } catch (Exception e) {
+            log.warn("Scanning failed");
+            throw new RuntimeException(e);
+        }
+        return false;
     }
 }
