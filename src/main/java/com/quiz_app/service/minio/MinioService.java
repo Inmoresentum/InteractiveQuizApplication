@@ -7,10 +7,13 @@ import io.minio.PutObjectArgs;
 import io.minio.errors.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.apache.catalina.webresources.FileResource;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -65,23 +68,22 @@ public class MinioService {
         return ResponseEntity.status(404).body(Map.of("message", "file not found"));
     }
 
-    public void putQuizImage(String objectName, InputStream inputStream) throws IOException {
-        if (!isFileOkayAndDoesNotContainsVirus(inputStream.readAllBytes(), objectName)) {
+    public void putQuizImage(String objectName, MultipartFile imageFile) throws IOException {
+        if (!isFileOkayAndDoesNotContainsVirus(imageFile.getResource(), objectName)) {
             throw new IllegalStateException("The File Contains Virus");
         }
+        var fileData = imageFile.getInputStream();
         try {
             minioClient.putObject(PutObjectArgs.builder().bucket(bucketName).object("/quiz/" + objectName)
-                    .stream(inputStream, -1, 10485760).build());
+                    .stream(fileData, -1, 10485760).build());
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
+            try {
+                fileData.close();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
             }
         }
     }
@@ -143,16 +145,16 @@ public class MinioService {
     }
 
 
-    private boolean isFileOkayAndDoesNotContainsVirus(byte[] inputBytes, String fileName) {
+    private boolean isFileOkayAndDoesNotContainsVirus(Resource fileResource, String fileName) {
         try {
-            if (!clamAVService.scanFile(inputBytes)) {
+            if (!clamAVService.scanFile(fileResource)) {
                 log.warn(fileName + " contains virus");
-                throw new Exception("File contains virus");
+                throw new IllegalStateException("File contains virus");
             }
         } catch (Exception e) {
             log.warn("Scanning failed");
             throw new RuntimeException(e);
         }
-        return false;
+        return true;
     }
 }

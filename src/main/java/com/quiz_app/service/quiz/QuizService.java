@@ -7,6 +7,7 @@ import com.quiz_app.controller.quizresourcecontroller.response.QuestionDTO;
 import com.quiz_app.controller.quizresourcecontroller.response.QuizDTO;
 import com.quiz_app.entity.quiz.*;
 import com.quiz_app.repository.QuizRepository;
+import com.quiz_app.service.clamav.ClamAVService;
 import com.quiz_app.service.minio.MinioService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -116,7 +117,7 @@ public class QuizService {
     public String saveQuizImage(MultipartFile image) throws IOException {
         var quizImageByteInputStream = new ByteArrayInputStream(image.getBytes());
         var generatedUniqueFileName = UUID.randomUUID().toString();
-        minioService.putQuizImage(generatedUniqueFileName, quizImageByteInputStream);
+        minioService.putQuizImage(generatedUniqueFileName, image);
         return BASE_URL + "/image/quiz/" + generatedUniqueFileName;
     }
 }

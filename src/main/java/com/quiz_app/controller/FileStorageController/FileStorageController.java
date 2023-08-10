@@ -1,5 +1,6 @@
 package com.quiz_app.controller.FileStorageController;
 
+import com.quiz_app.service.clamav.ClamAVService;
 import com.quiz_app.service.minio.MinioService;
 import com.quiz_app.service.quiz.QuizService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ import java.util.Map;
 public class FileStorageController {
     private final MinioService minioService;
     private final QuizService quizService;
+    private final ClamAVService clamAVService;
 
     @PostMapping(value = "/upload",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
@@ -44,12 +46,21 @@ public class FileStorageController {
         try {
             var url = quizService.saveQuizImage(imageData);
             return ResponseEntity.status(201).body(Map.of("image_url", url));
+
         } catch (IOException e) {
             log.error("Failed to upload quiz image");
             return ResponseEntity.badRequest().body(Map.of("message", "Failed to upload image to server"));
         }
     }
 
+//    @PostMapping(value = "/image/quiz/test",
+//            consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+//    )
+//    public ResponseEntity<?> scanCheckForVirus(@RequestParam("image") MultipartFile imageData) {
+//        var url = clamAVService.scanFileTest(imageData);
+//        return ResponseEntity.status(201).body(Map.of("image_url", "whatever"));
+//
+//    }
     @GetMapping("/image/quiz/{filename}")
     public ResponseEntity<?> downloadQuizImage(@PathVariable String filename) {
         return minioService.getQuizImage(filename);
