@@ -4,6 +4,8 @@ import com.quiz_app.entity.user.User;
 import com.quiz_app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,6 +29,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
+
+import static org.springframework.data.domain.PageRequest.*;
 
 
 @Service
@@ -82,35 +87,52 @@ public class ReportService {
     }
 
     public ResponseEntity<?> generateUserReportPDF() {
-        List<User> users = userRepository.findAll();
-        try {
-            var pdfContent = generatePDF(users);
+        int chunkSize = 25; // Number of users per chunk
+        int currentPage = 0;
+
+        try (PDDocument document = new PDDocument()) {
+            while (true) {
+                Pageable pageable = of(currentPage, chunkSize);
+                Page<User> userPage = userRepository.findAll(pageable);
+
+                if (!userPage.hasContent()) {
+                    break; // No more users to process
+                }
+
+                List<User> chunk = userPage.getContent();
+                generatePDF(document, chunk);
+
+                currentPage++;
+            }
+
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            document.save(byteArrayOutputStream);
+            document.close();
+
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_PDF);
             headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=users_report.pdf");
-            return new ResponseEntity<>(pdfContent, headers, HttpStatus.CREATED);
-        } catch (Exception e) {
+
+            return new ResponseEntity<>(byteArrayOutputStream.toByteArray(), headers, HttpStatus.CREATED);
+        } catch (IOException e) {
             return ResponseEntity.status(503).body(Map.of(
-               "message" , "Failed to generate user pdf report"
+                    "message", "Failed to generate user pdf report"
             ));
         }
     }
 
-    private byte[] generatePDF(List<User> users) throws IOException {
-            PDDocument document = new PDDocument();
-            PDPage page = new PDPage(PDRectangle.A4);
-            document.addPage(page);
+    private void generatePDF(PDDocument document, List<User> users) throws IOException {
+        PDPage page = new PDPage(PDRectangle.A4);
+        document.addPage(page);
+        try (PDPageContentStream contentStream = new PDPageContentStream(document, page)){
             String imagePath = "classpath:images/quiz-app-logo.png";
             PDImageXObject iconImage = PDImageXObject
                     .createFromFileByContent(resourceLoader
                             .getResource(imagePath).getFile(), document);
-
-
-            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+//            PDPageContentStream contentStream = new PDPageContentStream(document, page);
             float imageWidth = 50;
             float imageHeight = 50;
             contentStream.drawImage(iconImage, 50, 750, imageWidth, imageHeight);
-
             contentStream.setFont(PDType1Font.HELVETICA_BOLD, 10);
             contentStream.beginText();
             contentStream.newLineAtOffset(120, 775);
@@ -118,7 +140,7 @@ public class ReportService {
             contentStream.endText();
 
             int yPosition = 700;
-            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 10);
             contentStream.beginText();
             contentStream.newLineAtOffset(25, yPosition);
             contentStream.showText("ID");
@@ -138,7 +160,7 @@ public class ReportService {
             contentStream.showText("Date of Birth");
             contentStream.endText();
 
-            contentStream.setFont(PDType1Font.HELVETICA, 12);
+            contentStream.setFont(PDType1Font.HELVETICA, 10);
 
             for (User user : users) {
                 yPosition -= 20;
@@ -162,13 +184,83 @@ public class ReportService {
                 // Null-check for Date of Birth
                 contentStream.showText(user.getDateOfBirth() != null ? formatDate(user.getDateOfBirth()) : "");
                 contentStream.endText();
-                }
+            }
             contentStream.close();
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            document.save(byteArrayOutputStream);
-            document.close();
+        }
+//            PDDocument document = new PDDocument();
+//            PDPage page = new PDPage(PDRectangle.A4);
+//            document.addPage(page);
+//            String imagePath = "classpath:images/quiz-app-logo.png";
+//            PDImageXObject iconImage = PDImageXObject
+//                    .createFromFileByContent(resourceLoader
+//                            .getResource(imagePath).getFile(), document);
 
-            return byteArrayOutputStream.toByteArray();
+
+//            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+//            float imageWidth = 50;
+//            float imageHeight = 50;
+//            contentStream.drawImage(iconImage, 50, 750, imageWidth, imageHeight);
+
+//            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 10);
+//            contentStream.beginText();
+//            contentStream.newLineAtOffset(120, 775);
+//            contentStream.showText("User Report");
+//            contentStream.endText();
+//
+//            int yPosition = 700;
+//            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 10);
+//            contentStream.beginText();
+//            contentStream.newLineAtOffset(25, yPosition);
+//            contentStream.showText("ID");
+//            contentStream.newLineAtOffset(25, 0);
+//            contentStream.showText("Username/Email");
+//            contentStream.newLineAtOffset(200, 0);
+//            contentStream.showText("Firstname");
+//            contentStream.newLineAtOffset(75, 0);
+//            contentStream.showText("Lastname");
+//            contentStream.newLineAtOffset(75, 0);
+////            contentStream.showText("Email");
+////            contentStream.newLineAtOffset(200, 0);
+//            contentStream.showText("Role");
+//            contentStream.newLineAtOffset(50, 0);
+//            contentStream.showText("Phone Number");
+//            contentStream.newLineAtOffset(50, 0);
+//            contentStream.showText("Date of Birth");
+//            contentStream.endText();
+//
+//            contentStream.setFont(PDType1Font.HELVETICA, 10);
+//
+//            for (User user : users) {
+//                yPosition -= 20;
+//                contentStream.beginText();
+//                contentStream.newLineAtOffset(25, yPosition);
+//                contentStream.showText(String.valueOf(user.getId()));
+//                contentStream.newLineAtOffset(25, 0);
+//                contentStream.showText(user.getUsername());
+//                contentStream.newLineAtOffset(200, 0);
+//                contentStream.showText(user.getFirstname());
+//                contentStream.newLineAtOffset(75, 0);
+//                contentStream.showText(user.getLastname());
+//                contentStream.newLineAtOffset(75, 0);
+////                contentStream.showText(user.getEmail());
+////                contentStream.newLineAtOffset(200, 0);
+//                contentStream.showText(user.getRole().toString());
+//                contentStream.newLineAtOffset(100, 0);
+//                // Null-check for Phone Number
+//                contentStream.showText(user.getPhoneNumber() != null ? user.getPhoneNumber() : "");
+//                contentStream.newLineAtOffset(100, 0);
+//                // Null-check for Date of Birth
+//                contentStream.showText(user.getDateOfBirth() != null ? formatDate(user.getDateOfBirth()) : "");
+//                contentStream.endText();
+//                }
+//            contentStream.close();
+
+
+//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//            document.save(byteArrayOutputStream);
+//            document.close();
+//
+//            return byteArrayOutputStream.toByteArray();
 
     }
     private String formatDate(LocalDate date) {
