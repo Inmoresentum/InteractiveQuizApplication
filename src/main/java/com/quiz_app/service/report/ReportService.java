@@ -111,7 +111,7 @@ public class ReportService {
             float imageHeight = 50;
             contentStream.drawImage(iconImage, 50, 750, imageWidth, imageHeight);
 
-            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 10);
             contentStream.beginText();
             contentStream.newLineAtOffset(120, 775);
             contentStream.showText("User Report");
@@ -120,21 +120,21 @@ public class ReportService {
             int yPosition = 700;
             contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
             contentStream.beginText();
-            contentStream.newLineAtOffset(50, yPosition);
+            contentStream.newLineAtOffset(25, yPosition);
             contentStream.showText("ID");
-            contentStream.newLineAtOffset(50, 0);
-            contentStream.showText("Username");
-            contentStream.newLineAtOffset(100, 0);
+            contentStream.newLineAtOffset(25, 0);
+            contentStream.showText("Username/Email");
+            contentStream.newLineAtOffset(200, 0);
             contentStream.showText("Firstname");
-            contentStream.newLineAtOffset(100, 0);
+            contentStream.newLineAtOffset(75, 0);
             contentStream.showText("Lastname");
-            contentStream.newLineAtOffset(100, 0);
-            contentStream.showText("Email");
-            contentStream.newLineAtOffset(100, 0);
+            contentStream.newLineAtOffset(75, 0);
+//            contentStream.showText("Email");
+//            contentStream.newLineAtOffset(200, 0);
             contentStream.showText("Role");
-            contentStream.newLineAtOffset(100, 0);
+            contentStream.newLineAtOffset(50, 0);
             contentStream.showText("Phone Number");
-            contentStream.newLineAtOffset(100, 0);
+            contentStream.newLineAtOffset(50, 0);
             contentStream.showText("Date of Birth");
             contentStream.endText();
 
@@ -143,17 +143,17 @@ public class ReportService {
             for (User user : users) {
                 yPosition -= 20;
                 contentStream.beginText();
-                contentStream.newLineAtOffset(50, yPosition);
+                contentStream.newLineAtOffset(25, yPosition);
                 contentStream.showText(String.valueOf(user.getId()));
-                contentStream.newLineAtOffset(50, 0);
+                contentStream.newLineAtOffset(25, 0);
                 contentStream.showText(user.getUsername());
-                contentStream.newLineAtOffset(100, 0);
+                contentStream.newLineAtOffset(200, 0);
                 contentStream.showText(user.getFirstname());
-                contentStream.newLineAtOffset(100, 0);
+                contentStream.newLineAtOffset(75, 0);
                 contentStream.showText(user.getLastname());
-                contentStream.newLineAtOffset(100, 0);
-                contentStream.showText(user.getEmail());
-                contentStream.newLineAtOffset(100, 0);
+                contentStream.newLineAtOffset(75, 0);
+//                contentStream.showText(user.getEmail());
+//                contentStream.newLineAtOffset(200, 0);
                 contentStream.showText(user.getRole().toString());
                 contentStream.newLineAtOffset(100, 0);
                 // Null-check for Phone Number
