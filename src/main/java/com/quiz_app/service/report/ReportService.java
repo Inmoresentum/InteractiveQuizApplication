@@ -39,9 +39,9 @@ import static org.springframework.data.domain.PageRequest.*;
 public class ReportService {
     private final UserRepository userRepository;
     private final ResourceLoader resourceLoader;
-
+//ADMIN
     public ResponseEntity<?> generateUserReportCSV() {
-        int chunkSize = 10; // Number of users per chunk
+        int chunkSize = 25; // Number of users per chunk
         int currentPage = 0;
 
         StringWriter writer = new StringWriter();
