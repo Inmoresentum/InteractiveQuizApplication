@@ -41,50 +41,122 @@ public class ReportService {
     private final ResourceLoader resourceLoader;
 
     public ResponseEntity<?> generateUserReportCSV() {
-        List<User> users = userRepository.findAll();
-        try {
-            var csvContent = generateCSV(users);
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.parseMediaType("text/csv"));
-            headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=users_report.csv");
+        int chunkSize = 10; // Number of users per chunk
+        int currentPage = 0;
 
-            return  new ResponseEntity<>(csvContent, headers, HttpStatus.CREATED);
-        } catch (IOException e) {
-            return ResponseEntity.status(503).body(Map.of("message",
-                    "Failed to create CSV report"));
+        StringWriter writer = new StringWriter();
+        CSVWriter csvWriter = new CSVWriter(writer);
+
+        while (true) {
+            Pageable pageable = PageRequest.of(currentPage, chunkSize);
+            Page<User> userPage = userRepository.findAll(pageable);
+
+            if (!userPage.hasContent()) {
+                break; // No more users to process
+            }
+
+            List<User> chunk = userPage.getContent();
+            generateCSVChunk(csvWriter, chunk);
+
+            currentPage++;
+        }
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType("text/csv"));
+        headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=users_report.csv");
+
+        return new ResponseEntity<>(writer.toString(), headers, HttpStatus.CREATED);
+    }
+
+    private void generateCSVChunk(CSVWriter csvWriter, List<User> users) {
+        for (User user : users) {
+            String dateOfBirthString = Optional
+                    .ofNullable(user.getDateOfBirth())
+                    .map(LocalDate::toString)
+                    .orElse("");
+
+            String[] row = {
+                    String.valueOf(user.getId()),
+                    user.getUsername(),
+                    user.getFirstname(),
+                    user.getLastname(),
+                    user.getEmail(),
+                    user.getRole().toString(),
+                    user.getPhoneNumber(),
+                    dateOfBirthString
+            };
+            csvWriter.writeNext(row);
         }
     }
 
-    private byte[] generateCSV(List<User> users) throws IOException {
-        StringWriter writer = new StringWriter();
-        CSVWriter csvWriter = new CSVWriter(writer);
-            String[] header = {"ID", "Username", "Firstname",
-                    "Lastname", "Email", "Role",
-                    "Phone Number", "Date of Birth"};
-            csvWriter.writeNext(header);
-
-            for (User user : users) {
-                String dateOfBirthString = Optional
-                        .ofNullable(user.getDateOfBirth())
-                        .map(LocalDate::toString)
-                        .orElse("");
-
-                String[] row = {
-                        String.valueOf(user.getId()),
-                        user.getUsername(),
-                        user.getFirstname(),
-                        user.getLastname(),
-                        user.getEmail(),
-                        user.getRole().toString(),
-                        user.getPhoneNumber(),
-                        dateOfBirthString
-                };
-                csvWriter.writeNext(row);
-            }
-
-        return writer.toString()
-                .getBytes(StandardCharsets.UTF_8);
-    }
+//    public ResponseEntity<?> generateUserReportCSV() {
+//        int chunkSize = 10; // Number of users per chunk
+//        int currentPage = 0;
+////        List<User> users = userRepository.findAll();
+//        try {
+//            while (true) {
+//            Pageable pageable = PageRequest.of(currentPage, chunkSize);
+//            Page<User> userPage = userRepository.findAll(pageable);
+//
+//            if (!userPage.hasContent()) {
+//                break; // No more users to process
+//            }
+//
+//            List<User> chunk = userPage.getContent();
+//            String csvContent = generateCSV(chunk);
+//
+//            HttpHeaders headers = new HttpHeaders();
+//            headers.setContentType(MediaType.parseMediaType("text/csv"));
+//            headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=users_report.csv");
+//
+//            return new ResponseEntity<>(csvContent, headers, HttpStatus.CREATED);
+//
+//            currentPage++;
+//        }
+//
+////            var csvContent = generateCSV(users);
+////            HttpHeaders headers = new HttpHeaders();
+////            headers.setContentType(MediaType.parseMediaType("text/csv"));
+////            headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=users_report.csv");
+////
+////            return  new ResponseEntity<>(csvContent, headers, HttpStatus.CREATED);
+//        } catch (IOException e) {
+//            return ResponseEntity.status(503).body(Map.of("message",
+//                    "Failed to create CSV report"));
+//        }
+//    }
+//
+//
+//    private byte[] generateCSV(List<User> users) throws IOException {
+//        StringWriter writer = new StringWriter();
+//        CSVWriter csvWriter = new CSVWriter(writer);
+//            String[] header = {"ID", "Username", "Firstname",
+//                    "Lastname", "Email", "Role",
+//                    "Phone Number", "Date of Birth"};
+//            csvWriter.writeNext(header);
+//
+//            for (User user : users) {
+//                String dateOfBirthString = Optional
+//                        .ofNullable(user.getDateOfBirth())
+//                        .map(LocalDate::toString)
+//                        .orElse("");
+//
+//                String[] row = {
+//                        String.valueOf(user.getId()),
+//                        user.getUsername(),
+//                        user.getFirstname(),
+//                        user.getLastname(),
+//                        user.getEmail(),
+//                        user.getRole().toString(),
+//                        user.getPhoneNumber(),
+//                        dateOfBirthString
+//                };
+//                csvWriter.writeNext(row);
+//            }
+//
+//        return writer.toString()
+//                .getBytes(StandardCharsets.UTF_8);
+//    }
 
     public ResponseEntity<?> generateUserReportPDF() {
         int chunkSize = 25; // Number of users per chunk
