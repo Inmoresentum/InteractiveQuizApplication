@@ -76,8 +76,8 @@ export default function Footer() {
                         <h6 className='font-medium text-gray-400'>Legal</h6>
                         <ul>
                             <li className='py-2 text-sm'>Claim</li>
-                            <li className='py-2 text-sm'>Policy</li>
-                            <li className='py-2 text-sm'>Terms</li>
+                            <li className='py-2 text-sm'><Link href="/privacyandpolicy" className='py-2 text-sm'>Policy</Link></li>
+                            <li className='py-2 text-sm'><Link href="/termsandservices" className='py-2 text-sm'>Terms</Link></li>
                         </ul>
                     </div>
                 </div>
