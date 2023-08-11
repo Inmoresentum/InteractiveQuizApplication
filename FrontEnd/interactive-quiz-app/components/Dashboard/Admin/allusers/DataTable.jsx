@@ -87,6 +87,14 @@ export default function DataTable({authInfo}) {
         setOpen(false);
     };
 
+    const downloadPDF = () => {
+        window.open("http://localhost:8080/api/v1/reports/users/pdf");
+    };
+
+    const downloadCSV = () => {
+        window.open("http://localhost:8080/api/v1/reports/users/csv");
+    };
+
     return (
         <>
             <Dialog open={open} onOpenChange={handleClose}>
@@ -119,6 +127,15 @@ export default function DataTable({authInfo}) {
                         />
                     </div>
                 </div>
+                <div className="flex items-center mt-4 space-x-4">
+                    <Button onClick={downloadPDF} variant="outlined">
+                        Download PDF
+                    </Button>
+                    <Button onClick={downloadCSV} variant="outlined">
+                        Download CSV
+                    </Button>
+                </div>
+
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
                         <DialogTitle>Make Changes To This User</DialogTitle>
