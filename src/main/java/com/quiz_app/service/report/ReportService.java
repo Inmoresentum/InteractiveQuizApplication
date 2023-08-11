@@ -89,74 +89,7 @@ public class ReportService {
         }
     }
 
-//    public ResponseEntity<?> generateUserReportCSV() {
-//        int chunkSize = 10; // Number of users per chunk
-//        int currentPage = 0;
-////        List<User> users = userRepository.findAll();
-//        try {
-//            while (true) {
-//            Pageable pageable = PageRequest.of(currentPage, chunkSize);
-//            Page<User> userPage = userRepository.findAll(pageable);
-//
-//            if (!userPage.hasContent()) {
-//                break; // No more users to process
-//            }
-//
-//            List<User> chunk = userPage.getContent();
-//            String csvContent = generateCSV(chunk);
-//
-//            HttpHeaders headers = new HttpHeaders();
-//            headers.setContentType(MediaType.parseMediaType("text/csv"));
-//            headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=users_report.csv");
-//
-//            return new ResponseEntity<>(csvContent, headers, HttpStatus.CREATED);
-//
-//            currentPage++;
-//        }
-//
-////            var csvContent = generateCSV(users);
-////            HttpHeaders headers = new HttpHeaders();
-////            headers.setContentType(MediaType.parseMediaType("text/csv"));
-////            headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=users_report.csv");
-////
-////            return  new ResponseEntity<>(csvContent, headers, HttpStatus.CREATED);
-//        } catch (IOException e) {
-//            return ResponseEntity.status(503).body(Map.of("message",
-//                    "Failed to create CSV report"));
-//        }
-//    }
-//
-//
-//    private byte[] generateCSV(List<User> users) throws IOException {
-//        StringWriter writer = new StringWriter();
-//        CSVWriter csvWriter = new CSVWriter(writer);
-//            String[] header = {"ID", "Username", "Firstname",
-//                    "Lastname", "Email", "Role",
-//                    "Phone Number", "Date of Birth"};
-//            csvWriter.writeNext(header);
-//
-//            for (User user : users) {
-//                String dateOfBirthString = Optional
-//                        .ofNullable(user.getDateOfBirth())
-//                        .map(LocalDate::toString)
-//                        .orElse("");
-//
-//                String[] row = {
-//                        String.valueOf(user.getId()),
-//                        user.getUsername(),
-//                        user.getFirstname(),
-//                        user.getLastname(),
-//                        user.getEmail(),
-//                        user.getRole().toString(),
-//                        user.getPhoneNumber(),
-//                        dateOfBirthString
-//                };
-//                csvWriter.writeNext(row);
-//            }
-//
-//        return writer.toString()
-//                .getBytes(StandardCharsets.UTF_8);
-//    }
+
 
     public ResponseEntity<?> generateUserReportPDF() {
         int chunkSize = 25; // Number of users per chunk
@@ -259,80 +192,7 @@ public class ReportService {
             }
             contentStream.close();
         }
-//            PDDocument document = new PDDocument();
-//            PDPage page = new PDPage(PDRectangle.A4);
-//            document.addPage(page);
-//            String imagePath = "classpath:images/quiz-app-logo.png";
-//            PDImageXObject iconImage = PDImageXObject
-//                    .createFromFileByContent(resourceLoader
-//                            .getResource(imagePath).getFile(), document);
 
-
-//            PDPageContentStream contentStream = new PDPageContentStream(document, page);
-//            float imageWidth = 50;
-//            float imageHeight = 50;
-//            contentStream.drawImage(iconImage, 50, 750, imageWidth, imageHeight);
-
-//            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 10);
-//            contentStream.beginText();
-//            contentStream.newLineAtOffset(120, 775);
-//            contentStream.showText("User Report");
-//            contentStream.endText();
-//
-//            int yPosition = 700;
-//            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 10);
-//            contentStream.beginText();
-//            contentStream.newLineAtOffset(25, yPosition);
-//            contentStream.showText("ID");
-//            contentStream.newLineAtOffset(25, 0);
-//            contentStream.showText("Username/Email");
-//            contentStream.newLineAtOffset(200, 0);
-//            contentStream.showText("Firstname");
-//            contentStream.newLineAtOffset(75, 0);
-//            contentStream.showText("Lastname");
-//            contentStream.newLineAtOffset(75, 0);
-////            contentStream.showText("Email");
-////            contentStream.newLineAtOffset(200, 0);
-//            contentStream.showText("Role");
-//            contentStream.newLineAtOffset(50, 0);
-//            contentStream.showText("Phone Number");
-//            contentStream.newLineAtOffset(50, 0);
-//            contentStream.showText("Date of Birth");
-//            contentStream.endText();
-//
-//            contentStream.setFont(PDType1Font.HELVETICA, 10);
-//
-//            for (User user : users) {
-//                yPosition -= 20;
-//                contentStream.beginText();
-//                contentStream.newLineAtOffset(25, yPosition);
-//                contentStream.showText(String.valueOf(user.getId()));
-//                contentStream.newLineAtOffset(25, 0);
-//                contentStream.showText(user.getUsername());
-//                contentStream.newLineAtOffset(200, 0);
-//                contentStream.showText(user.getFirstname());
-//                contentStream.newLineAtOffset(75, 0);
-//                contentStream.showText(user.getLastname());
-//                contentStream.newLineAtOffset(75, 0);
-////                contentStream.showText(user.getEmail());
-////                contentStream.newLineAtOffset(200, 0);
-//                contentStream.showText(user.getRole().toString());
-//                contentStream.newLineAtOffset(100, 0);
-//                // Null-check for Phone Number
-//                contentStream.showText(user.getPhoneNumber() != null ? user.getPhoneNumber() : "");
-//                contentStream.newLineAtOffset(100, 0);
-//                // Null-check for Date of Birth
-//                contentStream.showText(user.getDateOfBirth() != null ? formatDate(user.getDateOfBirth()) : "");
-//                contentStream.endText();
-//                }
-//            contentStream.close();
-
-
-//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//            document.save(byteArrayOutputStream);
-//            document.close();
-//
-//            return byteArrayOutputStream.toByteArray();
 
     }
     private String formatDate(LocalDate date) {
