@@ -102,7 +102,27 @@ export default function DataTable({authInfo}) {
                     <div className="p-16">
                         <h1 className="uppercase font-bold text-red-400 text-3xl p-2 flex items-center justify-center">
                             All Users
+
+
                         </h1>
+                        <div className="flex items-center mt-4 justify-end space-x-4">
+                            <Button
+                                onClick={downloadPDF}
+                                variant="outlined"
+                                style={{ backgroundColor: "#007bff", color: "#fff", borderRadius: "8px", marginLeft: "24px",}}
+                            >
+                                Download PDF
+                            </Button>
+                            <Button
+                                onClick={downloadCSV}
+                                variant="outlined"
+                                style={{ backgroundColor: "#007bff", color: "#fff", borderRadius: "8px", marginLeft: "8px", }}
+                            >
+                                Download CSV
+                            </Button>
+                        </div>
+
+
                         <DataGrid
                             rows={data.content} //here you will have to make changes
                             columns={columns}
@@ -127,14 +147,7 @@ export default function DataTable({authInfo}) {
                         />
                     </div>
                 </div>
-                <div className="flex items-center mt-4 space-x-4">
-                    <Button onClick={downloadPDF} variant="outlined">
-                        Download PDF
-                    </Button>
-                    <Button onClick={downloadCSV} variant="outlined">
-                        Download CSV
-                    </Button>
-                </div>
+
 
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
