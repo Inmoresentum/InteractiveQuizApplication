@@ -105,20 +105,22 @@ export default function DataTable({authInfo}) {
 
 
                         </h1>
-                        <div className="flex items-center mt-4 justify-end space-x-4">
+                        <div className="flex items-center m-2 justify-end space-x-4">
                             <Button
+                                className="bg-blue-600 rounded-xl text-white font-semibold line-clamp-1
+                                 hover:bg-green-500 duration-300 ease-in delay-75"
                                 onClick={downloadPDF}
                                 variant="outlined"
-                                style={{ backgroundColor: "#007bff", color: "#fff", borderRadius: "8px", marginLeft: "24px",}}
                             >
-                                Download PDF
+                                DOWNLOAD USER REPORT PDF
                             </Button>
                             <Button
+                                className="bg-blue-600 rounded-xl text-white font-semibold line-clamp-1
+                                 hover:bg-green-500 duration-300 ease-in delay-75"
                                 onClick={downloadCSV}
                                 variant="outlined"
-                                style={{ backgroundColor: "#007bff", color: "#fff", borderRadius: "8px", marginLeft: "8px", }}
                             >
-                                Download CSV
+                                DOWNLOAD CSV
                             </Button>
                         </div>
 
