@@ -155,7 +155,7 @@ export default function DataTable({authInfo}) {
                     <DialogHeader>
                         <DialogTitle>Make Changes To This User</DialogTitle>
                         <DialogDescription>
-                            Make changes to user profile. Click save when you're done.
+                            Make changes to user profile. Click save when you&apos;re done.
                         </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
