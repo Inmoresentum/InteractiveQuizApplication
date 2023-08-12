@@ -84,7 +84,7 @@ public class QuizApplication {
                                     .firstname(faker.name().firstName())
                                     .lastname(faker.name().lastName())
                                     .email(email)
-                                    .password(faker.internet().password())
+                                    .password("admin")
                                     .accountCreatedAt(LocalDateTime.now())
                                     .agreesWithTermsAndConditions(true)
                                     .role(USER)
