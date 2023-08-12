@@ -1,9 +1,6 @@
 package com.quiz_app.entity.validip;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Version;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -16,6 +13,7 @@ public class InvalidIP {
     @Id
     @GeneratedValue
     private Long id;
+    @Column(unique = true)
     private String bannedIp;
     @Version
     private Integer version;
