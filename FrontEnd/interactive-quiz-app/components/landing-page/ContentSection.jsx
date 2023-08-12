@@ -138,7 +138,9 @@ export default function ContentSection() {
 
                                     <div className="mobilePhoto blue"></div>
                                     <h1>Blue</h1>
-                                    <p className="p-4">Blue is a color that is often associated with calmness, trust, and reliability. It is a peaceful and serene
+                                    <p className="p-4">
+                                        Blue is a color that is often associated with calmness, trust, and reliability. 
+                                        It is a peaceful and serene
                                         color
                                         that
                                         can
