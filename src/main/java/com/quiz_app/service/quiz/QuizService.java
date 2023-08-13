@@ -10,7 +10,6 @@ import com.quiz_app.entity.quiz.*;
 import com.quiz_app.entity.user.User;
 import com.quiz_app.repository.QuizRepository;
 import com.quiz_app.repository.UserRepository;
-import com.quiz_app.service.clamav.ClamAVService;
 import com.quiz_app.service.minio.MinioService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -94,7 +93,7 @@ public class QuizService {
 //         Todo: Later add the missing values after completing features
         quizEntity.setDifficultyLevel(mapDifficulty(quizCreateRequestBody.getDifficulty()));
 //         we will have to build logic here
-        quizEntity.setTags(mapQuizTag(quizCreateRequestBody.getQuizTags()));
+        quizEntity.setCurQuizTag(mapQuizTag(quizCreateRequestBody.getQuizTags()));
 
         // Create new QuestionCreatedRequestBody entities for each question in the quiz form data
         List<Question> listOfQuestionsEntity = new ArrayList<>();

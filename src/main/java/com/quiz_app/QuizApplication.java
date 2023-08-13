@@ -3,8 +3,10 @@ package com.quiz_app;
 import com.quiz_app.entity.FAQ.FAQ;
 import com.quiz_app.entity.dailysystemstats.DailySystemStatistics;
 import com.quiz_app.entity.dailysystemstats.DailySystemStatisticsKey;
+import com.quiz_app.entity.quiz.Difficulty;
 import com.quiz_app.entity.quiz.Question;
 import com.quiz_app.entity.quiz.Quiz;
+import com.quiz_app.entity.quiz.QuizTag;
 import com.quiz_app.repository.DailySystemStatisticsRepository;
 import com.quiz_app.repository.FAQRepository;
 import com.quiz_app.repository.QuizRepository;
@@ -212,6 +214,9 @@ public class QuizApplication {
                         .quizTitle("Checking Test Quiz")
                         .quizSynopsis("Well, I do not want to type anything")
                         .questions(questionList)
+                        .curQuizTag(QuizTag.CODING)
+                        .difficultyLevel(Difficulty.EASY)
+                        .createdBy(userRepository.findByEmail("user@mail.com").orElseThrow())
                         .build();
 
                 quizRepository.save(quiz);
