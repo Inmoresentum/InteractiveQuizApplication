@@ -94,15 +94,15 @@ export default function DataTable({authInfo}) {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },
-                responseType: 'blob', // This tells Axios to treat the response as binary data
+                responseType: "blob", // This tells Axios to treat the response as binary data
             });
 
             // Handle the response and download the file...
-            const blob = new Blob([response.data], { type: 'application/pdf' });
+            const blob = new Blob([response.data], { type: "application/pdf" });
             const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
+            const a = document.createElement("a");
             a.href = url;
-            a.download = 'report.pdf'; // Set the desired file name
+            a.download = "report.pdf"; // Set the desired file name
             a.click();
             URL.revokeObjectURL(url);
 
@@ -134,15 +134,15 @@ export default function DataTable({authInfo}) {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },
-                responseType: 'blob', // This tells Axios to treat the response as binary data
+                responseType: "blob", // This tells Axios to treat the response as binary data
             });
 
             // Handle the response and download the file...
-            const blob = new Blob([response.data], { type: 'text/csv' });
+            const blob = new Blob([response.data], { type: "text/csv" });
             const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
+            const a = document.createElement("a");
             a.href = url;
-            a.download = 'report.csv'; // Set the desired file name
+            a.download = "report.csv"; // Set the desired file name
             a.click();
             URL.revokeObjectURL(url);
 
