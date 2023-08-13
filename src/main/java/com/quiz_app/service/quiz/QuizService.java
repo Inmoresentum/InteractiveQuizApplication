@@ -13,6 +13,7 @@ import com.quiz_app.repository.UserRepository;
 import com.quiz_app.service.minio.MinioService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -33,6 +34,7 @@ public class QuizService {
     private final MinioService minioService;
     private final UserRepository userRepository;
     private final String BASE_URL = "http://localhost:8080/api/v1/storage/public";
+    private final ModelMapper modelMapper;
 
     public ResponseEntity<DemoQuizResponse> getDemoQuiz() {
         var quiz = quizRepository.findById(1);
@@ -76,7 +78,8 @@ public class QuizService {
 
     public ResponseEntity<?> getQuizzesByPage(Integer page) {
         var listOfQuizzes = quizRepository.findAll(PageRequest.of(page, 10));
-        return ResponseEntity.ok(listOfQuizzes);
+        var response = listOfQuizzes.map((element) -> modelMapper.map(element, QuizDTO.class));
+        return ResponseEntity.ok(response);
     }
 
 
@@ -90,9 +93,7 @@ public class QuizService {
         quizEntity.setQuizTitle(quizCreateRequestBody.getQuizTitle());
         quizEntity.setQuizSynopsis(quizCreateRequestBody.getQuizSynopsis());
         quizEntity.setQuizProfilePhotoUrl(quizCreateRequestBody.getQuizProfileImage());
-//         Todo: Later add the missing values after completing features
         quizEntity.setDifficultyLevel(mapDifficulty(quizCreateRequestBody.getDifficulty()));
-//         we will have to build logic here
         quizEntity.setCurQuizTag(mapQuizTag(quizCreateRequestBody.getQuizTags()));
 
         // Create new QuestionCreatedRequestBody entities for each question in the quiz form data
@@ -104,8 +105,6 @@ public class QuizService {
                     ? QuestionType.TEXT : QuestionType.PHOTO);
             questionEntity.setAnswerSelectionType(questionCreatedRequestBody.getAnswerType().equals("single")
                     ? AnswerSelectionType.SINGLE : AnswerSelectionType.MULTIPLE);
-            // Todo:
-            //  Set other properties of the QuestionCreatedRequestBody entity using the questionCreatedRequestBody form data
             if (questionCreatedRequestBody.getAnswers() != null && !questionCreatedRequestBody.getAnswers().isEmpty())
                 questionEntity.setAnswers(questionCreatedRequestBody.getAnswers());
             questionEntity.setMessageForCorrectAnswer(questionCreatedRequestBody.getCorrectMessage());

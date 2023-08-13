@@ -2,29 +2,32 @@ package com.quiz_app.controller.quizresourcecontroller.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.quiz_app.entity.quiz.Difficulty;
-import com.quiz_app.entity.quiz.Question;
 import com.quiz_app.entity.quiz.QuizTag;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Builder
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class QuizDTO {
-    private final String quizTitle;
-    private final String quizSynopsis;
-    private final Integer nrOfQuestions;
+    private String quizTitle;
+    private String quizSynopsis;
+    private Integer nrOfQuestions;
     @JsonProperty("questions")
-    private final List<QuestionDTO> questions;
-    private final Integer quizId;
-    private final String quizProfilePhotoUrl;
-    private final Difficulty difficultyLevel;
-    private final List<QuizTag> tags;
-    private final Integer createdById;
-    private final String createdByUsername;
-    private final String createdByFirstname;
-    private final String createdByLastname;
-    private final String createdByEmail;
-    private final String createdByProfilePicUrl;
+    private List<QuestionDTO> questions;
+    private Integer quizId;
+    private String quizProfilePhotoUrl;
+    private Difficulty difficultyLevel;
+    private List<QuizTag> tags;
+    private Integer createdById;
+    private String createdByUsername;
+    private String createdByFirstname;
+    private String createdByLastname;
+    private String createdByEmail;
+    private String createdByProfilePicUrl;
 }
