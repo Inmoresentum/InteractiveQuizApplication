@@ -130,7 +130,7 @@ public class AuthenticationService {
             final String ACTIVATION_LINK = EMAIL_VERIFICATION_URL.concat(ACTIVATION_TOKEN);
             // Also, have to save this activation token in the token repository.
             UserVerificationToken userVerificationToken = new UserVerificationToken(ACTIVATION_TOKEN,
-                    LocalDateTime.now(), LocalDateTime.now().plusHours(3), user);
+                    LocalDateTime.now(), LocalDateTime.now().plusHours(73), user);
             // Saving the token
             userVerificationTokenRepository.save(userVerificationToken);
             emailService.send(user.getEmail(), "Account Activation", emailUtils
