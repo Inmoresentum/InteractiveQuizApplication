@@ -182,25 +182,13 @@ export default function DataTable({authInfo}) {
                         <div className="flex items-center mt-4 justify-end space-x-4">
                             <Button
                                 onClick={() => downloadPDF(authInfo.access_token, authInfo.refresh_token)}
-                                variant="outlined"
-                                style={{
-                                    backgroundColor: "#007bff",
-                                    color: "#fff",
-                                    borderRadius: "8px",
-                                    marginLeft: "24px",
-                                }}
+                                className="bg-blue-500 text-white rounded-lg px-4 py-2"
                             >
                                 Download PDF
                             </Button>
                             <Button
                                 onClick={() => downloadCSV(authInfo.access_token, authInfo.refresh_token)}
-                                variant="outlined"
-                                style={{
-                                    backgroundColor: "#007bff",
-                                    color: "#fff",
-                                    borderRadius: "8px",
-                                    marginLeft: "8px",
-                                }}
+                                className="bg-blue-500 text-white rounded-lg px-4 py-2"
                             >
                                 Download CSV
                             </Button>
