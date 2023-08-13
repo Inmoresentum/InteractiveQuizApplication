@@ -167,24 +167,7 @@ export default function DataTable({authInfo}) {
             }
         }
     };
-    // const downloadReportsQuery = useDownloadReports();
-    // const downloadPDF = () => {
-    //     // window.open("http://localhost:8080/api/v1/reports/users/pdf");
-    //     downloadReportsQuery.refetch({
-    //         endpoint: "http://localhost:8080/api/v1/reports/users/pdf",
-    //         accessToken: authInfo.access_token,
-    //         refreshToken: authInfo.refresh_token
-    //     });
-    // };
-    //
-    // const downloadCSV = () => {
-    //     // window.open("http://localhost:8080/api/v1/reports/users/csv");
-    //     downloadReportsQuery.refetch({
-    //         endpoint: "http://localhost:8080/api/v1/reports/users/csv",
-    //         accessToken: authInfo.access_token,
-    //         refreshToken: authInfo.refresh_token
-    //     });
-    // };
+
 
     return (
         <>
