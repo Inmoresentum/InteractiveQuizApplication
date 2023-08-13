@@ -279,7 +279,7 @@ export default function QuizCreationForm() {
             }
         }
     };
-    if (isSubmitted)
+    if (isSubmitted && !errors)
         return (
             <div className="container mx-auto p-44 flex justify-center items-center flex-grow h-[80vh]">
                 <div className="bg-gradient-to-r from-green-400 via-purple-500 to-green-600 text-white font-bold border md:text-xl
