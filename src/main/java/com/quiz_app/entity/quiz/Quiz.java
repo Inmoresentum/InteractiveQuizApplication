@@ -32,10 +32,9 @@ public class Quiz {
     private String quizProfilePhotoUrl;
     @Enumerated(EnumType.STRING)
     private Difficulty difficultyLevel = EASY;
-    @ElementCollection(targetClass = QuizTag.class)
     @CollectionTable(name = "quiz_tags")
     @Enumerated(EnumType.STRING)
-    private List<QuizTag> tags;
+    private QuizTag tags;
 
     @ManyToOne
     @JoinColumn(name = "author_of_the_quiz")

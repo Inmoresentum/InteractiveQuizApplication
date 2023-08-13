@@ -14,6 +14,6 @@ public class QuizCreateRequestBody {
     private String quizSynopsis;
     private String quizProfileImage;
     private List<QuestionCreatedRequestBody> questions;
-    private String difficultyLevel;
-    private List<String> tags;
+    private String difficulty;
+    private String quizTags;
 }
