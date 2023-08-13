@@ -9,9 +9,7 @@ const Analytics = () => {
                 <div className='flex flex-col justify-center'>
                     <p className='text-purple-600 font-bold '>Create Quizzes Right From Dashboard</p>
                     <h1 className='md:text-4xl sm:text-3xl text-2xl font-bold py-2'>Manage Your Quizzes Centrally</h1>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet dolor harum laborum laudantium
-                        modi nostrum quibusdam? Aliquid assumenda blanditiis facilis inventore laborum molestiae, nisi
-                        officiis perferendis praesentium tempora, ut voluptatem? </p>
+                    <p> Craft engaging quizzes effortlessly with our intuitive dashboard, designed to put the power of content creation in your hands. </p>
                     <button
                         className='bg-orange-600 text-white w-[200px] rounded-xl
                         font-bold my-6 mx-auto md:mx-0 py-3 hover:bg-rose-600 hover:text-black hover:shadow-2xl hover:shadow-black transition
