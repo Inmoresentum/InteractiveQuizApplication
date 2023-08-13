@@ -101,7 +101,7 @@ export default function Navbar() {
                                 </li>
                                 {sessionData.data?.user.role === "USER" &&
                                     <li className="py-1 px-4 rounded-full bg-gray-500 text-md hover:text-red-400 hover:bg-gray-700 text-center">
-                                        <Link href={"/"}>
+                                        <Link href="/quiz/create/">
                                             CREATE QUIZ
                                         </Link>
                                     </li>

@@ -11,9 +11,9 @@ export const metadata = {
 
 export default async function QuizCreationPage() {
     const session = await getServerSession(options);
-    // if (!session) {
-    //     redirect("http://localhost:3000/auth/login")
-    // }
+    if (!session) {
+        redirect("http://localhost:3000/auth/login")
+    }
     return (
         <QuizCreationForm/>
     );
