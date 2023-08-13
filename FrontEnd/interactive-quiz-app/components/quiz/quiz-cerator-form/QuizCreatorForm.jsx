@@ -8,6 +8,10 @@ import {toast} from "react-toastify";
 import {Button} from "@/components/ui/button";
 import {useSession} from "next-auth/react";
 import MainLoadingSpinnerUi from "@/components/loading-animation/MainLoadingSpinnerUi";
+import {GoCheckCircleFill} from "react-icons/go";
+import Link from "next/link";
+import {FaExclamation} from "react-icons/fa6";
+import {redirect, useRouter} from "next/navigation";
 
 // Creating a schema for the form data using zod
 const schema = z.object({
@@ -37,7 +41,7 @@ const schema = z.object({
 });
 
 export default function QuizCreationForm() {
-    const {register, handleSubmit, reset, watch, setValue, formState: {errors}} = useForm({
+    const {register, handleSubmit, reset, watch, setValue, formState: {errors, isSubmitted}} = useForm({
         resolver: zodResolver(schema),
         defaultValues: {
             quizTitle: "",
@@ -49,7 +53,7 @@ export default function QuizCreationForm() {
     });
 
     const userSessionData = useSession();
-    const { data: session, update } = useSession();
+    const {data: session, update} = useSession();
     const [questions, setQuestions] = useState([]);
     const [imagePreviews, setImagePreviews] = useState([]);
 
@@ -89,8 +93,9 @@ export default function QuizCreationForm() {
         console.log(errors);
         console.log(questions);
     });
-
+    // const [submitted, setSubmitted] = useState(null)
     const quizProfileImageFile = watch("quizProfileImage");
+    const router = useRouter();
     let quizProfileImageURL = null;
     try {
         quizProfileImageURL = quizProfileImageFile ? URL.createObjectURL(quizProfileImageFile[0]) : null;
@@ -191,7 +196,7 @@ export default function QuizCreationForm() {
         }
         console.log(data);
         try {
-            const response = await axios.post("http://localhost:8080/api/v1/quiz/resource/create",data, {
+            const response = await axios.post("http://localhost:8080/api/v1/quiz/resource/create", data, {
                 headers: {
                     Authorization: `Bearer ${userSessionData.data.user.access_token}`,
                 },
@@ -219,7 +224,7 @@ export default function QuizCreationForm() {
                 });
 
                 try {
-                    const newResponse = await axios.post("http://localhost:8080/api/v1/quiz/resource/create",data, {
+                    const newResponse = await axios.post("http://localhost:8080/api/v1/quiz/resource/create", data, {
                         headers: {
                             Authorization: `Bearer ${newAccessToken}`,
                         },
@@ -274,7 +279,29 @@ export default function QuizCreationForm() {
             }
         }
     };
-
+    if (isSubmitted)
+        return (
+            <div className="container mx-auto p-44 flex justify-center items-center flex-grow h-[80vh]">
+                <div className="bg-gradient-to-r from-green-400 via-purple-500 to-green-600 text-white font-bold border md:text-xl
+                 border-green-500 rounded-full p-4 box-border w-full min-w-[15rem] duration-500
+                 md:hover:scale-110 ease-linear">
+                            <span className="flex justify-center items-center">
+                                <GoCheckCircleFill className="w-12 h-16 mr-2 animate-spin"/>
+                                SUCCESSFULLY CREATED THE QUIZ
+                            </span>
+                    <span className="flex content-center justify-center ">
+                        <button className="underline text-green-400
+                         hover:text-cyan-500 duration-300 ease-linear"
+                                onClick={(e) => {
+                                    router.push("http://localhost:3000/quiz/public/quizzes")
+                                }}
+                        >
+                            NOW CHECKOUT QUIZZES
+                        </button>
+                    </span>
+                </div>
+            </div>
+        )
     if (userSessionData.status === "loading") return <MainLoadingSpinnerUi/>
 
     return (
