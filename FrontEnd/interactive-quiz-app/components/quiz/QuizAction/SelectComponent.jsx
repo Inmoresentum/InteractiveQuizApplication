@@ -1,3 +1,4 @@
+"use client"
 import {
     Select,
     SelectContent,
@@ -7,10 +8,14 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import {useRouter} from "next/navigation";
 
 export function SelectComponentForQuizAction() {
+    const router = useRouter();
     return (
-        <Select>
+        <Select onValueChange={(e) => {
+            router.push(`?tag=${e}`)
+        }}>
             <SelectTrigger className="w-[300px]">
                 <SelectValue placeholder="SELECT A TAG"/>
             </SelectTrigger>
