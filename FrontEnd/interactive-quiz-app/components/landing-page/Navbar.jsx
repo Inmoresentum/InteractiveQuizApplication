@@ -90,7 +90,7 @@ export default function Navbar() {
                             </h3>
                             <ul className="space-y-2">
                                 <li className="py-1 px-4 rounded-full bg-gray-500 hover:bg-gray-700 cursor-pointer text-center">
-                                    <Link href={"/"}>
+                                    <Link href="http://localhost:3000/quiz/public/quizzes" prefetch={false}>
                                         ALL QUIZZES
                                     </Link>
                                 </li>

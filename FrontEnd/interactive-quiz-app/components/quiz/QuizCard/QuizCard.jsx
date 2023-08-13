@@ -11,29 +11,19 @@ export default function QuizCard({quizInfo}) {
 
                 <HiMiniArrowUturnRight className="bi text-white whatever mix-blend-difference"/>
                 <div class="quiz-card-top">
-                    <Image src={CardImage} alt=""/></div>
+                    <Image src={quizInfo?.createdByProfilePicUrl !== null ? quizInfo?.createdByProfilePicUrl : CardImage} alt=""/></div>
 
                 <div class="quiz-card-body">
-                    <h4 class="title">Vash The Stampede</h4>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure necessitatibus possimus amet inventore ipsum rerum, qui cumque
-                        praesentium facere</p>
+                    <h4 class="title">
+                        {quizInfo?.quizTitle ? quizInfo?.quizTitle : "SOME VERY COOL TEXT HERE IS GOING"}
+                    </h4>
+                    <p>
+                        {quizInfo?.quizSynopsis ? quizInfo?.quizSynopsis :
+                            "Whatever the hell that you thinking is correct brother"}
+                    </p>
 
                     <div className="skills-box">
                         <div class="skill">
-                            <PiMathOperations className="bi math"/>
-                            <span class="text">
-                            <span>Math</span>
-                            <span>General</span>
-                        </span>
-                        </div>
-                        <div class="skill">
-                            <BsFillPSquareFill className="bi physics"/>
-                            <span class="text">
-                            <span>Physics</span>
-                            <span>High School</span>
-                        </span>
-                        </div>
-                        <div className="skill">
                             <PiMathOperations className="bi math"/>
                             <span className="text">
                             <span>Math</span>
