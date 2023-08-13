@@ -22,7 +22,6 @@ export function SelectComponentForQuizAction() {
             <SelectContent>
                 <SelectGroup>
                     <SelectLabel>QUIZ TAG</SelectLabel>
-                    <SelectItem value="MATH">MATH</SelectItem>
                     <SelectItem value="">Select a tag</SelectItem>
                     <SelectItem value="SCIENCE">SCIENCE</SelectItem>
                     <SelectItem value="ARTS">ARTS</SelectItem>
