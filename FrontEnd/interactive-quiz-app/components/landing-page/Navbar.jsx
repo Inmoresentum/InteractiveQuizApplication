@@ -150,6 +150,48 @@ export default function Navbar() {
                             PRICING
                         </Link>
                     </li>
+                    {sessionData.status === "unauthenticated" ?
+                        (
+                            <li className="p-4 hover:bg-white bg-gray-900 hover:text-black font-medium rounded-full animate-pulse">
+                                <Link href={"/auth/login"}>
+                                    LOGIN
+                                </Link>
+                            </li>
+                        ) :
+                        (
+                            <li className=" p-4 hover:border-b hover:border-gray-600 hover:bg-blue-500 rounded-full
+                         active:bg-amber-300 transition duration-700 ease-in-out relative group">
+                                <div className="flex items-center group font-medium">
+                                    {sessionData.data.user.username}
+                                    <MdNavigateNext size={24} className="transform group-hover:rotate-90 duration-300 ease-in"/>
+                                </div>
+
+                                <div
+                                    className="absolute mt-2 top-full left-1/2 transform -translate-x-1/2 w-64 bg-gray-50 p-6
+                             rounded-xl shadow-lg hidden group-hover:block transition-all duration-300 ease-in-out
+                               -translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+                                    <div
+                                        className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full
+                                 w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-white"></div>
+                                    <h3 className="font-bold text-lg mb-4 text-black text-center">
+                                        Feeling Lucky
+                                    </h3>
+                                    <ul className="space-y-2">
+                                        <li className="py-1 px-4 rounded-full bg-gray-500 hover:bg-gray-700 cursor-pointer text-center">
+                                            <Link href={"/"}>
+                                                YOUR DASHBOARD
+                                            </Link>
+                                        </li>
+                                        <li className="py-1 px-4 rounded-full bg-gray-500 hover:bg-gray-700 text-center">
+                                            <Link href="/api/auth/signout">
+                                                LOGOUT
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        )
+                    }
                 </ul>
                 <div onClick={handleNav}
                      className="block md:hidden hover:cursor-pointer transition duration-300 ease-in-out">
