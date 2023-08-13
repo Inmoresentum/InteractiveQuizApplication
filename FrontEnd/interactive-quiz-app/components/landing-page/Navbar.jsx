@@ -182,6 +182,13 @@ export default function Navbar() {
                                                 YOUR DASHBOARD
                                             </Link>
                                         </li>
+                                        {sessionData.data.user.role === "ADMIN" &&
+                                            <li className="py-1 px-4 rounded-full bg-gray-500 hover:bg-gray-700 cursor-pointer text-center">
+                                                <Link href={"http://localhost:3000/dashboard/admin/activity"}>
+                                                    ADMIN DASHBOARD
+                                                </Link>
+                                            </li>
+                                        }
                                         <li className="py-1 px-4 rounded-full bg-gray-500 hover:bg-gray-700 text-center text-red-400">
                                             <Link href="/api/auth/signout">
                                                 LOGOUT

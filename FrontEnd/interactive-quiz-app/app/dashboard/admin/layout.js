@@ -13,7 +13,7 @@ export const metadata = {
 export default function LoginPageLayout({children}) {
     return (
         <>
-            <div className="flex">
+            <div className="flex pt-20">
                 <Navbar/>
                 <main className='ml-20 w-full'>
                     {children}
