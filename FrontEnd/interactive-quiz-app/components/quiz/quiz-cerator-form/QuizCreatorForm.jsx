@@ -6,6 +6,8 @@ import * as z from "zod";
 import axios from "axios";
 import {toast} from "react-toastify";
 import {Button} from "@/components/ui/button";
+import {useSession} from "next-auth/react";
+import MainLoadingSpinnerUi from "@/components/loading-animation/MainLoadingSpinnerUi";
 
 // Creating a schema for the form data using zod
 const schema = z.object({
@@ -46,6 +48,8 @@ export default function QuizCreationForm() {
         }
     });
 
+    const userSessionData = useSession();
+    const { data: session, update } = useSession();
     const [questions, setQuestions] = useState([]);
     const [imagePreviews, setImagePreviews] = useState([]);
 
@@ -187,14 +191,46 @@ export default function QuizCreationForm() {
         }
         console.log(data);
         try {
-            const response = await axios.post("http://localhost:8080/api/v1/quiz/resource/create", data);
-
-            if (response.status === 201) {
-                // If the server returns a 201 status code
-                console.log("Done with the submission");
-            }
+            const response = await axios.post("http://localhost:8080/api/v1/quiz/resource/create",data, {
+                headers: {
+                    Authorization: `Bearer ${userSessionData.data.user.access_token}`,
+                },
+            });
+            return response.data;
         } catch (error) {
-            console.error(error);
+            console.log("I am trying to check the status");
+            console.log(error.response.status);
+            if (error.response.status === 403) {
+                // access token has expired, acquire new access token using refresh token
+                const response = await axios.post("http://localhost:8080/api/v1/auth/refresh-token", null, {
+                    headers: {
+                        Authorization: `Bearer ${userSessionData.data.user.refresh_token}`,
+                    },
+                });
+                console.log("Trying to print the response data");
+                console.log(response.data);
+                const newAccessToken = response.data.access_token;
+                await update({
+                    ...session,
+                    user: {
+                        ...session?.user,
+                        access_token: newAccessToken,
+                    },
+                });
+
+                try {
+                    const newResponse = await axios.post("http://localhost:8080/api/v1/quiz/resource/create",data, {
+                        headers: {
+                            Authorization: `Bearer ${newAccessToken}`,
+                        },
+                    });
+                    console.log(newResponse.data);
+                    return newResponse.data;
+                } catch (newError) {
+                    return newError.response;
+                }
+            }
+            return error.response;
         }
     };
 
@@ -238,6 +274,8 @@ export default function QuizCreationForm() {
             }
         }
     };
+
+    if (userSessionData.status === "loading") return <MainLoadingSpinnerUi/>
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-200 pt-24 pb-10">
@@ -538,11 +576,11 @@ export default function QuizCreationForm() {
                                     </div>
 
                                     <div className="mb-4"><label
-                                            className="block text-gray-700 font-medium mb-2"
-                                            htmlFor={`correctMessage${index}`}
-                                        >
-                                            Message for Correct Answer
-                                        </label>
+                                        className="block text-gray-700 font-medium mb-2"
+                                        htmlFor={`correctMessage${index}`}
+                                    >
+                                        Message for Correct Answer
+                                    </label>
                                         <textarea
                                             className="w-full p-2 border border-gray-300 rounded-md"
                                             id={`correctMessage${index}`}
