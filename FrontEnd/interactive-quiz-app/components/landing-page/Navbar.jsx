@@ -124,7 +124,7 @@ export default function Navbar() {
                                 className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full
                                  w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-white"></div>
                             <h3 className="font-bold text-lg mb-4 text-black text-center">
-                                CHOOSE WHERE YOU WANT TO GO
+                                CHOOSE WHAT YOU WANT TO READ
                             </h3>
                             <ul className="space-y-2">
                                 <li className="py-1 px-4 rounded-full bg-gray-500 hover:bg-gray-700 cursor-pointer text-center">
@@ -182,7 +182,7 @@ export default function Navbar() {
                                                 YOUR DASHBOARD
                                             </Link>
                                         </li>
-                                        <li className="py-1 px-4 rounded-full bg-gray-500 hover:bg-gray-700 text-center">
+                                        <li className="py-1 px-4 rounded-full bg-gray-500 hover:bg-gray-700 text-center text-red-400">
                                             <Link href="/api/auth/signout">
                                                 LOGOUT
                                             </Link>
