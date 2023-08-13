@@ -6,7 +6,8 @@ import Image from "next/image";
 const Cards = () => {
     return (
         <>
-            <div className="w-full py-[10rem] px-4 extra-bg">
+            <div className="w-full py-[10rem] px-4 extra-bg " id="pricing">
+
                 <div className="max-w-[1240px] mx-auto grid md:grid-cols-3 gap-8">
                     <div
                         className="w-full shadow-2xl flex flex-col p-4 my-4 rounded-3xl

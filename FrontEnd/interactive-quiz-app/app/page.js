@@ -16,7 +16,7 @@ export default async function Home() {
     console.log("Printing the response");
     console.log(response.data);
     return (
-        <div className="bg-[#000500]">
+        <div className="bg-[#000500] ">
             <CustomCursor/>
             <Navbar/>
             <Hero/>
