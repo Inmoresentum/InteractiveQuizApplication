@@ -3,6 +3,7 @@ import CardImage from "@/public/quiz-app-logo.png"
 import {HiMiniArrowUturnRight} from "react-icons/hi2";
 import {PiMathOperations} from "react-icons/pi";
 import {BsFillPSquareFill} from "react-icons/bs";
+import {CiUser} from "react-icons/ci";
 
 export default function QuizCard({quizInfo}) {
     return (
@@ -35,6 +36,13 @@ export default function QuizCard({quizInfo}) {
                             <span className="text">
                             <span>Physics</span>
                             <span>High School</span>
+                        </span>
+                        </div>
+                        <div className="skill">
+                            <CiUser className="bi physics"/>
+                            <span className="text">
+                            <span>BY</span>
+                            <span>{quizInfo?.createdByLastname}</span>
                         </span>
                         </div>
                     </div>
