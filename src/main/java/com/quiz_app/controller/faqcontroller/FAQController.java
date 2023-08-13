@@ -2,6 +2,7 @@ package com.quiz_app.controller.faqcontroller;
 
 import com.quiz_app.entity.FAQ.FAQ;
 import com.quiz_app.entity.FAQ.FAQDto;
+import com.quiz_app.entity.FAQ.FAQDtoAdd;
 import com.quiz_app.service.faq.FAQService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +38,7 @@ public class FAQController {
 
     @PostMapping("/add")
     @PreAuthorize("hasRole('ADMIN')")
-    public void addNewFAQ(@RequestBody FAQDto faq) {
+    public void addNewFAQ(@RequestBody FAQDtoAdd faq) {
         faqService.addNewFAQ(modelMapper.map(faq, FAQ.class));
     }
 
