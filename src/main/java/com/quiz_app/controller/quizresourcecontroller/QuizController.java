@@ -34,6 +34,10 @@ public class QuizController {
         return quizService.getQuizzesByPage(page);
     }
 
+    @GetMapping("/allQuiz")
+    public ResponseEntity<?> getAllQuizzes() {
+        return quizService.getAllQuizzes();
+    }
     @PostMapping(value = "/create")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> submitQuiz(@RequestBody QuizCreateRequestBody quizCreateRequestBody) {

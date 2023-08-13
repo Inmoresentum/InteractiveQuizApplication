@@ -82,6 +82,14 @@ public class QuizService {
         return ResponseEntity.ok(response);
     }
 
+    public ResponseEntity<?> getAllQuizzes() {
+        var allQuizzes = quizRepository.findAll()
+                .stream().map((element) ->
+                        modelMapper.map(element,
+                                QuizDTO.class)).
+                collect(Collectors.toList());
+        return ResponseEntity.ok(allQuizzes);
+    }
 
     @Transactional
     public void handleQuizCreation(QuizCreateRequestBody quizCreateRequestBody, User userWhoCreatedTheQuiz) {
