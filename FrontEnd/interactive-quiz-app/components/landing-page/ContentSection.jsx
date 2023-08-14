@@ -2,9 +2,11 @@
 import {useEffect} from "react";
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
-import MathImage from "@/public/landingpage/maths-1329296.jpg"
-import OnlineQuiz from "@/public/landingpage/online-quiz.jpg"
-import Coding from "@/public/landingpage/coding.jpg"
+import First from "@/public/landingpage/first.jpg"
+import Second from "@/public/landingpage/second.jpeg"
+import Third from "@/public/landingpage/third.jpeg"
+import Fourth from "@/public/landingpage/fourth.png"
+import Fifth from "@/public/landingpage/fifth.jpeg"
 import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -115,24 +117,24 @@ export default function ContentSection() {
                                 {/*desktop content*/}
                                 <div className="desktopPhotos">
                                     <div className="desktopPhoto red flex items-center justify-center">
-                                        <Image src={MathImage} alt="whatever" className="w-[25vw]
+                                        <Image src={First} alt="whatever" className="w-[25vw]
                                  h-[25vh] rounded-3xl md:hover:scale-110 duration-300 ease-linear"/>
                                     </div>
                                     <div className="desktopPhoto green flex items-center justify-center">
-                                        <Image src={OnlineQuiz} alt="whatever" className="w-[25vw] cursor-pointer
+                                        <Image src={Second} alt="whatever" className="w-[25vw] cursor-pointer
                                  h-[25vh] rounded-3xl md:hover:scale-110 duration-300 ease-linear"/>
                                     </div>
                                     <div className="desktopPhoto pink flex items-center justify-center">
-                                        <Image src={Coding} alt="whatever" className="w-[25vw]
+                                        <Image src={Third} alt="whatever" className="w-[25vw]
                                  h-[25vh] rounded-3xl md:hover:scale-110 duration-300 ease-linear"/>
                                     </div>
                                     <div className="desktopPhoto blue flex items-center justify-center">
-                                        <Image src={MathImage} alt="whatever" className="w-[25vw]
+                                        <Image src={Fourth} alt="whatever" className="w-[25vw]
                                  h-[25vh] rounded-3xl md:hover:scale-110 duration-300 ease-linear"/>
                                     </div>
                                     <div className="desktopPhoto bg-rose-600
                              flex items-center justify-center">
-                                        <Image src={MathImage} alt="whatever" className="w-[25vw]
+                                        <Image src={Fifth} alt="whatever" className="w-[25vw]
                                  h-[25vh] rounded-3xl md:hover:scale-110 duration-300 ease-linear"/>
                                     </div>
                                 </div>
