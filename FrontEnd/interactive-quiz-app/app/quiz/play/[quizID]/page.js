@@ -43,7 +43,7 @@ export default async function QuizPlayPage({params: {quizID}}) {
     const {quiz} = data;
 
     return (
-        <div className="flex items-center justify-center p-20 h-[65vh]">
+        <div className="flex items-center justify-center p-20">
             <div className="flex justify-center items-center w-[1280px]">
                 <QuizProvider quiz={quiz}/>
             </div>

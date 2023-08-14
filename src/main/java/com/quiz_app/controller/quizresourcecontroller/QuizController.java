@@ -50,7 +50,7 @@ public class QuizController {
     }
 
     @GetMapping("/getQuiz/{quizId}")
-    public ResponseEntity<?> getAllQuizzesByTag(@PathVariable Integer quizId) {
+    public ResponseEntity<?> getQuizById(@PathVariable Integer quizId) {
         return quizService.getQuizById(quizId);
     }
 

@@ -40,8 +40,8 @@ export default async function DemoQuiz() {
     const data = await response.json();
     const {quiz} = data;
     return (
-        <div className="flex items-center justify-center p-20 h-[62vh]">
-            <div className="flex justify-center items-center w-[1280px]">
+        <div className="flex items-center justify-center p-20 bg-gray-200">
+            <div className="flex justify-center items-center max-w-[1280px]">
                 <QuizProvider quiz={quiz}/>
             </div>
         </div>

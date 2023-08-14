@@ -23,7 +23,7 @@ const Quiz = function ({
 
     useEffect(() => {
         if (disableSynopsis) setStart(true);
-    }, []);
+    }, [disableSynopsis]);
 
     useEffect(() => {
         if (shuffle) {
@@ -114,21 +114,28 @@ const Quiz = function ({
     };
 
     return (
-        <div className="react-quiz-container">
+        <div className="react-quiz-container flex-grow">
             {!start
                 && (
-                    <div>
-                        <h2>{quiz.quizTitle}</h2>
-                        <div>{appLocale.landingHeaderText.replace("<questionLength>", nrOfQuestions)}</div>
+                    <div className="p-14 bg-gray-100 rounded-2xl shadow-2xl max-w-[1280px] w-full hover:bg-white
+                duration-300 ease-linear">
+                        <h2 className="text-center font-semibold text-rose-400 text-3xl">{quiz.quizTitle}</h2>
+                        <h3 className="flex justify-end underline bg-green-100 rounded-2xl p-2.5">{quiz.createdByLastname}</h3>
+                        <div className="flex justify-end pt-2 text-green-500 underline">
+                            {appLocale.landingHeaderText.replace("<questionLength>", nrOfQuestions)}
+                        </div>
                         {quiz.quizSynopsis
                             && (
-                                <div className="quiz-synopsis">
+                                <div className="quiz-synopsis font-serif bg-gray-200 rounded-2xl p-2.5">
                                     {quiz.quizSynopsis}
                                 </div>
                             )}
-                        <div className="startQuizWrapper">
+                        <div className="startQuizWrapper flex justify-end">
                             <button onClick={() => setStart(true)}
-                                    className="startQuizBtn btn">{appLocale.startQuizBtn}</button>
+                                    className="rounded-full bg-teal-500 content-center p-2.5 shadow-2xl shadow-black font-semibold
+                                    hover:bg-orange-500 duration-300 ease-in">
+                                {appLocale.startQuizBtn}
+                            </button>
                         </div>
                     </div>
                 )}

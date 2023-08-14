@@ -586,7 +586,7 @@
 /* Quiz Container part */
 .react-quiz-container {
   margin: 20px;
-  max-width: 750px
+  max-width: 880px
 }
 
 .react-quiz-container .startQuizWrapper {
@@ -613,8 +613,8 @@
 .react-quiz-container .questionWrapper .btn {
   margin-top: 10px;
   margin-bottom: 10px;
-  border-radius: 4px;
-  border: 1px solid #e8e8e8;;
+  border-radius: 20px;
+  border: 1px solid #ff9900;;
   font-size: 15px;
   display: block;
   white-space: normal;
@@ -667,9 +667,10 @@
 
 .react-quiz-container .result-answer-wrapper {
   margin-bottom: 20px;
-  border: 1px solid #e8e8e8;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border: 1px solid #27ab93;
+  /*border-bottom-left-radius: 15px;*/
+  /*border-bottom-right-radius: 15px;*/
+  border-radius: 15px;
 }
 
 .react-quiz-container .result-answer-wrapper h3 {
@@ -685,7 +686,9 @@
 .react-quiz-container .result-answer-wrapper .explanation {
   padding: 20px;
   margin: 0px 20px 20px 20px;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #a724d3;
+  background: #ffffff;
+  border-radius: 15px;
 }
 
 .react-quiz-container .result-answer-wrapper .tag-container {
@@ -816,7 +819,7 @@
 
 @media (min-width: 600px) {
   .show-result-main-container {
-    min-height: 60vh;
+    /*min-height: 60vh;*/
     display: grid;
     place-items: center;
     padding: 2rem;

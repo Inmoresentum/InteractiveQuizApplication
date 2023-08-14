@@ -106,6 +106,7 @@ public class QuizService {
                 .quizSynopsis(quiz.get().getQuizSynopsis())
                 .nrOfQuestions(quiz.get().getQuestions().size())
                 .questions(questionDTOs)
+                .createdByLastname(quiz.get().getCreatedBy().getLastname())
                 .quizId(quiz.get().getQuizId())
                 .build();
 

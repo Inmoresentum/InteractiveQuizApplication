@@ -167,8 +167,8 @@ const Core = function ({
 
             return (
                 <div className="result-answer-wrapper" key={index + 1}>
-                    <h3 dangerouslySetInnerHTML={rawMarkup(`Q${question.questionIndex}: ${question.question}`)}/>
-                    {question.questionPic && <img src={question.questionPic} alt="image"/>}
+                    <h3 className="text-xl" dangerouslySetInnerHTML={rawMarkup(`Q${question.questionIndex}: ${question.question}`)}/>
+                    {question.questionPic && <img className="rounded-[4rem] pl-4 pr-4" src={question.questionPic} alt="image"/>}
                     {renderTags(answerSelectionType, question.correctAnswer.length, question.segment)}
                     <div className="result-answer">
                         {renderAnswerInResult(question, userInputIndex)}
@@ -263,14 +263,14 @@ const Core = function ({
         } = appLocale;
 
         return (
-            <div className="tag-container">
+            <div className="tag-container flex justify-end">
                 {answerSelectionType === "single"
                     && <span className="single selection-tag">{singleSelectionTagText}</span>}
                 {answerSelectionType === "multiple"
-                    && <span className="multiple selection-tag">{multipleSelectionTagText}</span>}
+                    && <span className="multiple selection-tag font-semibold">{multipleSelectionTagText}</span>}
                 <span className="number-of-selection">
-          {pickNumberOfSelection.replace("<numberOfSelection>", numberOfSelection)}
-        </span>
+                      {pickNumberOfSelection.replace("<numberOfSelection>", numberOfSelection)}
+                </span>
                 {segment && <span className="selection-tag segment">{segment}</span>}
             </div>
         );
@@ -278,17 +278,28 @@ const Core = function ({
 
     const renderResult = () => (
         <>
-            <ShowResultCard QuestionSummary={questionSummary}/>
             <div className="card-body">
-                <h2>
-                    {appLocale.resultPageHeaderText
-                        .replace("<correctIndexLength>", correct.length)
-                        .replace("<questionLength>", questions.length)}
+                <ShowResultCard QuestionSummary={questionSummary}/>
+                <h2 className="text-center shadow p-2.5 font-serif font-semibold text-2xl bg-gray-300 rounded-full">
+                    {/*{appLocale.resultPageHeaderText*/}
+                    {/*    .replace("<correctIndexLength>", correct.length)*/}
+                    {/*    .replace("<questionLength>", questions.length)}*/}
+                    <div className="bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">
+                    You have completed the quiz.
+                     You got
+                    <span className="bg-teal-400 m-1 p-2.5 rounded-full text-blue-500">
+                        {correct.length}
+                    </span> out of
+                    <span className="bg-teal-500 m-1 p-2.5 rounded-full text-orange-500">{questions.length}
+                    </span> questions
+                    </div>
                 </h2>
-                <h2>
-                    {appLocale.resultPagePoint
-                        .replace("<correctPoints>", correctPoints)
-                        .replace("<totalPoints>", totalPoints)}
+                <h2 className="text-center shadow p-2.5 mt-2.5 font-medium text-2xl bg-green-300 rounded-full">
+                    {/*{appLocale.resultPagePoint*/}
+                    {/*    .replace("<correctPoints>", correctPoints)*/}
+                    {/*    .replace("<totalPoints>", totalPoints)}*/}
+                    You scored <span className="bg-pink-400 rounded-2xl p-2.5">
+                    {correctPoints}</span> out of <span className="bg-yellow-400 rounded-2xl p-2.5">{totalPoints}</span>
                 </h2>
                 <br/>
                 <QuizResultFilter
@@ -301,10 +312,11 @@ const Core = function ({
         </>
     );
     return (
-        <div className="questionWrapper">
+        <div className="questionWrapper p-14 bg-gray-100 rounded-2xl shadow-2xl w-full hover:bg-white
+                duration-300 ease-linear">
             {!endQuiz
                 && (
-                    <div className="questionWrapperBody">
+                    <div className="questionWrapperBody bg">
                         <div className="questionModal">
                             <InstantFeedback
                                 question={question}
@@ -315,14 +327,15 @@ const Core = function ({
                                 userAnswer={[...userInput].pop()}
                             />
                         </div>
-                        <div>
+                        <div className="font-semibold text-2xl text-black underline text-center pb-4">
                             {appLocale.question}
                             {" "}
                             {currentQuestionIndex + 1}
                             :
                         </div>
-                        <h3 dangerouslySetInnerHTML={rawMarkup(question && question.question)}/>
-                        {question && question.questionPic && <img src={question.questionPic} alt="image"/>}
+                        <h3 className="bg-gray-300 p-2 rounded-xl"
+                            dangerouslySetInnerHTML={rawMarkup(question && question.question)}/>
+                        {question && question.questionPic && <img className="p-2.5 rounded-[4rem]" src={question.questionPic} alt="image"/>}
                         {question && renderTags(answerSelectionTypeState, question.correctAnswer.length, question.segment)}
                         {question && renderAnswers(question, buttons)}
                         {(showNextQuestionButton || allowNavigation)
@@ -337,8 +350,11 @@ const Core = function ({
                                             {appLocale.prevQuestionBtn}
                                         </button>
                                     )}
-                                    <button onClick={() => nextQuestion(currentQuestionIndex)} className="nextQuestionBtn btn" type="button">
-                                        {appLocale.nextQuestionBtn}
+                                    <button onClick={() => nextQuestion(currentQuestionIndex)}
+                                            className="rounded-full bg-pink-500 content-center p-2.5 shadow-2xl shadow-black font-semibold
+                                    hover:bg-orange-500 duration-300 ease-in" type="button">
+                                        {/*{appLocale.nextQuestionBtn}*/}
+                                        NEXT
                                     </button>
                                 </div>
                             )}
