@@ -30,16 +30,21 @@ export default function Footer() {
                     </div>
                     <p className='py-4'>Thank you for choosing our quiz platform! We're dedicated to making learning engaging and enjoyable. Explore our diverse range of quizzes to challenge your mind and expand your knowledge. Join our community of curious learners, share your insights, and connect with fellow enthusiasts. Your feedback is invaluable in shaping a better experience for everyone. Start your learning journey today and embark on an adventure of discovery!</p>
                     <div className='flex justify-between md:w-[75%] my-6'>
-                        <FaFacebookSquare size={30} className="hover:cursor-pointer hover:text-orange-600
-                         hover:scale-110 transition-all duration-500"/>
-                        <FaInstagram size={30} className="hover:cursor-pointer hover:text-pink-500
-                         hover:scale-110 transition-all duration-500"/>
-                        <FaTwitterSquare size={30} className="hover:cursor-pointer hover:text-blue-600
-                         hover:scale-110 transition-all duration-500"/>
-                        <FaGithubSquare size={30} className="hover:cursor-pointer hover:text-teal-600
-                         hover:scale-110 transition-all duration-500"/>
-                        <FaDribbbleSquare size={30} className="hover:cursor-pointer hover:text-yellow-300
-                         hover:scale-110 transition-all duration-500"/>
+                        <a href="https://www.facebook.com/">
+                            <FaFacebookSquare size={30} className="hover:cursor-pointer hover:text-orange-600 hover:scale-110 transition-all duration-500"/>
+                        </a>
+                        <a href="https://www.instagram.com/">
+                            <FaInstagram size={30} className="hover:cursor-pointer hover:text-pink-500 hover:scale-110 transition-all duration-500"/>
+                        </a>
+                        <a href="https://twitter.com/">
+                            <FaTwitterSquare size={30} className="hover:cursor-pointer hover:text-blue-600 hover:scale-110 transition-all duration-500"/>
+                        </a>
+                        <a href="https://github.com/">
+                            <FaGithubSquare size={30} className="hover:cursor-pointer hover:text-teal-600 hover:scale-110 transition-all duration-500"/>
+                        </a>
+                        <a href="https://dribbble.com/">
+                            <FaDribbbleSquare size={30} className="hover:cursor-pointer hover:text-yellow-300 hover:scale-110 transition-all duration-500"/>
+                        </a>
                     </div>
                 </div>
                 <div className='lg:col-span-2 flex justify-between mt-6'>
