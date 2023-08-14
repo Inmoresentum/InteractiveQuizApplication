@@ -91,6 +91,18 @@ public class QuizService {
         return ResponseEntity.ok(allQuizzes);
     }
 
+    public ResponseEntity<?> getAllQuizzesByTag(String tag) {
+        var allQuizzesByTag = quizRepository.findAllByCurQuizTag(mapQuizTag(tag));
+        var response =  allQuizzesByTag.stream().map((element) -> modelMapper.map(element, QuizDTO.class))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(response);
+    }
+    public ResponseEntity<?> getAllQuizzesBySearchTerm(String searchParam) {
+        var allQuizzesByTag = quizRepository.findAllByQuizTitleContainingIgnoreCase(searchParam);
+        var response =  allQuizzesByTag.stream().map((element) -> modelMapper.map(element, QuizDTO.class))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(response);
+    }
     @Transactional
     public void handleQuizCreation(QuizCreateRequestBody quizCreateRequestBody, User userWhoCreatedTheQuiz) {
         // Save the question images to files or upload them to a cloud storage service

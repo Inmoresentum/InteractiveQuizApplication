@@ -23,7 +23,7 @@ public class QuizDTO {
     private Integer quizId;
     private String quizProfilePhotoUrl;
     private Difficulty difficultyLevel;
-    private List<QuizTag> tags;
+    private QuizTag curQuizTag;
     private Integer createdById;
     private String createdByUsername;
     private String createdByFirstname;
