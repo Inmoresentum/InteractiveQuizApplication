@@ -12,13 +12,13 @@ import com.quiz_app.entity.quiz.*;
 import com.quiz_app.entity.user.User;
 import com.quiz_app.repository.GlobalLeaderBoardRepository;
 import com.quiz_app.repository.QuizRepository;
+import com.quiz_app.repository.UserRepository;
 import com.quiz_app.service.minio.MinioService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,6 +37,7 @@ public class QuizService {
     private final String BASE_URL = "http://localhost:8080/api/v1/storage/public";
     private final ModelMapper modelMapper;
     private final GlobalLeaderBoardRepository globalLeaderBoardRepository;
+    private final UserRepository userRepository;
 
     public ResponseEntity<QuizResponseToClient> getDemoQuiz() {
         var quiz = quizRepository.findById(1);
@@ -207,7 +208,7 @@ public class QuizService {
         globalLeaderBoardRepository.save(GlobalLeaderBoard.builder()
                 .score(Long.valueOf(quizScoreStoreRequestBody.getScore()))
                 .globalRank(GlobalRank.NOVICE)
-                .user(user)
+                .user(userRepository.findById(user.getId()).orElseThrow())
                 .build());
     }
 

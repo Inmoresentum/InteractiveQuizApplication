@@ -27,11 +27,9 @@ public class GlobalLeaderBoard {
     @NotNull(message = "Rank Can't be Null")
     @Enumerated
     @Column(name = "global_rank")
-    @OrderBy("globalRank ASC, score DESC") // Sort by globalRank ascending, then by score descending
     private GlobalRank globalRank;
 
     @Version
     @Column(name = "version")
     private Integer version;
-
 }

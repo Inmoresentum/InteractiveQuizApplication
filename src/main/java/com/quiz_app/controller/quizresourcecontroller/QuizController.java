@@ -71,7 +71,6 @@ public class QuizController {
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> saveQuizScore(@RequestBody QuizScoreStoreRequestBody quizScoreStoreRequestBody) {
         var mayBeUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        var userWhoCreatedTheQuiz = (User) mayBeUser.getPrincipal();
         if (mayBeUser == null) {
             throw new RuntimeException("User can't be null");
         }
