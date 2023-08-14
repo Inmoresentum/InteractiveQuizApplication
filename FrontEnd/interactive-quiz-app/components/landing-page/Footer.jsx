@@ -56,7 +56,7 @@ export default function Footer() {
                     <div>
                         <h6 className='font-medium text-gray-400'>Support</h6>
                         <ul>
-                            <li className='py-2 text-sm'>Pricing</li>
+                            <li className='py-2 text-sm'><a href="#pricing">Pricing</a></li>
                             <li className='py-2 text-sm'>Documentation</li>
                             <li className='py-2 text-sm'>Guides</li>
                             <li className='py-2 text-sm'>API Status</li>
@@ -76,8 +76,8 @@ export default function Footer() {
                         <h6 className='font-medium text-gray-400'>Legal</h6>
                         <ul>
                             <li className='py-2 text-sm'>Claim</li>
-                            <li className='py-2 text-sm'>Policy</li>
-                            <li className='py-2 text-sm'>Terms</li>
+                            <li className='py-2 text-sm'><a href="http://localhost:3000/privacyandpolicy">Policy</a></li>
+                            <li className='py-2 text-sm'><a href="http://localhost:3000/termsandservices">Terms</a></li>
                         </ul>
                     </div>
                 </div>
