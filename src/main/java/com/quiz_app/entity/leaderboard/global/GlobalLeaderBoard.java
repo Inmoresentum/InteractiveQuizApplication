@@ -3,13 +3,15 @@ package com.quiz_app.entity.leaderboard.global;
 import com.quiz_app.entity.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "global_leader_board")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class GlobalLeaderBoard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

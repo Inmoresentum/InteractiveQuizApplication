@@ -6,8 +6,11 @@ import com.quiz_app.controller.quizresourcecontroller.request.QuizScoreStoreRequ
 import com.quiz_app.controller.quizresourcecontroller.response.QuizResponseToClient;
 import com.quiz_app.controller.quizresourcecontroller.response.QuestionDTO;
 import com.quiz_app.controller.quizresourcecontroller.response.QuizDTO;
+import com.quiz_app.entity.leaderboard.global.GlobalLeaderBoard;
+import com.quiz_app.entity.leaderboard.global.GlobalRank;
 import com.quiz_app.entity.quiz.*;
 import com.quiz_app.entity.user.User;
+import com.quiz_app.repository.GlobalLeaderBoardRepository;
 import com.quiz_app.repository.QuizRepository;
 import com.quiz_app.service.minio.MinioService;
 import jakarta.transaction.Transactional;
@@ -33,6 +36,7 @@ public class QuizService {
     private final MinioService minioService;
     private final String BASE_URL = "http://localhost:8080/api/v1/storage/public";
     private final ModelMapper modelMapper;
+    private final GlobalLeaderBoardRepository globalLeaderBoardRepository;
 
     public ResponseEntity<QuizResponseToClient> getDemoQuiz() {
         var quiz = quizRepository.findById(1);
@@ -117,6 +121,7 @@ public class QuizService {
                 .build();
         return ResponseEntity.ok(demoQuizResponse);
     }
+
     public ResponseEntity<?> getQuizzesByPage(Integer page) {
         var listOfQuizzes = quizRepository.findAll(PageRequest.of(page, 10));
         var response = listOfQuizzes.map((element) -> modelMapper.map(element, QuizDTO.class));
@@ -134,16 +139,18 @@ public class QuizService {
 
     public ResponseEntity<?> getAllQuizzesByTag(String tag) {
         var allQuizzesByTag = quizRepository.findAllByCurQuizTag(mapQuizTag(tag));
-        var response =  allQuizzesByTag.stream().map((element) -> modelMapper.map(element, QuizDTO.class))
+        var response = allQuizzesByTag.stream().map((element) -> modelMapper.map(element, QuizDTO.class))
                 .collect(Collectors.toList());
         return ResponseEntity.ok(response);
     }
+
     public ResponseEntity<?> getAllQuizzesBySearchTerm(String searchParam) {
         var allQuizzesByTag = quizRepository.findAllByQuizTitleContainingIgnoreCase(searchParam);
-        var response =  allQuizzesByTag.stream().map((element) -> modelMapper.map(element, QuizDTO.class))
+        var response = allQuizzesByTag.stream().map((element) -> modelMapper.map(element, QuizDTO.class))
                 .collect(Collectors.toList());
         return ResponseEntity.ok(response);
     }
+
     @Transactional
     public void handleQuizCreation(QuizCreateRequestBody quizCreateRequestBody, User userWhoCreatedTheQuiz) {
         // Save the question images to files or upload them to a cloud storage service
@@ -186,9 +193,22 @@ public class QuizService {
         return BASE_URL + "/image/quiz/" + generatedUniqueFileName;
     }
 
-    public void saveQuizScore(QuizScoreStoreRequestBody quizScoreStoreRequestBody, Authentication maybeUser) {
-        User userName = (User) maybeUser.getDetails();
-        System.out.println(userName);
+    public void saveQuizScore(QuizScoreStoreRequestBody quizScoreStoreRequestBody, User user) {
+        var quiz = quizRepository.findById(quizScoreStoreRequestBody.getQuizId());
+        if (quiz.isEmpty()) {
+            throw new RuntimeException("Invalid Quiz Id");
+        }
+        if (globalLeaderBoardRepository.existsByUser(user)) {
+            var globalLeaderBoard = globalLeaderBoardRepository.findGlobalLeaderBoardByUser(user);
+            globalLeaderBoard.setScore(quizScoreStoreRequestBody.getScore() + globalLeaderBoard.getScore());
+            globalLeaderBoardRepository.save(globalLeaderBoard);
+            return;
+        }
+        globalLeaderBoardRepository.save(GlobalLeaderBoard.builder()
+                .score(Long.valueOf(quizScoreStoreRequestBody.getScore()))
+                .globalRank(GlobalRank.NOVICE)
+                .user(user)
+                .build());
     }
 
     private Difficulty mapDifficulty(String provided) {
