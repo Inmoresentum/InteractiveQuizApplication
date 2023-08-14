@@ -38,14 +38,22 @@ public class QuizController {
     public ResponseEntity<?> getAllQuizzes() {
         return quizService.getAllQuizzes();
     }
+
     @GetMapping("/allQuiz/search")
     public ResponseEntity<?> getAllQuizzesBySearch(@RequestParam String search) {
         return quizService.getAllQuizzesBySearchTerm(search);
     }
+
     @GetMapping("/allQuiz/tag")
     public ResponseEntity<?> getAllQuizzesByTag(@RequestParam String tag) {
         return quizService.getAllQuizzesByTag(tag);
     }
+
+    @GetMapping("/getQuiz/{quizId}")
+    public ResponseEntity<?> getAllQuizzesByTag(@PathVariable Integer quizId) {
+        return quizService.getQuizById(quizId);
+    }
+
     @PostMapping(value = "/create")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> submitQuiz(@RequestBody QuizCreateRequestBody quizCreateRequestBody) {

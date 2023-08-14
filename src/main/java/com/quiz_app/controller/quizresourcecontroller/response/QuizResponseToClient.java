@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class DemoQuizResponse {
+public class QuizResponseToClient {
     private final QuizDTO quiz;
     private final String message;
     private String quizCardPicture;

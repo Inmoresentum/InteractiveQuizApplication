@@ -9,14 +9,15 @@ import Link from "next/link";
 export default function QuizCard({quizInfo}) {
     return (
         <>
-            <Link href="/">
-                <div class="quiz-card">
+            <Link href={`http://localhost:3000/quiz/play/${quizInfo.quizId}`}>
+                <div className="quiz-card">
                     <HiMiniArrowUturnRight className="bi text-white whatever mix-blend-difference"/>
                     <div class="quiz-card-top">
-                        <Image src={quizInfo?.createdByProfilePicUrl !== null ? quizInfo?.createdByProfilePicUrl : CardImage} alt=""/></div>
+                        <Image src={quizInfo?.createdByProfilePicUrl !== null ? quizInfo?.createdByProfilePicUrl : CardImage} alt=""/>
+                    </div>
 
-                    <div class="quiz-card-body">
-                        <h4 class="title">
+                    <div className="quiz-card-body">
+                        <h4 className="title">
                             {quizInfo?.quizTitle ? quizInfo?.quizTitle : "SOME VERY COOL TEXT HERE IS GOING"}
                         </h4>
                         <p>
@@ -25,7 +26,7 @@ export default function QuizCard({quizInfo}) {
                         </p>
 
                         <div className="skills-box">
-                            <div class="skill">
+                            <div className="skill">
                                 <PiMathOperations className="bi math"/>
                                 <span className="text">
                             <span>Math</span>
@@ -42,9 +43,9 @@ export default function QuizCard({quizInfo}) {
                             <div className="skill">
                                 <CiUser className="bi physics"/>
                                 <span className="text">
-                            <span>BY</span>
-                            <span>{quizInfo?.createdByLastname}</span>
-                        </span>
+                                    <span>BY</span>
+                                    <span>{quizInfo?.createdByLastname}</span>
+                                </span>
                             </div>
                         </div>
                     </div>

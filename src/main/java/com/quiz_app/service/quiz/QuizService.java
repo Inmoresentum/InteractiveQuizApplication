@@ -3,13 +3,12 @@ package com.quiz_app.service.quiz;
 import com.quiz_app.controller.quizresourcecontroller.request.QuestionCreatedRequestBody;
 import com.quiz_app.controller.quizresourcecontroller.request.QuizCreateRequestBody;
 import com.quiz_app.controller.quizresourcecontroller.request.QuizScoreStoreRequestBody;
-import com.quiz_app.controller.quizresourcecontroller.response.DemoQuizResponse;
+import com.quiz_app.controller.quizresourcecontroller.response.QuizResponseToClient;
 import com.quiz_app.controller.quizresourcecontroller.response.QuestionDTO;
 import com.quiz_app.controller.quizresourcecontroller.response.QuizDTO;
 import com.quiz_app.entity.quiz.*;
 import com.quiz_app.entity.user.User;
 import com.quiz_app.repository.QuizRepository;
-import com.quiz_app.repository.UserRepository;
 import com.quiz_app.service.minio.MinioService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -32,16 +31,15 @@ import java.util.stream.Collectors;
 public class QuizService {
     private final QuizRepository quizRepository;
     private final MinioService minioService;
-    private final UserRepository userRepository;
     private final String BASE_URL = "http://localhost:8080/api/v1/storage/public";
     private final ModelMapper modelMapper;
 
-    public ResponseEntity<DemoQuizResponse> getDemoQuiz() {
+    public ResponseEntity<QuizResponseToClient> getDemoQuiz() {
         var quiz = quizRepository.findById(1);
         System.out.println(quiz);
         if (quiz.isEmpty()) {
             return ResponseEntity.status(404).body(
-                    DemoQuizResponse.builder()
+                    QuizResponseToClient.builder()
                             .message("Server was unable to find this quiz with id 1")
                             .build()
             );
@@ -67,15 +65,57 @@ public class QuizService {
                 .quizSynopsis(quiz.get().getQuizSynopsis())
                 .nrOfQuestions(quiz.get().getQuestions().size())
                 .questions(questionDTOs)
+                .quizId(quiz.get().getQuizId())
                 .build();
+
         System.out.println(quizDTO);
-        var demoQuizResponse = DemoQuizResponse.builder()
+        var demoQuizResponse = QuizResponseToClient.builder()
                 .message("Success. Here is the quiz")
                 .quiz(quizDTO)
                 .build();
         return ResponseEntity.ok(demoQuizResponse);
     }
 
+    public ResponseEntity<QuizResponseToClient> getQuizById(Integer id) {
+        var quiz = quizRepository.findById(id);
+        if (quiz.isEmpty()) {
+            return ResponseEntity.status(404).body(
+                    QuizResponseToClient.builder()
+                            .message("Server was unable to find this quiz with id " + id)
+                            .build()
+            );
+        }
+
+        List<QuestionDTO> questionDTOs = quiz.get().getQuestions().stream()
+                .map(question -> QuestionDTO.builder()
+                        .question(question.getQuestion())
+                        .questionType(question.getQuestionType().name().toLowerCase())
+                        .questionPic(question.getQuestionPic())
+                        .answerSelectionType(question.getAnswerSelectionType().name().toLowerCase())
+                        .answers(question.getAnswers())
+                        .correctAnswer(question.getCorrectAnswer())
+                        .messageForCorrectAnswer(question.getMessageForCorrectAnswer())
+                        .messageForIncorrectAnswer(question.getMessageForIncorrectAnswer())
+                        .explanation(question.getExplanation())
+                        .point(question.getPoint())
+                        .build())
+                .collect(Collectors.toList());
+
+        var quizDTO = QuizDTO.builder()
+                .quizTitle(quiz.get().getQuizTitle())
+                .quizSynopsis(quiz.get().getQuizSynopsis())
+                .nrOfQuestions(quiz.get().getQuestions().size())
+                .questions(questionDTOs)
+                .quizId(quiz.get().getQuizId())
+                .build();
+
+        System.out.println(quizDTO);
+        var demoQuizResponse = QuizResponseToClient.builder()
+                .message("Success. Here is the quiz")
+                .quiz(quizDTO)
+                .build();
+        return ResponseEntity.ok(demoQuizResponse);
+    }
     public ResponseEntity<?> getQuizzesByPage(Integer page) {
         var listOfQuizzes = quizRepository.findAll(PageRequest.of(page, 10));
         var response = listOfQuizzes.map((element) -> modelMapper.map(element, QuizDTO.class));
