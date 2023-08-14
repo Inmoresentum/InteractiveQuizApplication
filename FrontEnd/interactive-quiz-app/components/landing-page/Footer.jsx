@@ -28,8 +28,7 @@ export default function Footer() {
                             <h1 className="px-2 shadow-2xl hover:shadow-green-500 hover:text-indigo-600 ease-in-out duration-300">WizeWiz</h1>
                         </Link>
                     </div>
-                    <p className='py-4'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id odit ullam iste
-                        repellat consequatur libero reiciendis, blanditiis accusantium.</p>
+                    <p className='py-4'>Thank you for choosing our quiz platform! We're dedicated to making learning engaging and enjoyable. Explore our diverse range of quizzes to challenge your mind and expand your knowledge. Join our community of curious learners, share your insights, and connect with fellow enthusiasts. Your feedback is invaluable in shaping a better experience for everyone. Start your learning journey today and embark on an adventure of discovery!</p>
                     <div className='flex justify-between md:w-[75%] my-6'>
                         <FaFacebookSquare size={30} className="hover:cursor-pointer hover:text-orange-600
                          hover:scale-110 transition-all duration-500"/>
@@ -56,7 +55,7 @@ export default function Footer() {
                     <div>
                         <h6 className='font-medium text-gray-400'>Support</h6>
                         <ul>
-                            <li className='py-2 text-sm'>Pricing</li>
+                            <li className='py-2 text-sm'><a href="#pricing">Pricing</a></li>
                             <li className='py-2 text-sm'>Documentation</li>
                             <li className='py-2 text-sm'>Guides</li>
                             <li className='py-2 text-sm'>API Status</li>
@@ -76,8 +75,8 @@ export default function Footer() {
                         <h6 className='font-medium text-gray-400'>Legal</h6>
                         <ul>
                             <li className='py-2 text-sm'>Claim</li>
-                            <li className='py-2 text-sm'>Policy</li>
-                            <li className='py-2 text-sm'>Terms</li>
+                            <li className='py-2 text-sm'><a href="http://localhost:3000/privacyandpolicy">Policy</a></li>
+                            <li className='py-2 text-sm'><a href="http://localhost:3000/termsandservices">Terms</a></li>
                         </ul>
                     </div>
                 </div>
