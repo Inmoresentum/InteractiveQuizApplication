@@ -2,9 +2,11 @@
 import {useEffect} from "react";
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
-import MathImage from "@/public/landingpage/maths-1329296.jpg"
-import OnlineQuiz from "@/public/landingpage/online-quiz.jpg"
-import Coding from "@/public/landingpage/coding.jpg"
+import First from "@/public/landingpage/first.jpg"
+import Second from "@/public/landingpage/second.jpeg"
+import Third from "@/public/landingpage/third.jpeg"
+import Fourth from "@/public/landingpage/fourth.png"
+import Fifth from "@/public/landingpage/fifth.jpeg"
 import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -70,39 +72,25 @@ export default function ContentSection() {
                             <div className="left">
                                 <div className="desktopContent">
                                     <div className="desktopContentSection">
-                                        <h1>Red</h1>
-                                        <p>Red is a color often associated with strong emotions such as passion, love, and anger. Its a bold and
-                                            attention-grabbing color that can evoke feelings of excitement, warmth, and energy.</p>
+                                        <h1>Challenge Your Knowledge</h1>
+                                        <p> Embark on a journey of learning and fun with our interactive quizzes. Test your wits, expand your horizons, and have a blast along the way.</p>
                                     </div>
                                     <div className="desktopContentSection">
-                                        <h1>Green</h1>
-                                        <p>Green is a color that is often associated with nature, growth, and harmony. It is a calming and relaxing
-                                            color
-                                            that
-                                            can
-                                            evoke feelings of balance, stability, and freshness. In color psychology, green is said to represent
-                                            balance
-                                            and
-                                            stability, making it a popular choice for branding and marketing in the health and wellness industry. </p>
+                                        <h1>Explore Diverse Topics</h1>
+                                        <p>From science to pop culture, history to technology, we've got quizzes that cover a wide range of subjects. Expand your understanding in an engaging way. </p>
                                     </div>
                                     <div className="desktopContentSection">
-                                        <h1>Pink</h1>
-                                        <p>Pink is a color that is often associated with femininity, romance, and sweetness. It is a softer and more
-                                            delicate
-                                            shade of red that can evoke feelings of warmth, love, and nurturing.</p>
+                                        <h1>Compete and Share</h1>
+                                        <p> Challenge your friends or go head-to-head with quiz enthusiasts from around the world. Score high, earn bragging rights, and share your achievements.</p>
                                     </div>
                                     <div className="desktopContentSection">
-                                        <h1>Blue</h1>
-                                        <p>Blue is a color that is often associated with calmness, trust, and reliability. It is a peaceful and serene
-                                            color
-                                            that
-                                            can evoke feelings of stability</p>
+                                        <h1>Learn While Having Fun</h1>
+                                        <p>Education doesn't have to be boring. Dive into our interactive quizzes and discover that learning can be entertaining and rewarding.</p>
                                     </div>
                                     <div className="desktopContentSection">
-                                        <h1>Rose 600</h1>
+                                        <h1>Curious Minds Welcome</h1>
                                         <p>
-                                            Dont Know what to write here so I am writing here something
-                                            that does not matter and have no value whatsoever as you can see.
+                                            Feed your curiosity and satisfy your quest for knowledge with our intriguing quizzes. Join a community of inquisitive minds and embark on a learning adventure.
                                         </p>
                                     </div>
                                 </div>
@@ -112,62 +100,41 @@ export default function ContentSection() {
                                 {/*mobile content */}
                                 <div className="mobileContent">
                                     <div className="mobilePhoto red"></div>
-                                    <h1>Red</h1>
-                                    <p>Red is a color often associated with strong emotions such as passion, love, and anger. Its a bold and
-                                        attention-grabbing
-                                        color that can evoke feelings of excitement, warmth, and energy.</p>
+                                    <h1>"Challenge Your Knowledge</h1>
+                                    <p> Embark on a journey of learning and fun with our interactive quizzes. Test your wits, expand your horizons, and have a blast along the way.</p>
                                     <div className="mobilePhoto green"></div>
-                                    <h1>Green</h1>
-                                    <p>Green is a color that is often associated with nature, growth, and harmony. It is a calming and relaxing color
-                                        that
-                                        can
-                                        evoke feelings of balance, stability, and freshness. In color psychology, green is said to represent balance
-                                        and
-                                        stability, making it a popular choice for branding and marketing in the health and wellness industry. </p>
+                                    <h1>Explore Diverse Topics</h1>
+                                    <p>From science to pop culture, history to technology, we've got quizzes that cover a wide range of subjects. Expand your understanding in an engaging way. </p>
 
                                     <div className="mobilePhoto pink"></div>
-                                    <h1>Pink</h1>
-                                    <p>Pink is a color that is often associated with femininity, romance, and sweetness. It is a softer and more
-                                        delicate
-                                        shade of
-                                        red that can evoke feelings of warmth, love, and nurturing. In the world of branding and marketing, pink is
-                                        often
-                                        used
-                                        to
-                                        target a female audience or to promote products that are associated with beauty, love, or romance.</p>
+                                    <h1>Compete and Share</h1>
+                                    <p>Challenge your friends or go head-to-head with quiz enthusiasts from around the world. Score high, earn bragging rights, and share your achievements.</p>
 
                                     <div className="mobilePhoto blue"></div>
-                                    <h1>Blue</h1>
-                                    <p className="p-4">Blue is a color that is often associated with calmness, trust, and reliability. It is a peaceful and serene
-                                        color
-                                        that
-                                        can
-                                        evoke feelings of stability, security, and professionalism. In color psychology, blue is said to represent
-                                        loyalty
-                                        and
-                                        trust, making it a popular choice for branding and marketing in the finance and technology industries.</p>
+                                    <h1>Learn While Having Fun</h1>
+                                    <p className="p-4">Education doesn't have to be boring. Dive into our interactive quizzes and discover that learning can be entertaining and rewarding.</p>
                                 </div>
                                 {/*desktop content*/}
                                 <div className="desktopPhotos">
                                     <div className="desktopPhoto red flex items-center justify-center">
-                                        <Image src={MathImage} alt="whatever" className="w-[25vw]
+                                        <Image src={First} alt="whatever" className="w-[25vw]
                                  h-[25vh] rounded-3xl md:hover:scale-110 duration-300 ease-linear"/>
                                     </div>
                                     <div className="desktopPhoto green flex items-center justify-center">
-                                        <Image src={OnlineQuiz} alt="whatever" className="w-[25vw] cursor-pointer
+                                        <Image src={Second} alt="whatever" className="w-[25vw] cursor-pointer
                                  h-[25vh] rounded-3xl md:hover:scale-110 duration-300 ease-linear"/>
                                     </div>
                                     <div className="desktopPhoto pink flex items-center justify-center">
-                                        <Image src={Coding} alt="whatever" className="w-[25vw]
+                                        <Image src={Third} alt="whatever" className="w-[25vw]
                                  h-[25vh] rounded-3xl md:hover:scale-110 duration-300 ease-linear"/>
                                     </div>
                                     <div className="desktopPhoto blue flex items-center justify-center">
-                                        <Image src={MathImage} alt="whatever" className="w-[25vw]
+                                        <Image src={Fourth} alt="whatever" className="w-[25vw]
                                  h-[25vh] rounded-3xl md:hover:scale-110 duration-300 ease-linear"/>
                                     </div>
                                     <div className="desktopPhoto bg-rose-600
                              flex items-center justify-center">
-                                        <Image src={MathImage} alt="whatever" className="w-[25vw]
+                                        <Image src={Fifth} alt="whatever" className="w-[25vw]
                                  h-[25vh] rounded-3xl md:hover:scale-110 duration-300 ease-linear"/>
                                     </div>
                                 </div>
