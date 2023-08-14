@@ -24,21 +24,21 @@ export function DialogDemo() {
                 <DialogHeader>
                     <DialogTitle>Edit profile</DialogTitle>
                     <DialogDescription>
-                        Make changes to your profile here. Click save when you're done.
+                        Make changes to your FAQ here. Click save when you're done.
                     </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="name" className="text-right">
-                            Name
+                        <Label htmlFor="Question" className="text-right">
+                            Question
                         </Label>
-                        <Input id="name" value="Pedro Duarte" className="col-span-3" />
+                        <Input id="question" value="Pedro Duarte" className="col-span-3" />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="username" className="text-right">
-                            Username
+                        <Label htmlFor="Answer" className="text-right">
+                            Answer
                         </Label>
-                        <Input id="username" value="@peduarte" className="col-span-3" />
+                        <Input id="answer" value="@peduarte" className="col-span-3" />
                     </div>
                 </div>
                 <DialogFooter>
