@@ -1,5 +1,6 @@
 import Laptop from "../../public/landingpage/laptop.jpg"
 import Image from "next/image";
+import CustomButtonAnalytics from "@/components/landing-page/custom-buttons";
 
 const Analytics = () => {
     return (
@@ -9,13 +10,9 @@ const Analytics = () => {
                 <div className='flex flex-col justify-center'>
                     <p className='text-purple-600 font-bold '>Create Quizzes Right From Dashboard</p>
                     <h1 className='md:text-4xl sm:text-3xl text-2xl font-bold py-2'>Manage Your Quizzes Centrally</h1>
-                    <p> Craft engaging quizzes effortlessly with our intuitive dashboard, designed to put the power of content creation in your hands. </p>
-                    <button
-                        className='bg-orange-600 text-white w-[200px] rounded-xl
-                        font-bold my-6 mx-auto md:mx-0 py-3 hover:bg-rose-600 hover:text-black hover:shadow-2xl hover:shadow-black transition
-                         duration-700 ease-in-out'>
-                        Get Started
-                    </button>
+                    <p> Craft engaging quizzes effortlessly with our intuitive dashboard,
+                        designed to put the power of content creation in your hands. </p>
+                    <CustomButtonAnalytics/>
                 </div>
             </div>
         </div>
