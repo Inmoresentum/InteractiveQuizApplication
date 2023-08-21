@@ -248,17 +248,16 @@ please try to create bug reports that are:
 
 ## Acknowledgement
 
-Todo: I will be adding stuff here later
+Special Thanks to @աɨռɢӄաօռɢ for the [react-quiz-component](https://github.com/wingkwong/react-quiz-component) library
+which is the building block for creating different types of quizzes
 
 ## Contributor
-
+To start contributing, please follow the [contribution](CONTRIBUTE.md) guidelines :)
 
 <p align="center">
 
 <a href="https://github.com/Inmoresentum/InteractiveQuizApplication/graphs/contributors">
-
   <img src="https://contrib.rocks/image?repo=Inmoresentum/InteractiveQuizApplication" />
-
 </a>
 
 </p>
