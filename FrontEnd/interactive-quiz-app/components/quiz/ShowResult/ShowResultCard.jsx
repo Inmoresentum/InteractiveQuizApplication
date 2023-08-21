@@ -1,7 +1,9 @@
 "use client"
 import {useRouter} from "next/navigation";
+import ResultCardContinueButton from "@/components/quiz/ShowResult/ResultCardButton";
 
-export default function ShowResultCard({QuestionSummary}) {
+
+export default function ShowResultCard({QuestionSummary, quizId}) {
     const router = useRouter();
     console.log("From ShowResultCard");
     console.log(QuestionSummary);
@@ -91,12 +93,7 @@ export default function ShowResultCard({QuestionSummary}) {
                             <p className="summary-score"><span>72</span> / 100</p>
                         </div>
                     </div>
-                    <button className="src-button"
-                    onClick={(e) => {
-                        router.push("http://localhost:3000/quiz/public/quizzes");
-                    }}>
-                        Continue
-                    </button>
+                    <ResultCardContinueButton  quizId={quizId} score={QuestionSummary.correctPoints}/>
                 </div>
 
             </div>

@@ -8,7 +8,12 @@ export default async function Login({params, searchParams}) {
     console.log(params, searchParams);
     const callbackUrl = searchParams["callbackUrl"]
     if (session) {
-        redirect("/");
+        if(callbackUrl) {
+            redirect(callbackUrl);
+        }
+        else {
+            redirect("/");
+        }
     }
     return (
         <CustomLogin curRedirectUrl={callbackUrl} />

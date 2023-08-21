@@ -10,7 +10,7 @@ import ShowResultCard from "@/components/quiz/ShowResult/ShowResultCard";
 const Core = function ({
                            questions, appLocale, showDefaultResult, onComplete, customResultPage,
                            showInstantFeedback, continueTillCorrect, revealAnswerOnSubmit, allowNavigation,
-                           onQuestionSubmit,
+                           onQuestionSubmit, quizId
                        }) {
     const [incorrectAnswer, setIncorrectAnswer] = useState(false);
     const [correctAnswer, setCorrectAnswer] = useState(false);
@@ -279,7 +279,7 @@ const Core = function ({
     const renderResult = () => (
         <>
             <div className="card-body">
-                <ShowResultCard QuestionSummary={questionSummary}/>
+                <ShowResultCard QuestionSummary={questionSummary} quizId={quizId}/>
                 <h2 className="text-center shadow p-2.5 font-serif font-semibold text-2xl bg-gray-300 rounded-full">
                     {/*{appLocale.resultPageHeaderText*/}
                     {/*    .replace("<correctIndexLength>", correct.length)*/}

@@ -1,6 +1,13 @@
 import QuizProvider from "@/components/quiz/quiz-wrapper/QuizProvider";
+import {getServerSession} from "next-auth";
+import {options} from "@/app/api/auth/[...nextauth]/options";
+import {redirect} from "next/navigation";
 
 export async function generateMetadata({params: {quizID}}) {
+    const userSession = await getServerSession(options);
+    console.log("Trying to print the userSession data");
+    console.log(userSession);
+    if (!userSession) redirect(`http://localhost:3000/auth/login?callbackUrl=http://localhost:3000/quiz/play/${quizID}`);
     const response = await fetch(
         `http://localhost:8080/api/v1/quiz/resource/getQuiz/${quizID}`,
         {next: {revalidate: 30}});

@@ -152,6 +152,7 @@ const Quiz = function ({
                     allowNavigation={allowNavigation}
                     appLocale={appLocale}
                     onQuestionSubmit={onQuestionSubmit}
+                    quizId={quiz.quizId}
                 />
             )}
         </div>

@@ -1,5 +1,5 @@
 "use client"
-import React, {Fragment, useEffect, useState} from "react";
+import React, {Fragment, useState} from "react";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -9,9 +9,7 @@ import {Button} from "@/components/ui/button";
 import {useSession} from "next-auth/react";
 import MainLoadingSpinnerUi from "@/components/loading-animation/MainLoadingSpinnerUi";
 import {GoCheckCircleFill} from "react-icons/go";
-import Link from "next/link";
-import {FaExclamation} from "react-icons/fa6";
-import {redirect, useRouter} from "next/navigation";
+import {useRouter} from "next/navigation";
 
 // Creating a schema for the form data using zod
 const schema = z.object({

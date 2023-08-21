@@ -63,7 +63,8 @@ export default function CustomLogin({curRedirectUrl}) {
         console.log(result.url.toString())
         console.log(curRedirectUrl)
         if (curRedirectUrl && curRedirectUrl !=="") {
-            router.push(curRedirectUrl.toString())
+            router.refresh();
+            router.push(`${curRedirectUrl}`)
         }
         else {
             router.push("/");
