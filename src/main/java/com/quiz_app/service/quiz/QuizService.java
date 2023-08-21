@@ -188,7 +188,6 @@ public class QuizService {
     }
 
     public String saveQuizImage(MultipartFile image) throws IOException {
-        var quizImageByteInputStream = new ByteArrayInputStream(image.getBytes());
         var generatedUniqueFileName = UUID.randomUUID().toString();
         minioService.putQuizImage(generatedUniqueFileName, image);
         return BASE_URL + "/image/quiz/" + generatedUniqueFileName;
