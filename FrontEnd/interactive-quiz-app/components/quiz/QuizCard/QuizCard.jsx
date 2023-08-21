@@ -13,7 +13,9 @@ export default function QuizCard({quizInfo}) {
                 <div className="quiz-card">
                     <HiMiniArrowUturnRight className="bi text-white whatever mix-blend-difference"/>
                     <div class="quiz-card-top">
-                        <Image src={quizInfo?.createdByProfilePicUrl !== null ? quizInfo?.createdByProfilePicUrl : CardImage} alt=""/>
+                        <Image src={quizInfo?.quizProfilePhotoUrl !== null ? quizInfo.quizProfilePhotoUrl : CardImage} alt=""
+                               width="250" height="250"
+                        />
                     </div>
 
                     <div className="quiz-card-body">
