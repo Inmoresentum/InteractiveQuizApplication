@@ -248,8 +248,8 @@ please try to create bug reports that are:
 
 ## Acknowledgement
 
-Special Thanks to @աɨռɢӄաօռɢ for the [react-quiz-component](https://github.com/wingkwong/react-quiz-component) library
-which is the building block for creating different types of quizzes
+Special Thanks to @wingkwong for the [react-quiz-component](https://github.com/wingkwong/react-quiz-component) library
+which is the building block for creating different types of quizzes.
 
 ## Contributor
 To start contributing, please follow the [contribution](CONTRIBUTE.md) guidelines :)
