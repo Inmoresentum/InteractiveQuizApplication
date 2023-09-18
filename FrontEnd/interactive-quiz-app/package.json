@@ -30,7 +30,7 @@
     "framer-motion": "^10.15.1",
     "gsap": "^3.12.2",
     "lottie-react": "^2.4.0",
-    "lucide-react": "^0.263.1",
+    "lucide-react": "^0.279.0",
     "next": "13.4.12",
     "next-auth": "^4.23.0",
     "postcss": "8.4.27",
