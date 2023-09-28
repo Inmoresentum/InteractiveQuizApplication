@@ -7,12 +7,12 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import {Label} from "@/components/ui/label";
 import {Button} from "@/components/ui/button";
 import {FaRegEdit} from "react-icons/fa";
+import {Textarea} from "@/components/ui/textarea";
 
-export function DialogDemo() {
+export function FAQEdit({question, answer}) {
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -22,7 +22,7 @@ export function DialogDemo() {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Edit profile</DialogTitle>
+                    <DialogTitle>EDIT FAQ</DialogTitle>
                     <DialogDescription>
                         Make changes to your FAQ here. Click save when you're done.
                     </DialogDescription>
@@ -32,17 +32,17 @@ export function DialogDemo() {
                         <Label htmlFor="Question" className="text-right">
                             Question
                         </Label>
-                        <Input id="question" value="Pedro Duarte" className="col-span-3" />
+                        <Textarea id="question" defaultValue={`${question}`} className="col-span-3"/>
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="Answer" className="text-right">
                             Answer
                         </Label>
-                        <Input id="answer" value="@peduarte" className="col-span-3" />
+                        <Textarea id="answer" defaultValue={`${answer}`} className="col-span-3"/>
                     </div>
                 </div>
                 <DialogFooter>
-                    <Button type="submit">Save changes</Button>
+                    <Button type="submit" className="hover:bg-green-600">Save changes</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
