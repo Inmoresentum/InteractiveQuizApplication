@@ -125,7 +125,7 @@ const AccordionItem = ({header, text}) => {
 
                 <div className="w-full">
                     <h4 className="text-lg font-semibold text-black">{header}</h4>
-                    <FAQOptions/>
+                    <FAQOptions question={header} answer={text}/>
                 </div>
             </button>
 

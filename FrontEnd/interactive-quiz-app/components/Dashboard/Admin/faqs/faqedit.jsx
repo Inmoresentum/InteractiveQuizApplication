@@ -22,7 +22,7 @@ export function FAQEdit({question, answer}) {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>EDIT FAQ</DialogTitle>
+                    <DialogTitle className="text-center p-2 text-2xl">EDIT FAQ</DialogTitle>
                     <DialogDescription>
                         Make changes to your FAQ here. Click save when you're done.
                     </DialogDescription>
