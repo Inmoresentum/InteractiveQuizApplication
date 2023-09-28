@@ -42,6 +42,7 @@ export function FAQEdit({question, answer}) {
                     </div>
                 </div>
                 <DialogFooter>
+                    {/*Todo: need to make the API call and update the FAQ accordingly*/}
                     <Button type="submit" className="hover:bg-green-600">Save changes</Button>
                 </DialogFooter>
             </DialogContent>
