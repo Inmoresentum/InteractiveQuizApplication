@@ -36,6 +36,7 @@ export default function FAQsAdmins({faqs, showSupportButton}) {
                                 key={f.id}
                                 header={f.question}
                                 text={f.answers}
+                                faqId={f.id}
                             />
                         ))}                    </div>
                     <div className="w-full px-4 lg:w-1/2">
@@ -44,6 +45,7 @@ export default function FAQsAdmins({faqs, showSupportButton}) {
                                 key={f.id}
                                 header={f.question}
                                 text={f.answers}
+                                faqId={f.id}
                             />
                         ))}
                     </div>
@@ -85,7 +87,7 @@ export default function FAQsAdmins({faqs, showSupportButton}) {
 };
 
 
-const AccordionItem = ({header, text}) => {
+const AccordionItem = ({header, text, faqId}) => {
     const [active, setActive] = useState(false);
 
     const handleToggle = () => {
@@ -125,7 +127,7 @@ const AccordionItem = ({header, text}) => {
 
                 <div className="w-full">
                     <h4 className="text-lg font-semibold text-black">{header}</h4>
-                    <FAQOptions question={header} answer={text}/>
+                    <FAQOptions question={header} answer={text} faqId={faqId}/>
                 </div>
             </button>
 

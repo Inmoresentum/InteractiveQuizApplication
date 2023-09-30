@@ -11,7 +11,12 @@ import {
 } from "@/components/ui/alert-dialog"
 import {MdDelete} from "react-icons/md";
 
-export default function FaqDeleteOperation() {
+export default function FaqDeleteOperation({faqId}) {
+    function deleteFaq() {
+        console.log("I have been clicked to delete the FAQ");
+        //Todo: use React Query to delete the current FAQ
+    }
+
     return (
         <AlertDialog>
             <AlertDialogTrigger>
@@ -31,7 +36,7 @@ export default function FaqDeleteOperation() {
                         Cancel
                     </AlertDialogCancel>
                     <AlertDialogAction className="hover:bg-red-500 hover:text-black hover:rounded-full ease-linear duration-300">
-                        Continue
+                        <button onClick={deleteFaq}>Continue</button>
                     </AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
