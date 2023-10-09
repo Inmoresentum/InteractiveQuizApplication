@@ -234,12 +234,12 @@ to set up, please follow these steps:
 
 <h2 style="text-decoration: underline; text-decoration-color: #0575e6"> Issues </h2>
 
-you've found a bug in the source code, a mistake in the documentation?
-you can help
+You've found a bug in the source code, a mistake in the documentation?
+You can help
 by [submitting an issue on GitHub](https://github.com/Inmoresentum/InteractiveQuizApplication/issues).
 before you create an issue, make sure to search for the issue archive -- your issue may have already been addressed!
 
-please try to create bug reports that are:
+Please try to create bug reports that are:
 
 - _reproducible._ include steps to reproduce the problem.
 - _specific._ include as much detail as possible: which version, what environment, etc.
