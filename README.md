@@ -72,7 +72,7 @@
    Group Information
 </h2>
 
-This repository contains **CSE470** Lab Group No `9` PROJECT, `Summer 2023` Section `02`.
+This repository contains **CSE470** Group No `9` PROJECT, `Summer 2023` Section `02`.
 
 #### Group Name: _Enigma Enchanters_
 
@@ -129,7 +129,7 @@ you will have to install the following things.
 
 ## Setup
 
-to set up, please follow these steps:
+To set up, please follow these steps:
 
 <details>
 <summary>Back-End</summary>
@@ -177,7 +177,7 @@ to set up, please follow these steps:
 
 6. For storing images, videos and other objects, you will need to have [minio](https://min.io/)
    which is a S3 compatible object storage solution.
-   You can easily spin up container [minio container](https://min.io/docs/minio/container/index.html) using docker, 
+   You can easily spin up a [minio container](https://min.io/docs/minio/container/index.html) using docker, 
    or you can manually download docker for your respective platform from this [here](https://min.io/download#/linux).
    Furthermore, you have to make sure that you create the necessary user account(s) with permissions.
    Important thing to note that spring boot is expecting a bucket called **quiz_storage** already be there
