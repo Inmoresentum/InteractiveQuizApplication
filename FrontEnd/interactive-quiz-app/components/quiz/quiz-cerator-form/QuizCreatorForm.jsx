@@ -10,6 +10,7 @@ import {useSession} from "next-auth/react";
 import MainLoadingSpinnerUi from "@/components/loading-animation/MainLoadingSpinnerUi";
 import {GoCheckCircleFill} from "react-icons/go";
 import {useRouter} from "next/navigation";
+import Link from "next/link";
 
 // Creating a schema for the form data using zod
 const schema = z.object({
@@ -39,7 +40,7 @@ const schema = z.object({
 });
 
 export default function QuizCreationForm() {
-    const {register, handleSubmit, reset, watch, setValue, formState: {errors, isSubmitted}} = useForm({
+    const {register, handleSubmit, reset, watch, setValue, formState: {errors, isSubmitted, isSubmitting, isSubmitSuccessful}} = useForm({
         resolver: zodResolver(schema),
         defaultValues: {
             quizTitle: "",
@@ -200,6 +201,7 @@ export default function QuizCreationForm() {
                 },
             });
             return response.data;
+            clearAll();
         } catch (error) {
             console.log("I am trying to check the status");
             console.log(error.response.status);
@@ -277,7 +279,7 @@ export default function QuizCreationForm() {
             }
         }
     };
-    if (isSubmitted && !errors)
+    if (isSubmitSuccessful)
         return (
             <div className="container mx-auto p-44 flex justify-center items-center flex-grow h-[80vh]">
                 <div className="bg-gradient-to-r from-green-400 via-purple-500 to-green-600 text-white font-bold border md:text-xl
@@ -292,15 +294,23 @@ export default function QuizCreationForm() {
                          hover:text-cyan-500 duration-300 ease-linear"
                                 onClick={(e) => {
                                     router.push("http://localhost:3000/quiz/public/quizzes")
-                                }}
-                        >
+                                }}>
                             NOW CHECKOUT QUIZZES
+                        </button>
+                    </span>
+                    <span className="flex content-center justify-center ">
+                        <button className="underline text-orange-400
+                         hover:text-orange-500 duration-300 ease-linear"
+                                onClick={(e) => {
+                                    router.push("http://localhost:3000/quiz/create")
+                                }}>
+                            Create Another Quiz
                         </button>
                     </span>
                 </div>
             </div>
         )
-    if (userSessionData.status === "loading") return <MainLoadingSpinnerUi/>
+    if (userSessionData.status === "loading" || isSubmitting) return <MainLoadingSpinnerUi/>
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-200 pt-24 pb-10">
