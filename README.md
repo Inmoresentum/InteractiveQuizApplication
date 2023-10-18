@@ -237,7 +237,7 @@ To set up, please follow these steps:
 You've found a bug in the source code, a mistake in the documentation?
 You can help
 by [submitting an issue on GitHub](https://github.com/Inmoresentum/InteractiveQuizApplication/issues).
-before you create an issue, make sure to search for the issue archive -- your issue may have already been addressed!
+Before you create an issue, make sure to search for the issue archive -- your issue may have already been addressed!
 
 Please try to create bug reports that are:
 
