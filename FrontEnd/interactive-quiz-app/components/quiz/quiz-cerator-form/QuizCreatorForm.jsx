@@ -200,8 +200,8 @@ export default function QuizCreationForm() {
                     Authorization: `Bearer ${userSessionData.data.user.access_token}`,
                 },
             });
-            return response.data;
             clearAll();
+            return response.data;
         } catch (error) {
             console.log("I am trying to check the status");
             console.log(error.response.status);
