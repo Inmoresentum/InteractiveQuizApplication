@@ -1,9 +1,9 @@
 <h1 align="center">
    <p align="center">
-      <img src="FrontEnd/interactive-quiz-app/public/quiz-app-logo.png"
+      <img src="FrontEnd/interactive-quiz-app/public/border-radius-patch.png"
      alt="whatever"
-     height="180px"
-     width="180px"
+     height="220px"
+     width="220px"
      style="border-radius: 35px; box-shadow: 0px 10px 75px rgb(5,255,105);">
    </p>
    An Interactive Web-Based Quiz Application
