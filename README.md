@@ -178,7 +178,7 @@ To set up, please follow these steps:
 6. For storing images, videos and other objects, you will need to have [minio](https://min.io/)
    which is a S3 compatible object storage solution.
    You can easily spin up a [minio container](https://min.io/docs/minio/container/index.html) using docker, 
-   or you can manually download docker for your respective platform from this [here](https://min.io/download#/linux).
+   or you can manually download docker for your respective platform from [here](https://min.io/download#/linux).
    Furthermore, you have to make sure that you create the necessary user account(s) with permissions.
    Important thing to note that spring boot is expecting a bucket called **quiz_storage** already be there
    when the server starts.
