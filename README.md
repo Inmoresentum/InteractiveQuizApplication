@@ -185,7 +185,10 @@ To set up, please follow these steps:
    So make sure to create it if it does not already exist.
    * Note: It's also possible to use [AWS S3](https://aws.amazon.com/s3/) as well with `minioClinet` but for that 
       you will have to do some extra configuration by yourself
-7. And then finally Click the `play` icon which will start the spring boot application
+7. For scanning files and binaries for viruses and harmful contents, you will need
+   [clamav-rest](https://github.com/ajilach/clamav-rest) which is a rest service
+   built on top of [ClamAV](https://github.com/Cisco-Talos/clamav).
+8. And then finally Click the `play` icon which will start the spring boot application
    Alternatively, from the terminal use the included `maven` wrapper to build and
    run using
     ```shell
