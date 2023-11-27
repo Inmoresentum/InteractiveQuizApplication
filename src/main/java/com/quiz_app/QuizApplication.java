@@ -71,9 +71,9 @@ public class QuizApplication {
                         Faker faker = new Faker();
                         List<RegisterRequest> users = new ArrayList<>();
                         for (int j = 0; j < 1000; j++) {
-                            String username = faker.name().username();
+                            String username = faker.internet().username();
                             while (!usedUsernames.add(username)) {
-                                username = faker.name().username();
+                                username = faker.internet().username();
                             }
 
                             String email = faker.internet().emailAddress();
