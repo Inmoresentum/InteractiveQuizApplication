@@ -279,9 +279,9 @@ To start contributing, please follow the [contribution](CONTRIBUTE.md) guideline
 
 <p align="center">
 
-<a href="https://github.com/Inmoresentum/InteractiveQuizApplication/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Inmoresentum/InteractiveQuizApplication" />
-</a>
+   <a href="https://github.com/Inmoresentum/InteractiveQuizApplication/graphs/contributors">
+     <img src="https://contrib.rocks/image?repo=Inmoresentum/InteractiveQuizApplication" />
+   </a>
 
 </p>
 &#160;
