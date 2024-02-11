@@ -23,7 +23,6 @@ import java.util.Map;
 public class FileStorageController {
     private final MinioService minioService;
     private final QuizService quizService;
-    private final ClamAVService clamAVService;
 
     @PostMapping(value = "/upload",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE

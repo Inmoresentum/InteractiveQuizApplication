@@ -16,7 +16,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FAQDtoAdd implements Serializable {
-
     @NotNull
     @NotEmpty
     @NotBlank
