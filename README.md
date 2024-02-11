@@ -173,9 +173,9 @@ To set up, please follow these steps:
 4. Now You have to Set up MariaDB and to do that you can either [download MariaDB](https://mariadb.org/) for your
    operating system or use [docker to spin up a MariaDB container](https://hub.docker.com/_/mariadb).
    By default, the backend server is expecting MariaDB to run on `port: 3306`, so you will have
-   make sure that your instance of mariadb is also running on that port.
+   make sure that your instance of MariaDB is also running on that port.
    However, if you want to overrider the default configuration, then you can do in two ways.
-    1. Taking advantage of the environment that is used in the
+    1. Taking advantage of the environment variables that are used in the
        [application.properties](/src/main/resources/application.properties) file
     2. Or Changing the provided default `spring.datasource.url`
 
@@ -192,7 +192,7 @@ To set up, please follow these steps:
 6. For storing images, videos and other objects, you will need to have [minio](https://min.io/)
    which is a S3 compatible object storage solution.
    You can easily spin up a [minio container](https://min.io/docs/minio/container/index.html) using docker,
-   or you can manually download docker for your respective platform from [here](https://min.io/download#/linux).
+   or you can manually download minio for your respective platform from [here](https://min.io/download#/linux).
    Furthermore, you have to make sure that you create the necessary user account(s) with permissions.
    Important thing to note that spring boot is expecting a bucket called **quiz_storage** already be there
    when the server starts.
@@ -213,9 +213,9 @@ To set up, please follow these steps:
     ```shell
     ./mvnw clean install
     ``` 
-8. By default, the backed server should start at **http://localhost:8080**
+9. By default, the backed server should start at **http://localhost:8080**
 
-9. To check the OpenAPI documentation for created APIs,
+10. To check the OpenAPI documentation for created APIs,
    please visit **https://localhost:8080/swagger-ui.html** 😀
 
 </details>
