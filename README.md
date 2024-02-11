@@ -270,7 +270,7 @@ Please try to create bug reports that are:
 
 ## Acknowledgement
 
-Special Thanks to @wingkwong for the [react-quiz-component](https://github.com/wingkwong/react-quiz-component) library
+Special Thanks to [@wingkwong](https://github.com/wingkwong) for the [react-quiz-component](https://github.com/wingkwong/react-quiz-component) library
 which is the building block for creating different types of quizzes.
 
 ## Contributor
