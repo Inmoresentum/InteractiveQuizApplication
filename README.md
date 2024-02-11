@@ -34,24 +34,27 @@
 </p>
 
 <p align="center">
-   <img src="https://img.shields.io/badge/tailwindcss 3-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white"
-      alt="whatever"
-      style="border-radius:35px">
+   <a href="https://tailwindcss.com/">
+      <img src="https://img.shields.io/badge/tailwindcss 3-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white"
+         alt="whatever"
+         style="border-radius:35px">
+   </a>
    <a href="https://www.jetbrains.com/idea/">
       <img src="https://img.shields.io/badge/IntelliJIDEA 23-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=pink" 
          alt="whatever"
          style="border-radius:8px">
    </a>
-   <img src="https://img.shields.io/badge/spring 6-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white" alt="whatever" style="border-radius:35px">
-   <img src="https://img.shields.io/badge/Framer Motion 10 -black?style=for-the-badge&logo=framer&logoColor=blue" alt="whatever" style="border-radius:35px">
+   <a href="https://spring.io/">
+      <img src="https://img.shields.io/badge/spring 6-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white" alt="whatever" style="border-radius:35px">
+   </a>
+   <a href="https://www.framer.com/motion/">
+      <img src="https://img.shields.io/badge/Framer Motion 10 -black?style=for-the-badge&logo=framer&logoColor=blue" alt="whatever" style="border-radius:35px">
+   </a>
    <a href="https://maildev.github.io/maildev/">
       <img src="https://img.shields.io/badge/MailDev 2.0-8B89CC?style=for-the-badge&logo=protonmail&logoColor=blue" alt="whatever" style="border-radius:35px">
    </a>
 </p>
 
-[//]: # (![GitHub Release Date - Published_At]&#40;https://img.shields.io/github/Inmoresentum/InteractiveQuizApplication&#41;)
-
-[//]: # (![GitHub contributors &#40;via allcontributors.org&#41;]&#40;https://img.shields.io/github/all-contributors/Inmoresentum/InteractiveQuizApplication/main&#41;)
 <div align="center">
 <hr width="250px"/>   
    <div align="center">
