@@ -10,13 +10,27 @@
 </h1> 
 
 <p align ="center"> 
-   <img src="https://img.shields.io/badge/node->=21-cyan" alt="whatever">
-   <img src="https://img.shields.io/badge/springboot-3.1-green" alt="whatever">
-   <img src="https://img.shields.io/badge/MariaDB-10.11.2-blue" alt="whatever">
-   <img src="https://img.shields.io/badge/MINIO-8.4.3-orange" alt="whatever">
-   <img src="https://img.shields.io/badge/vanilla-css-lightgrey" alt="whatever">
-   <img src="https://badgen.net/badge/icon/docker 20.11?icon=docker&label" alt="whatever">
-   <img src="https://badgen.net/badge/Icon/NextJS 14/red?icon=vercel&label" alt="https://img.shields.io/badge/Next 13-black?style=for-the-badge&logo=next.js&logoColor=red">
+   <a href="https://nodejs.org/en">
+      <img src="https://img.shields.io/badge/node->=21-cyan" alt="whatever">
+   </a>
+   <a href="https://spring.io/projects/spring-boot">
+      <img src="https://img.shields.io/badge/springboot-3.2-green" alt="whatever">
+   </a>
+   <a href="https://mariadb.org/">
+      <img src="https://img.shields.io/badge/MariaDB-11.2.3-blue" alt="whatever">
+   </a>
+   <a href="https://min.io/">
+      <img src="https://img.shields.io/badge/MINIO-8.4.3-orange" alt="whatever">
+   </a>
+   <a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics">
+      <img src="https://img.shields.io/badge/vanilla-css-lightgrey" alt="whatever">
+   </a>
+   <a href="https://www.docker.com/">
+      <img src="https://badgen.net/badge/icon/docker 20.11?icon=docker&label" alt="whatever">
+   </a>
+   <a href="https://nextjs.org/">
+      <img src="https://badgen.net/badge/Icon/NextJS 14/red?icon=vercel&label" alt="https://img.shields.io/badge/Next 13-black?style=for-the-badge&logo=next.js&logoColor=red">
+   </a>
 </p>
 
 <p align="center">
